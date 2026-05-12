@@ -6,6 +6,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const dist = join(root, 'dist');
 const siteUrl = 'https://packages.wasta-wocket.fr';
 const siteName = 'Developer Kits';
+const supportUrl = 'https://ko-fi.com/recovered';
 
 const pages = [
   {
@@ -145,6 +146,7 @@ function withMetadata(source, page, url) {
         name: siteName,
         url,
         description: page.description,
+        sameAs: ['https://github.com/Recoveredd', 'https://www.npmjs.com/~recoveredd', supportUrl],
         hasPart: pages
           .filter((item) => item.packageName)
           .map((item) => ({

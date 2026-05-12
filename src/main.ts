@@ -47,6 +47,7 @@ type RouteMeta = {
 
 const SITE_URL = 'https://packages.wasta-wocket.fr';
 const SITE_NAME = 'Developer Kits';
+const SUPPORT_URL = 'https://ko-fi.com/recovered';
 const HOME_DESCRIPTION =
   'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter and data URLs.';
 
@@ -380,6 +381,7 @@ function setStructuredData(route: LibrarySlug | 'home', meta: RouteMeta, url: st
           name: SITE_NAME,
           url,
           description: meta.description,
+          sameAs: ['https://github.com/Recoveredd', 'https://www.npmjs.com/~recoveredd', SUPPORT_URL],
           hasPart: libraries.map((library) => ({
             '@type': 'SoftwareSourceCode',
             name: library.name,
@@ -441,7 +443,11 @@ function renderShell(content: string): string {
     ${content}
     <footer class="site-footer">
       <span>Small TypeScript utilities for practical developer workflows.</span>
-      <a href="https://github.com/Recoveredd" target="_blank" rel="noreferrer">Recoveredd on GitHub</a>
+      <div class="footer-links">
+        <a href="https://github.com/Recoveredd" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.npmjs.com/~recoveredd" target="_blank" rel="noreferrer">npm</a>
+        <a href="${SUPPORT_URL}" target="_blank" rel="noopener noreferrer">Support maintenance</a>
+      </div>
     </footer>
   `;
 }
