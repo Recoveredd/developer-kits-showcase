@@ -423,12 +423,13 @@ function setStructuredData(route: LibrarySlug | 'home', meta: RouteMeta, url: st
   element.textContent = JSON.stringify(data);
 }
 
-function renderShell(content: string): string {
+function renderShell(content: string, activeSlug?: LibrarySlug): string {
   const navLinks = libraries
-    .map(
-      (library) =>
-        `<a href="${libraryPath(library.slug)}" data-link class="nav-link">${library.name.replace('-kit', '')}</a>`
-    )
+    .map((library) => {
+      const isActive = library.slug === activeSlug;
+
+      return `<a href="${libraryPath(library.slug)}" data-link class="demo-nav-link${isActive ? ' is-active' : ''}"${isActive ? ' aria-current="page"' : ''}>${library.name.replace('-kit', '')}</a>`;
+    })
     .join('');
 
   return `
@@ -437,7 +438,7 @@ function renderShell(content: string): string {
         <img class="brand-mark" src="/brand/developer-kits-logo-192.png" alt="" width="34" height="34" />
         <span>Developer Kits</span>
       </a>
-      <nav class="desktop-nav" aria-label="Library navigation">${navLinks}</nav>
+      <nav class="demo-nav" aria-label="Demo navigation">${navLinks}</nav>
     </header>
     ${content}
     <footer class="site-footer">
@@ -522,7 +523,11 @@ function renderLibraryPage(library: LibraryMeta): string {
   return renderShell(`
     <main>
       <section class="library-hero" style="--accent: ${library.accent}">
-        <a href="/" data-link class="back-link" aria-label="Back to Developer Kits home">Home</a>
+        <nav class="library-breadcrumb" aria-label="Breadcrumb">
+          <a href="/" data-link>Developer Kits</a>
+          <span aria-hidden="true">/</span>
+          <span>${library.name}</span>
+        </nav>
         <div class="library-heading">
           <div>
             <h1>${library.name}</h1>
@@ -552,7 +557,7 @@ function renderLibraryPage(library: LibraryMeta): string {
           .join('')}
       </section>
     </main>
-  `);
+  `, library.slug);
 }
 
 function renderDemoMarkup(slug: LibrarySlug): string {

@@ -46,16 +46,17 @@ main {
 
 .site-header {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  gap: 24px;
-  padding: 24px 0;
+  gap: 28px;
+  padding: 22px 0;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  width: fit-content;
   font-size: 15px;
   font-weight: 760;
 }
@@ -70,15 +71,30 @@ main {
   object-fit: cover;
 }
 
-.desktop-nav {
+.demo-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 6px;
+  gap: 2px 12px;
+  min-width: 0;
+  padding: 3px 0;
 }
 
-.nav-link,
-.back-link,
+.demo-nav-link {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 720;
+  padding: 7px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.demo-nav-link:hover,
+.demo-nav-link.is-active {
+  color: #11151b;
+  border-bottom-color: #11151b;
+}
+
 .secondary-action,
 .primary-action,
 .card-actions a,
@@ -95,13 +111,6 @@ main {
   font-weight: 700;
 }
 
-.nav-link {
-  padding: 7px 9px;
-  font-size: 12px;
-}
-
-.nav-link:hover,
-.back-link:hover,
 .secondary-action:hover,
 .card-actions a:hover,
 .install-box a:hover,
@@ -345,11 +354,26 @@ main {
 }
 
 .library-hero {
-  padding: 48px 0 34px;
+  padding: 28px 0 34px;
 }
 
-.back-link {
-  margin-bottom: 30px;
+.library-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 28px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.library-breadcrumb a {
+  color: #11151b;
+}
+
+.library-breadcrumb a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .library-heading {
@@ -711,15 +735,6 @@ select:focus {
 }
 
 @media (max-width: 980px) {
-  .site-header {
-    grid-template-columns: 1fr auto;
-  }
-
-  .desktop-nav {
-    grid-column: 1 / -1;
-    justify-content: flex-start;
-  }
-
   .hero-section,
   .principles-section,
   .library-heading,
@@ -752,13 +767,9 @@ select:focus {
     align-items: flex-start;
   }
 
-  .desktop-nav {
+  .demo-nav {
+    width: 100%;
     justify-content: flex-start;
-  }
-
-  .nav-link {
-    min-height: 34px;
-    font-size: 12px;
   }
 
   .hero-copy h1,
