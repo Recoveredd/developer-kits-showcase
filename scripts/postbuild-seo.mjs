@@ -12,7 +12,7 @@ const pages = [
     path: '/',
     title: 'Developer Kits | TypeScript utilities for developer data',
     description:
-      'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output and text matching.',
+      'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching and SVG parsing.',
     schemaType: 'CollectionPage'
   },
   {
@@ -63,6 +63,13 @@ const pages = [
     description: 'Compare and rank short strings with TypeScript-first fuzzy matching helpers.',
     packageName: 'text-similarity-kit',
     repository: 'https://github.com/Recoveredd/text-similarity-kit'
+  },
+  {
+    path: '/svg-ast-kit',
+    title: 'svg-ast-kit demo | Developer Kits',
+    description: 'Parse SVG markup into a typed JSON AST with traversal, lookup and stats helpers.',
+    packageName: 'svg-ast-kit',
+    repository: 'https://github.com/Recoveredd/svg-ast-kit'
   }
 ];
 

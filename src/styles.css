@@ -587,6 +587,12 @@ select:focus {
   padding: 18px;
 }
 
+.compact-table-output {
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 18px;
+}
+
 .table-output table,
 .array-table-kit-table {
   width: 100%;
