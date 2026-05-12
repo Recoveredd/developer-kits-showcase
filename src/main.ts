@@ -298,7 +298,7 @@ function renderShell(content: string): string {
   return `
     <header class="site-header">
       <a href="/" data-link class="brand" aria-label="Developer Kits home">
-        <span class="brand-mark">dk</span>
+        <img class="brand-mark" src="/brand/developer-kits-logo-192.png" alt="" width="34" height="34" />
         <span>Developer Kits</span>
       </a>
       <nav class="desktop-nav" aria-label="Library navigation">${navLinks}</nav>
