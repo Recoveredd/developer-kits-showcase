@@ -381,7 +381,7 @@ function setStructuredData(route: LibrarySlug | 'home', meta: RouteMeta, url: st
           name: SITE_NAME,
           url,
           description: meta.description,
-          sameAs: ['https://github.com/Recoveredd', 'https://www.npmjs.com/~recoveredd', SUPPORT_URL],
+          sameAs: ['https://github.com/Recoveredd', 'https://www.npmjs.com/~recovered', SUPPORT_URL],
           hasPart: libraries.map((library) => ({
             '@type': 'SoftwareSourceCode',
             name: library.name,
@@ -445,7 +445,7 @@ function renderShell(content: string, activeSlug?: LibrarySlug): string {
       <span>Small TypeScript utilities for practical developer workflows.</span>
       <div class="footer-links">
         <a href="https://github.com/Recoveredd" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.npmjs.com/~recoveredd" target="_blank" rel="noreferrer">npm</a>
+        <a href="https://www.npmjs.com/~recovered" target="_blank" rel="noreferrer">npm</a>
         <a href="${SUPPORT_URL}" target="_blank" rel="noopener noreferrer" aria-label="Support Developer Kits on Ko-fi">Ko-fi</a>
       </div>
     </footer>
@@ -487,7 +487,7 @@ function renderHome(): string {
           </p>
           <div class="hero-actions">
             <a href="/json-html-kit/" data-link class="primary-action">Explore the demos</a>
-            <a href="https://www.npmjs.com/~recoveredd" rel="noreferrer" class="secondary-action">View npm packages</a>
+            <a href="https://www.npmjs.com/~recovered" rel="noreferrer" class="secondary-action">View npm packages</a>
           </div>
         </div>
         <div class="hero-demo" aria-label="Package ecosystem preview">

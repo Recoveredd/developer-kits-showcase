@@ -146,7 +146,7 @@ function withMetadata(source, page, url) {
         name: siteName,
         url,
         description: page.description,
-        sameAs: ['https://github.com/Recoveredd', 'https://www.npmjs.com/~recoveredd', supportUrl],
+        sameAs: ['https://github.com/Recoveredd', 'https://www.npmjs.com/~recovered', supportUrl],
         hasPart: pages
           .filter((item) => item.packageName)
           .map((item) => ({
