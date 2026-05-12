@@ -1,6 +1,6 @@
 import { arrayToHtmlTable, arrayToMarkdownTable } from 'array-table-kit';
-import { parseDataUrl } from 'data-url-kit';
-import { hasFrontmatter, stringifyFrontmatter, tryParseFrontmatter } from 'frontmatter-kit';
+import { getDataUrlMediaType, isBase64DataUrl, parseDataUrl } from 'data-url-kit';
+import { hasFrontmatter, stringifyFrontmatter, stripFrontmatter, tryParseFrontmatter } from 'frontmatter-kit';
 import type { FrontmatterLanguage, FrontmatterRange } from 'frontmatter-kit';
 import { jsonToCsv } from 'json-csv-kit';
 import { createJsonHtmlViewer, getThemeStyleTag, renderJsonToHtml } from 'json-html-kit';
@@ -8,9 +8,9 @@ import type { JsonHtmlThemeName, JsonHtmlViewer } from 'json-html-kit';
 import { deletePathImmutable, getPath, normalizePath, parsePath } from 'object-path-kit';
 import { getPathEntries } from 'object-key-paths';
 import { parseTerminalTable } from 'terminal-table-kit';
-import { compareStrings, rankMatches } from 'text-similarity-kit';
+import { compareStrings, isSimilar, rankMatches } from 'text-similarity-kit';
 import type { SimilarityAlgorithm } from 'text-similarity-kit';
-import { findSvgElements, getSvgStats, svgToJson, tryParseSvg } from 'svg-ast-kit';
+import { findSvgElements, getSvgElementNames, getSvgStats, svgToJson, tryParseSvg } from 'svg-ast-kit';
 import type { SvgStats } from 'svg-ast-kit';
 import './styles.css';
 
@@ -128,11 +128,11 @@ const libraries: LibraryMeta[] = [
     name: 'text-similarity-kit',
     summary: 'Compare and rank short strings with TypeScript-first fuzzy matching helpers.',
     install: 'npm install text-similarity-kit',
-    version: '0.1.0',
+    version: '0.1.1',
     github: 'https://github.com/Recoveredd/text-similarity-kit',
     npm: 'https://www.npmjs.com/package/text-similarity-kit',
     demoLabel: 'Text matching',
-    highlight: 'Dice, Levenshtein, Jaro and Jaro-Winkler scoring.',
+    highlight: 'Dice, Levenshtein, Jaro, Jaro-Winkler and threshold helpers.',
     accent: '#b91c5c'
   },
   {
@@ -140,11 +140,11 @@ const libraries: LibraryMeta[] = [
     name: 'svg-ast-kit',
     summary: 'Parse SVG markup into a typed JSON AST with traversal, lookup and stats helpers.',
     install: 'npm install svg-ast-kit',
-    version: '0.1.0',
+    version: '0.1.1',
     github: 'https://github.com/Recoveredd/svg-ast-kit',
     npm: 'https://www.npmjs.com/package/svg-ast-kit',
     demoLabel: 'SVG AST',
-    highlight: 'Inspect element counts, attributes and parser output.',
+    highlight: 'Inspect element names, counts, attributes and parser output.',
     accent: '#2563eb'
   },
   {
@@ -152,11 +152,11 @@ const libraries: LibraryMeta[] = [
     name: 'frontmatter-kit',
     summary: 'Parse and inspect front matter with typed metadata, body ranges and readable diagnostics.',
     install: 'npm install frontmatter-kit',
-    version: '0.1.0',
+    version: '0.1.1',
     github: 'https://github.com/Recoveredd/frontmatter-kit',
     npm: 'https://www.npmjs.com/package/frontmatter-kit',
     demoLabel: 'Front matter',
-    highlight: 'Inspector-friendly ranges, diagnostics and stringify helpers.',
+    highlight: 'Inspector-friendly ranges, diagnostics, stringify and strip helpers.',
     accent: '#7c3aed'
   },
   {
@@ -164,11 +164,11 @@ const libraries: LibraryMeta[] = [
     name: 'data-url-kit',
     summary: 'Parse, validate and inspect data URLs with typed diagnostics, byte metadata and decoded output.',
     install: 'npm install data-url-kit',
-    version: '0.1.0',
+    version: '0.1.1',
     github: 'https://github.com/Recoveredd/data-url-kit',
     npm: 'https://www.npmjs.com/package/data-url-kit',
     demoLabel: 'Data URL inspector',
-    highlight: 'Readable diagnostics for forms, previews and support tools.',
+    highlight: 'Readable diagnostics and quick metadata helpers for previews.',
     accent: '#0891b2'
   }
 ];
@@ -384,29 +384,39 @@ function setStructuredData(route: LibrarySlug | 'home', meta: RouteMeta, url: st
             '@type': 'SoftwareSourceCode',
             name: library.name,
             codeRepository: library.github,
+            sameAs: library.npm,
             programmingLanguage: 'TypeScript',
+            runtimePlatform: ['Node.js', 'Web browser'],
+            applicationCategory: 'DeveloperApplication',
             softwareVersion: library.version,
             license: 'https://www.mozilla.org/MPL/2.0/',
             url: `${SITE_URL}/${library.slug}/`,
             description: library.summary
           }))
         }
-      : {
-          '@context': 'https://schema.org',
-          '@type': 'SoftwareSourceCode',
-          name: libraryBySlug(route).name,
-          codeRepository: libraryBySlug(route).github,
-          programmingLanguage: 'TypeScript',
-          softwareVersion: libraryBySlug(route).version,
-          license: 'https://www.mozilla.org/MPL/2.0/',
-          url,
-          description: meta.description,
-          isPartOf: {
-            '@type': 'CollectionPage',
-            name: SITE_NAME,
-            url: SITE_URL
-          }
-        };
+      : (() => {
+          const library = libraryBySlug(route);
+
+          return {
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareSourceCode',
+            name: library.name,
+            codeRepository: library.github,
+            sameAs: library.npm,
+            programmingLanguage: 'TypeScript',
+            runtimePlatform: ['Node.js', 'Web browser'],
+            applicationCategory: 'DeveloperApplication',
+            softwareVersion: library.version,
+            license: 'https://www.mozilla.org/MPL/2.0/',
+            url,
+            description: meta.description,
+            isPartOf: {
+              '@type': 'CollectionPage',
+              name: SITE_NAME,
+              url: SITE_URL
+            }
+          };
+        })();
 
   element.textContent = JSON.stringify(data);
 }
@@ -1158,8 +1168,13 @@ function bindTextSimilarityDemo(): void {
       algorithm: selectedAlgorithm,
       stripDiacritics: stripDiacritics.checked
     });
+    const passesThreshold = isSimilar(query.value, candidateList[0] ?? '', {
+      algorithm: selectedAlgorithm,
+      stripDiacritics: stripDiacritics.checked,
+      threshold: thresholdNumber
+    });
 
-    score.textContent = `${candidateList.length} candidates · query vs first candidate: ${selfScore.toFixed(3)}`;
+    score.textContent = `${candidateList.length} candidates · query vs first candidate: ${selfScore.toFixed(3)} · threshold pass: ${passesThreshold ? 'yes' : 'no'}`;
     output.innerHTML = matches.length > 0
       ? arrayToHtmlTable(matches, { columns: ['candidate', 'rating', 'index'] })
       : renderError('No match above the current threshold.');
@@ -1199,8 +1214,9 @@ function bindSvgAstDemo(): void {
     const found = find.value === '*'
       ? findSvgElements(result.root, () => true)
       : findSvgElements(result.root, find.value);
+    const elementNames = getSvgElementNames(result.root, { unique: true }).join(', ');
 
-    summary.innerHTML = arrayToHtmlTable(summaryRows(stats, found.length), {
+    summary.innerHTML = arrayToHtmlTable(summaryRows(stats, found.length, elementNames), {
       columns: ['metric', 'value']
     });
     output.textContent = svgToJson(input.value, options, 2);
@@ -1248,7 +1264,8 @@ function bindFrontmatterDemo(): void {
         { metric: 'language', value: result.language ?? 'none' },
         { metric: 'attributes', value: Object.keys(result.attributes).length },
         { metric: 'diagnostics', value: result.diagnostics.length },
-        { metric: 'excerpt', value: result.excerpt ? 'yes' : 'none' }
+        { metric: 'excerpt', value: result.excerpt ? 'yes' : 'none' },
+        { metric: 'strippedBodyLength', value: stripFrontmatter(input.value, { ...(parseLanguage ? { language: parseLanguage } : {}) }).length }
       ],
       { columns: ['metric', 'value'] }
     );
@@ -1337,8 +1354,8 @@ function bindDataUrlDemo(): void {
 
     summary.innerHTML = arrayToHtmlTable(
       [
-        { metric: 'mediaType', value: result.value.mediaType },
-        { metric: 'base64', value: String(result.value.isBase64) },
+        { metric: 'mediaType', value: getDataUrlMediaType(input.value, options) ?? 'unknown' },
+        { metric: 'base64', value: String(isBase64DataUrl(input.value, options)) },
         { metric: 'bytes', value: result.value.byteLength },
         { metric: 'parameters', value: result.value.parameterList.length },
         { metric: 'textPreview', value: textPreview }
@@ -1371,7 +1388,7 @@ function formatRange(range: FrontmatterRange): string {
   return `${range.start.line}:${range.start.column} -> ${range.end.line}:${range.end.column}`;
 }
 
-function summaryRows(stats: SvgStats, foundCount: number): Array<{ metric: string; value: string | number }> {
+function summaryRows(stats: SvgStats, foundCount: number, elementNames: string): Array<{ metric: string; value: string | number }> {
   const topElements = Object.entries(stats.elementsByName)
     .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
     .slice(0, 4)
@@ -1383,6 +1400,7 @@ function summaryRows(stats: SvgStats, foundCount: number): Array<{ metric: strin
     { metric: 'attributes', value: stats.attributes },
     { metric: 'maxDepth', value: stats.maxDepth },
     { metric: 'matched', value: foundCount },
+    { metric: 'uniqueNames', value: elementNames || 'none' },
     { metric: 'topElements', value: topElements || 'none' }
   ];
 }
