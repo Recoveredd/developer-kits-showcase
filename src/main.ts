@@ -12,6 +12,7 @@ import { compareStrings, isSimilar, rankMatches } from 'text-similarity-kit';
 import type { SimilarityAlgorithm } from 'text-similarity-kit';
 import { findSvgElements, getSvgElementNames, getSvgStats, svgToJson, tryParseSvg } from 'svg-ast-kit';
 import type { SvgStats } from 'svg-ast-kit';
+import { packageSignals } from './package-signals';
 import './styles.css';
 
 type LibrarySlug =
@@ -514,9 +515,54 @@ function renderHome(): string {
           <span>Browser and Node friendly</span>
         </div>
       </section>
+      ${renderSignalsSection()}
       <section class="library-grid" aria-label="Library demos">${cards}</section>
     </main>
   `);
+}
+
+function renderSignalsSection(): string {
+  const topPackages = [...packageSignals.packages]
+    .sort((left, right) => (right.downloadsLastWeek ?? 0) - (left.downloadsLastWeek ?? 0))
+    .slice(0, 5)
+    .map(
+      (item) => `
+        <li>
+          <a href="${item.npmUrl}" target="_blank" rel="noreferrer">${item.name}</a>
+          <span>${formatNumber(item.downloadsLastWeek ?? 0)} weekly downloads</span>
+        </li>
+      `
+    )
+    .join('');
+
+  return `
+    <section class="signals-section" aria-label="Package signals">
+      <div>
+        <h2>Package signals</h2>
+        <p>
+          A small weekly snapshot from npm and GitHub, showing where the kits are already getting used.
+        </p>
+      </div>
+      <div class="signals-panel">
+        <div class="signal-metrics">
+          <div>
+            <strong>${formatNumber(packageSignals.totals.downloadsLastWeek)}</strong>
+            <span>npm downloads last week</span>
+          </div>
+          <div>
+            <strong>${formatNumber(packageSignals.packages.length)}</strong>
+            <span>tracked packages</span>
+          </div>
+          <div>
+            <strong>${formatNumber(packageSignals.totals.openIssues)}</strong>
+            <span>open GitHub issues</span>
+          </div>
+        </div>
+        <ol class="signal-list">${topPackages}</ol>
+        <p class="signal-updated">Updated ${formatDate(packageSignals.generatedAt)}</p>
+      </div>
+    </section>
+  `;
 }
 
 function renderLibraryPage(library: LibraryMeta): string {
@@ -1438,6 +1484,18 @@ function parseJson(value: string): { ok: true; data: unknown } | { ok: false; me
 
 function renderError(message: string): string {
   return `<div class="error-box">${escapeHtml(message)}</div>`;
+}
+
+function formatNumber(value: number): string {
+  return new Intl.NumberFormat('en-US').format(value);
+}
+
+function formatDate(value: string): string {
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  }).format(new Date(value));
 }
 
 function escapeHtml(value: string): string {
