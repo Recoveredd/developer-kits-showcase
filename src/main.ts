@@ -88,6 +88,15 @@ const libraries: LibraryMeta[] = [
   }
 ];
 
+const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
+  { label: 'HTML viewer', slug: 'json-html-kit' },
+  { label: 'Markdown table', slug: 'array-table-kit' },
+  { label: 'CSV export', slug: 'json-csv-kit' },
+  { label: 'Object paths', slug: 'object-path-kit' },
+  { label: 'Key inventory', slug: 'object-key-paths' },
+  { label: 'Terminal rows', slug: 'terminal-table-kit' }
+];
+
 const reportSample = {
   report: 'API usage',
   generatedAt: '2026-05-12T09:30:00.000Z',
@@ -213,12 +222,9 @@ function renderHome(): string {
         <div class="hero-demo" aria-label="Package ecosystem preview">
           <div class="flow-node source">JSON</div>
           <div class="flow-grid">
-            <span>HTML viewer</span>
-            <span>Markdown table</span>
-            <span>CSV export</span>
-            <span>Object paths</span>
-            <span>Key inventory</span>
-            <span>Terminal rows</span>
+            ${demoTiles
+              .map((tile) => `<a href="/${tile.slug}" data-link>${tile.label}</a>`)
+              .join('')}
           </div>
           <pre>${escapeHtml(jsonToCsv(rowsSample, { columns: ['name', 'p95', 'requests'] }))}</pre>
         </div>

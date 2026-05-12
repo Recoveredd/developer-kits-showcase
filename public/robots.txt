@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kits.wasta-wocket.fr/sitemap.xml
+Sitemap: https://packages.wasta-wocket.fr/sitemap.xml

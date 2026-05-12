@@ -195,13 +195,21 @@ main {
   margin: 20px 0;
 }
 
-.flow-grid span {
+.flow-grid a {
   border: 1px solid #dfe3da;
   background: rgba(255, 255, 255, 0.9);
   padding: 14px;
   color: #303640;
   font-size: 14px;
   font-weight: 740;
+}
+
+.flow-grid a:hover,
+.flow-grid a:focus-visible {
+  border-color: #11151b;
+  background: #11151b;
+  color: #ffffff;
+  outline: none;
 }
 
 .hero-demo pre,
