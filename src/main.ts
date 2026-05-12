@@ -1,4 +1,5 @@
 import { arrayToHtmlTable, arrayToMarkdownTable } from 'array-table-kit';
+import { parseDataUrl } from 'data-url-kit';
 import { hasFrontmatter, stringifyFrontmatter, tryParseFrontmatter } from 'frontmatter-kit';
 import type { FrontmatterLanguage, FrontmatterRange } from 'frontmatter-kit';
 import { jsonToCsv } from 'json-csv-kit';
@@ -22,7 +23,8 @@ type LibrarySlug =
   | 'terminal-table-kit'
   | 'text-similarity-kit'
   | 'svg-ast-kit'
-  | 'frontmatter-kit';
+  | 'frontmatter-kit'
+  | 'data-url-kit';
 
 type LibraryMeta = {
   slug: LibrarySlug;
@@ -46,7 +48,7 @@ type RouteMeta = {
 const SITE_URL = 'https://packages.wasta-wocket.fr';
 const SITE_NAME = 'Developer Kits';
 const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing and front matter.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter and data URLs.';
 
 const libraries: LibraryMeta[] = [
   {
@@ -156,6 +158,18 @@ const libraries: LibraryMeta[] = [
     demoLabel: 'Front matter',
     highlight: 'Inspector-friendly ranges, diagnostics and stringify helpers.',
     accent: '#7c3aed'
+  },
+  {
+    slug: 'data-url-kit',
+    name: 'data-url-kit',
+    summary: 'Parse, validate and inspect data URLs with typed diagnostics, byte metadata and decoded output.',
+    install: 'npm install data-url-kit',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/data-url-kit',
+    npm: 'https://www.npmjs.com/package/data-url-kit',
+    demoLabel: 'Data URL inspector',
+    highlight: 'Readable diagnostics for forms, previews and support tools.',
+    accent: '#0891b2'
   }
 ];
 
@@ -168,7 +182,8 @@ const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Terminal rows', slug: 'terminal-table-kit' },
   { label: 'Text matching', slug: 'text-similarity-kit' },
   { label: 'SVG AST', slug: 'svg-ast-kit' },
-  { label: 'Front matter', slug: 'frontmatter-kit' }
+  { label: 'Front matter', slug: 'frontmatter-kit' },
+  { label: 'Data URL', slug: 'data-url-kit' }
 ];
 
 const reportSample = {
@@ -255,6 +270,9 @@ Short intro for the public changelog.
 <!-- more -->
 
 Full article body with implementation details.`;
+
+const dataUrlSample =
+  'data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%20240%20120%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20rx%3D%2218%22%20fill%3D%22%230891b2%22%2F%3E%3Ctext%20x%3D%22120%22%20y%3D%2268%22%20font-size%3D%2228%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3Edata-url-kit%3C%2Ftext%3E%3C%2Fsvg%3E';
 
 function routeFromLocation(): LibrarySlug | 'home' {
   const slug = window.location.pathname.replace(/^\/+|\/+$/g, '') as LibrarySlug;
@@ -448,7 +466,7 @@ function renderHome(): string {
         <div class="hero-copy">
           <h1>Focused TypeScript utilities for JSON, tables and developer data.</h1>
           <p>
-            Nine small packages built around the same idea: take awkward developer data and turn it
+            Ten small packages built around the same idea: take awkward developer data and turn it
             into something readable, exportable or easy to map.
           </p>
           <div class="hero-actions">
@@ -791,6 +809,35 @@ function renderDemoMarkup(slug: LibrarySlug): string {
     `;
   }
 
+  if (slug === 'data-url-kit') {
+    return `
+      <div class="panel input-panel">
+        <label for="data-url-input">Data URL</label>
+        <textarea id="data-url-input" spellcheck="false">${escapeHtml(dataUrlSample)}</textarea>
+        <div class="control-row">
+          <label for="data-url-max-bytes">Max bytes</label>
+          <select id="data-url-max-bytes">
+            <option value="0">no limit</option>
+            <option value="128">128 bytes</option>
+            <option value="256">256 bytes</option>
+            <option value="1024" selected>1 KB</option>
+            <option value="4096">4 KB</option>
+          </select>
+        </div>
+        <label class="check-control">
+          <input id="data-url-base64-whitespace" type="checkbox" checked />
+          <span>Allow base64 whitespace</span>
+        </label>
+      </div>
+      <div class="panel output-panel">
+        <div class="panel-title">Parsed data URL</div>
+        <div id="data-url-summary" class="table-output compact-table-output"></div>
+        <div id="data-url-diagnostics" class="table-output compact-table-output"></div>
+        <pre id="data-url-output" class="code-output"></pre>
+      </div>
+    `;
+  }
+
   return `
     <div class="panel input-panel">
       <label for="terminal-table-input">Terminal output</label>
@@ -841,6 +888,8 @@ function bindDemo(slug: LibrarySlug): void {
     bindTextSimilarityDemo();
   } else if (slug === 'frontmatter-kit') {
     bindFrontmatterDemo();
+  } else if (slug === 'data-url-kit') {
+    bindDataUrlDemo();
   } else {
     bindSvgAstDemo();
   }
@@ -1247,6 +1296,74 @@ function bindFrontmatterDemo(): void {
   language.addEventListener('change', update);
   stringifyLanguage.addEventListener('change', update);
   excerpt.addEventListener('change', update);
+  update();
+}
+
+function bindDataUrlDemo(): void {
+  const input = byId<HTMLTextAreaElement>('data-url-input');
+  const maxBytes = byId<HTMLSelectElement>('data-url-max-bytes');
+  const allowWhitespace = byId<HTMLInputElement>('data-url-base64-whitespace');
+  const summary = byId<HTMLDivElement>('data-url-summary');
+  const diagnostics = byId<HTMLDivElement>('data-url-diagnostics');
+  const output = byId<HTMLElement>('data-url-output');
+
+  const update = (): void => {
+    const options = {
+      ...(maxBytes.value === '0' ? {} : { maxBytes: Number(maxBytes.value) }),
+      allowBase64Whitespace: allowWhitespace.checked
+    };
+    const result = parseDataUrl(input.value, options);
+    const diagnosticRows = result.diagnostics.map((diagnostic) => ({
+      severity: diagnostic.severity,
+      code: diagnostic.code,
+      index: diagnostic.index ?? '-',
+      message: diagnostic.message
+    }));
+
+    diagnostics.innerHTML =
+      diagnosticRows.length > 0
+        ? arrayToHtmlTable(diagnosticRows, { columns: ['severity', 'code', 'index', 'message'] })
+        : '<p class="empty-state">No diagnostics.</p>';
+
+    if (!result.ok) {
+      summary.innerHTML = renderError('Unable to parse this data URL.');
+      output.textContent = JSON.stringify({ ok: false }, null, 2);
+      return;
+    }
+
+    const textPreview = result.value.text === undefined
+      ? 'binary or invalid UTF-8'
+      : result.value.text.slice(0, 120);
+
+    summary.innerHTML = arrayToHtmlTable(
+      [
+        { metric: 'mediaType', value: result.value.mediaType },
+        { metric: 'base64', value: String(result.value.isBase64) },
+        { metric: 'bytes', value: result.value.byteLength },
+        { metric: 'parameters', value: result.value.parameterList.length },
+        { metric: 'textPreview', value: textPreview }
+      ],
+      { columns: ['metric', 'value'] }
+    );
+
+    output.textContent = JSON.stringify(
+      {
+        mediaType: result.value.mediaType,
+        type: result.value.type,
+        subtype: result.value.subtype,
+        parameters: result.value.parameters,
+        isBase64: result.value.isBase64,
+        byteLength: result.value.byteLength,
+        text: result.value.text
+      },
+      null,
+      2
+    );
+  };
+
+  input.addEventListener('input', update);
+  maxBytes.addEventListener('change', update);
+  allowWhitespace.addEventListener('change', update);
   update();
 }
 

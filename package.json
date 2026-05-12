@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "array-table-kit": "^0.2.3",
+    "data-url-kit": "^0.1.0",
     "frontmatter-kit": "^0.1.0",
     "json-csv-kit": "^0.1.1",
     "json-html-kit": "^0.4.2",
