@@ -523,7 +523,7 @@ function renderLibraryPage(library: LibraryMeta): string {
   return renderShell(`
     <main>
       <section class="library-hero" style="--accent: ${library.accent}">
-        <a href="/" data-link class="back-link">All kits</a>
+        <a href="/" data-link class="back-link" aria-label="Back to Developer Kits home">Home</a>
         <div class="library-heading">
           <div>
             <h1>${library.name}</h1>
