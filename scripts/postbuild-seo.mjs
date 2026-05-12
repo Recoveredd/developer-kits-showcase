@@ -12,7 +12,7 @@ const pages = [
     path: '/',
     title: 'Developer Kits | TypeScript utilities for developer data',
     description:
-      'Small TypeScript developer utilities for JSON, tables, paths, CSV exports and terminal output.',
+      'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output and text matching.',
     schemaType: 'CollectionPage'
   },
   {
@@ -56,6 +56,13 @@ const pages = [
     description: 'Parse fixed-width terminal table output into typed rows for scripts, dashboards and docs.',
     packageName: 'terminal-table-kit',
     repository: 'https://github.com/Recoveredd/terminal-table-kit'
+  },
+  {
+    path: '/text-similarity-kit',
+    title: 'text-similarity-kit demo | Developer Kits',
+    description: 'Compare and rank short strings with TypeScript-first fuzzy matching helpers.',
+    packageName: 'text-similarity-kit',
+    repository: 'https://github.com/Recoveredd/text-similarity-kit'
   }
 ];
 

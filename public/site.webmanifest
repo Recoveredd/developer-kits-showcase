@@ -1,7 +1,7 @@
 {
   "name": "Developer Kits",
   "short_name": "Dev Kits",
-  "description": "Small TypeScript developer utilities for JSON, tables, paths, CSV exports and terminal output.",
+  "description": "Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output and text matching.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

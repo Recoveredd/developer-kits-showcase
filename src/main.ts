@@ -5,6 +5,8 @@ import type { JsonHtmlThemeName, JsonHtmlViewer } from 'json-html-kit';
 import { deletePathImmutable, getPath, normalizePath, parsePath } from 'object-path-kit';
 import { getPathEntries } from 'object-key-paths';
 import { parseTerminalTable } from 'terminal-table-kit';
+import { compareStrings, rankMatches } from 'text-similarity-kit';
+import type { SimilarityAlgorithm } from 'text-similarity-kit';
 import './styles.css';
 
 type LibrarySlug =
@@ -13,7 +15,8 @@ type LibrarySlug =
   | 'json-csv-kit'
   | 'object-path-kit'
   | 'object-key-paths'
-  | 'terminal-table-kit';
+  | 'terminal-table-kit'
+  | 'text-similarity-kit';
 
 type LibraryMeta = {
   slug: LibrarySlug;
@@ -37,7 +40,7 @@ type RouteMeta = {
 const SITE_URL = 'https://packages.wasta-wocket.fr';
 const SITE_NAME = 'Developer Kits';
 const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports and terminal output.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output and text matching.';
 
 const libraries: LibraryMeta[] = [
   {
@@ -111,6 +114,18 @@ const libraries: LibraryMeta[] = [
     demoLabel: 'Terminal parser',
     highlight: 'Limit parsed rows from long command output.',
     accent: '#1f7a4f'
+  },
+  {
+    slug: 'text-similarity-kit',
+    name: 'text-similarity-kit',
+    summary: 'Compare and rank short strings with TypeScript-first fuzzy matching helpers.',
+    install: 'npm install text-similarity-kit',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/text-similarity-kit',
+    npm: 'https://www.npmjs.com/package/text-similarity-kit',
+    demoLabel: 'Text matching',
+    highlight: 'Dice, Levenshtein, Jaro and Jaro-Winkler scoring.',
+    accent: '#b91c5c'
   }
 ];
 
@@ -120,7 +135,8 @@ const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'CSV export', slug: 'json-csv-kit' },
   { label: 'Object paths', slug: 'object-path-kit' },
   { label: 'Key inventory', slug: 'object-key-paths' },
-  { label: 'Terminal rows', slug: 'terminal-table-kit' }
+  { label: 'Terminal rows', slug: 'terminal-table-kit' },
+  { label: 'Text matching', slug: 'text-similarity-kit' }
 ];
 
 const reportSample = {
@@ -167,6 +183,16 @@ const terminalSample = `NAME        READY   STATUS    RESTARTS   AGE
 api-7f9d    1/1     Running   0          4h
 worker-21   1/1     Running   1          2h
 sync-03     0/1     Pending   0          12m`;
+
+const textCandidatesSample = [
+  'Create invoice',
+  'Export invoices',
+  'Import contacts',
+  'Payment export',
+  'Search endpoint',
+  'Customer support notes',
+  'Marseille office'
+];
 
 function routeFromLocation(): LibrarySlug | 'home' {
   const slug = window.location.pathname.replace(/^\/+|\/+$/g, '') as LibrarySlug;
@@ -360,7 +386,7 @@ function renderHome(): string {
         <div class="hero-copy">
           <h1>Focused TypeScript utilities for JSON, tables and developer data.</h1>
           <p>
-            Six small packages built around the same idea: take awkward developer data and turn it
+            Seven small packages built around the same idea: take awkward developer data and turn it
             into something readable, exportable or easy to map.
           </p>
           <div class="hero-actions">
@@ -591,6 +617,50 @@ function renderDemoMarkup(slug: LibrarySlug): string {
     `;
   }
 
+  if (slug === 'text-similarity-kit') {
+    return `
+      <div class="panel input-panel">
+        <label for="text-similarity-query">Query</label>
+        <input id="text-similarity-query" value="export invoice" />
+        <label for="text-similarity-candidates">Candidates</label>
+        <textarea id="text-similarity-candidates" spellcheck="false">${escapeHtml(textCandidatesSample.join('\n'))}</textarea>
+        <div class="control-row">
+          <label for="text-similarity-algorithm">Algorithm</label>
+          <select id="text-similarity-algorithm">
+            <option value="dice">dice</option>
+            <option value="levenshtein">levenshtein</option>
+            <option value="jaro">jaro</option>
+            <option value="jaro-winkler" selected>jaro-winkler</option>
+          </select>
+        </div>
+        <div class="control-row">
+          <label for="text-similarity-threshold">Threshold</label>
+          <div class="range-control">
+            <input id="text-similarity-threshold" type="range" min="0" max="1" step="0.05" value="0.25" />
+            <output id="text-similarity-threshold-value" for="text-similarity-threshold">0.25</output>
+          </div>
+        </div>
+        <div class="control-row">
+          <label for="text-similarity-limit">Limit</label>
+          <select id="text-similarity-limit">
+            <option value="0">all matches</option>
+            <option value="3" selected>3 matches</option>
+            <option value="5">5 matches</option>
+          </select>
+        </div>
+        <label class="check-control">
+          <input id="text-similarity-diacritics" type="checkbox" />
+          <span>Strip diacritics</span>
+        </label>
+      </div>
+      <div class="panel output-panel">
+        <div class="panel-title">Ranked matches</div>
+        <div id="text-similarity-score" class="demo-meta"></div>
+        <div id="text-similarity-output" class="table-output"></div>
+      </div>
+    `;
+  }
+
   return `
     <div class="panel input-panel">
       <label for="terminal-table-input">Terminal output</label>
@@ -635,8 +705,10 @@ function bindDemo(slug: LibrarySlug): void {
     bindObjectPathDemo();
   } else if (slug === 'object-key-paths') {
     bindObjectKeyDemo();
-  } else {
+  } else if (slug === 'terminal-table-kit') {
     bindTerminalTableDemo();
+  } else {
+    bindTextSimilarityDemo();
   }
 }
 
@@ -859,6 +931,63 @@ function bindTerminalTableDemo(): void {
 
   input.addEventListener('input', update);
   maxRows.addEventListener('change', update);
+  update();
+}
+
+function bindTextSimilarityDemo(): void {
+  const query = byId<HTMLInputElement>('text-similarity-query');
+  const candidates = byId<HTMLTextAreaElement>('text-similarity-candidates');
+  const algorithm = byId<HTMLSelectElement>('text-similarity-algorithm');
+  const threshold = byId<HTMLInputElement>('text-similarity-threshold');
+  const thresholdValue = byId<HTMLOutputElement>('text-similarity-threshold-value');
+  const limit = byId<HTMLSelectElement>('text-similarity-limit');
+  const stripDiacritics = byId<HTMLInputElement>('text-similarity-diacritics');
+  const score = byId<HTMLDivElement>('text-similarity-score');
+  const output = byId<HTMLDivElement>('text-similarity-output');
+
+  const update = (): void => {
+    const candidateList = candidates.value
+      .split('\n')
+      .map((candidate) => candidate.trim())
+      .filter(Boolean);
+    const selectedAlgorithm = algorithm.value as SimilarityAlgorithm;
+    const thresholdNumber = Number(threshold.value);
+    const limitNumber = Number(limit.value);
+
+    thresholdValue.value = threshold.value;
+    thresholdValue.textContent = thresholdNumber.toFixed(2);
+
+    const rankOptions = {
+      algorithm: selectedAlgorithm,
+      threshold: thresholdNumber,
+      stripDiacritics: stripDiacritics.checked
+    };
+
+    const matches = rankMatches(query.value, candidateList, limitNumber === 0
+      ? rankOptions
+      : { ...rankOptions, limit: limitNumber }).map((match) => ({
+      candidate: match.candidate,
+      rating: match.rating.toFixed(3),
+      index: match.index
+    }));
+
+    const selfScore = compareStrings(query.value, candidateList[0] ?? '', {
+      algorithm: selectedAlgorithm,
+      stripDiacritics: stripDiacritics.checked
+    });
+
+    score.textContent = `${candidateList.length} candidates · query vs first candidate: ${selfScore.toFixed(3)}`;
+    output.innerHTML = matches.length > 0
+      ? arrayToHtmlTable(matches, { columns: ['candidate', 'rating', 'index'] })
+      : renderError('No match above the current threshold.');
+  };
+
+  query.addEventListener('input', update);
+  candidates.addEventListener('input', update);
+  algorithm.addEventListener('change', update);
+  threshold.addEventListener('input', update);
+  limit.addEventListener('change', update);
+  stripDiacritics.addEventListener('change', update);
   update();
 }
 

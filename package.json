@@ -15,7 +15,8 @@
     "json-html-kit": "^0.4.2",
     "object-key-paths": "^0.1.1",
     "object-path-kit": "^0.1.3",
-    "terminal-table-kit": "^0.1.2"
+    "terminal-table-kit": "^0.1.2",
+    "text-similarity-kit": "^0.1.0"
   },
   "devDependencies": {
     "typescript": "^5.9.3",
