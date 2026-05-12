@@ -438,7 +438,6 @@ function renderShell(content: string): string {
         <span>Developer Kits</span>
       </a>
       <nav class="desktop-nav" aria-label="Library navigation">${navLinks}</nav>
-      <a class="header-action" href="https://github.com/Recoveredd" target="_blank" rel="noreferrer">GitHub</a>
     </header>
     ${content}
     <footer class="site-footer">

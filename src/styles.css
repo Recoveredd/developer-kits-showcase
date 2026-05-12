@@ -46,7 +46,7 @@ main {
 
 .site-header {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: center;
   gap: 24px;
   padding: 24px 0;
@@ -73,12 +73,11 @@ main {
 .desktop-nav {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 6px;
 }
 
 .nav-link,
-.header-action,
 .back-link,
 .secondary-action,
 .primary-action,
@@ -102,7 +101,6 @@ main {
 }
 
 .nav-link:hover,
-.header-action:hover,
 .back-link:hover,
 .secondary-action:hover,
 .card-actions a:hover,
@@ -110,10 +108,6 @@ main {
 .next-section a:hover {
   border-color: #aeb5a8;
   background: #fff;
-}
-
-.header-action {
-  width: fit-content;
 }
 
 .hero-section {
