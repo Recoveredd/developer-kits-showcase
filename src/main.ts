@@ -26,6 +26,17 @@ type LibraryMeta = {
   accent: string;
 };
 
+type RouteMeta = {
+  title: string;
+  description: string;
+  path: string;
+};
+
+const SITE_URL = 'https://packages.wasta-wocket.fr';
+const SITE_NAME = 'Developer Kits';
+const HOME_DESCRIPTION =
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports and terminal output.';
+
 const libraries: LibraryMeta[] = [
   {
     slug: 'json-html-kit',
@@ -164,6 +175,10 @@ function libraryBySlug(slug: LibrarySlug): LibraryMeta {
   return library;
 }
 
+function libraryPath(slug: LibrarySlug): string {
+  return `/${slug}/`;
+}
+
 function render(): void {
   const route = routeFromLocation();
   const app = document.querySelector<HTMLDivElement>('#app');
@@ -172,6 +187,7 @@ function render(): void {
     return;
   }
 
+  updateDocumentMetadata(route);
   app.innerHTML = route === 'home' ? renderHome() : renderLibraryPage(libraryBySlug(route));
   bindNavigation(app);
 
@@ -180,11 +196,102 @@ function render(): void {
   }
 }
 
+function routeMeta(route: LibrarySlug | 'home'): RouteMeta {
+  if (route === 'home') {
+    return {
+      title: `${SITE_NAME} | TypeScript utilities for developer data`,
+      description: HOME_DESCRIPTION,
+      path: '/'
+    };
+  }
+
+  const library = libraryBySlug(route);
+
+  return {
+    title: `${library.name} demo | ${SITE_NAME}`,
+    description: library.summary,
+    path: `/${library.slug}/`
+  };
+}
+
+function updateDocumentMetadata(route: LibrarySlug | 'home'): void {
+  const meta = routeMeta(route);
+  const url = `${SITE_URL}${meta.path}`;
+
+  document.title = meta.title;
+  setMetaContent('meta[name="description"]', meta.description);
+  setMetaContent('meta[property="og:title"]', meta.title);
+  setMetaContent('meta[property="og:description"]', meta.description);
+  setMetaContent('meta[property="og:url"]', url);
+  setMetaContent('meta[name="twitter:title"]', meta.title);
+  setMetaContent('meta[name="twitter:description"]', meta.description);
+  setCanonical(url);
+  setStructuredData(route, meta, url);
+}
+
+function setMetaContent(selector: string, content: string): void {
+  const meta = document.querySelector<HTMLMetaElement>(selector);
+
+  if (meta) {
+    meta.content = content;
+  }
+}
+
+function setCanonical(url: string): void {
+  const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+
+  if (canonical) {
+    canonical.href = url;
+  }
+}
+
+function setStructuredData(route: LibrarySlug | 'home', meta: RouteMeta, url: string): void {
+  const element = document.querySelector<HTMLScriptElement>('#structured-data');
+
+  if (!element) {
+    return;
+  }
+
+  const data =
+    route === 'home'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: SITE_NAME,
+          url,
+          description: meta.description,
+          hasPart: libraries.map((library) => ({
+            '@type': 'SoftwareSourceCode',
+            name: library.name,
+            codeRepository: library.github,
+            programmingLanguage: 'TypeScript',
+            url: `${SITE_URL}/${library.slug}/`,
+            description: library.summary
+          }))
+        }
+      : {
+          '@context': 'https://schema.org',
+          '@type': 'SoftwareSourceCode',
+          name: libraryBySlug(route).name,
+          codeRepository: libraryBySlug(route).github,
+          programmingLanguage: 'TypeScript',
+          url,
+          description: meta.description,
+          isPartOf: {
+            '@type': 'CollectionPage',
+            name: SITE_NAME,
+            url: SITE_URL
+          }
+        };
+
+  element.textContent = JSON.stringify(data);
+}
+
 function renderShell(content: string): string {
   const navLinks = libraries
     .map(
       (library) =>
-        `<a href="/${library.slug}" data-link class="nav-link">${library.name.replace('-kit', '')}</a>`
+        `<a href="${libraryPath(library.slug)}" data-link class="nav-link">${library.name.replace('-kit', '')}</a>`
     )
     .join('');
 
@@ -216,7 +323,7 @@ function renderHome(): string {
             <p>${library.summary}</p>
           </div>
           <div class="card-actions">
-            <a href="/${library.slug}" data-link>Open demo</a>
+            <a href="${libraryPath(library.slug)}" data-link>Open demo</a>
             <a href="${library.github}" target="_blank" rel="noreferrer">Source</a>
           </div>
         </article>
@@ -234,7 +341,7 @@ function renderHome(): string {
             into something readable, exportable or easy to map.
           </p>
           <div class="hero-actions">
-            <a href="/json-html-kit" data-link class="primary-action">Explore the demos</a>
+            <a href="/json-html-kit/" data-link class="primary-action">Explore the demos</a>
             <a href="https://www.npmjs.com/~recoveredd" target="_blank" rel="noreferrer" class="secondary-action">View npm packages</a>
           </div>
         </div>
@@ -242,7 +349,7 @@ function renderHome(): string {
           <div class="flow-node source">JSON</div>
           <div class="flow-grid">
             ${demoTiles
-              .map((tile) => `<a href="/${tile.slug}" data-link>${tile.label}</a>`)
+              .map((tile) => `<a href="${libraryPath(tile.slug)}" data-link>${tile.label}</a>`)
               .join('')}
           </div>
           <pre>${escapeHtml(jsonToCsv(rowsSample, { columns: ['name', 'p95', 'requests'] }))}</pre>
@@ -293,7 +400,7 @@ function renderLibraryPage(library: LibraryMeta): string {
         ${libraries
           .filter((item) => item.slug !== library.slug)
           .slice(0, 3)
-          .map((item) => `<a href="/${item.slug}" data-link>${item.name}<span>${item.demoLabel}</span></a>`)
+          .map((item) => `<a href="${libraryPath(item.slug)}" data-link>${item.name}<span>${item.demoLabel}</span></a>`)
           .join('')}
       </section>
     </main>

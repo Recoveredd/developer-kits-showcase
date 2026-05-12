@@ -1,8 +1,33 @@
+DirectoryIndex index.html
+Options -Indexes
+
 RewriteEngine On
 RewriteBase /
+
+RewriteRule ^(json-html-kit|array-table-kit|json-csv-kit|object-path-kit|object-key-paths|terminal-table-kit)\.html$ /$1/ [R=301,L]
+
+RewriteRule ^(json-html-kit|array-table-kit|json-csv-kit|object-path-kit|object-key-paths|terminal-table-kit)$ /$1/ [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
 RewriteRule ^ index.html [L]
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+
+  <FilesMatch "\.(?:js|css|png|jpg|jpeg|gif|webp|svg|ico|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <FilesMatch "\.(?:html|xml|txt)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json application/xml image/svg+xml
+</IfModule>
