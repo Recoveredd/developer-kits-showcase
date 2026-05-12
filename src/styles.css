@@ -368,6 +368,51 @@ main {
   padding: 28px 0 54px;
 }
 
+.json-html-demo {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+.demo-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.demo-tab {
+  min-height: 40px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.76);
+  color: #303640;
+  padding: 8px 14px;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.demo-tab:hover,
+.demo-tab:focus-visible {
+  border-color: #aeb5a8;
+  background: #fff;
+  outline: none;
+}
+
+.demo-tab.is-active {
+  border-color: #11151b;
+  background: #11151b;
+  color: #fff;
+}
+
+.tab-demo-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.75fr) minmax(0, 1fr);
+  gap: 18px;
+}
+
+.tab-demo-grid[hidden] {
+  display: none;
+}
+
 .panel {
   border: 1px solid var(--border);
   background: #fff;
@@ -438,6 +483,37 @@ select:focus {
   gap: 12px;
   align-items: end;
   margin-top: 14px;
+}
+
+.range-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px;
+  gap: 10px;
+  align-items: center;
+}
+
+.range-control input {
+  padding: 0;
+}
+
+.range-control output {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cfd5ca;
+  background: #fbfcf8;
+  color: #171b22;
+  font-weight: 760;
+}
+
+.compact-title {
+  border-bottom: 0;
+  padding: 0;
+}
+
+.compact-code {
+  max-height: 300px;
 }
 
 .rendered-json,
@@ -525,7 +601,8 @@ select:focus {
   .hero-section,
   .principles-section,
   .library-heading,
-  .demo-shell {
+  .demo-shell,
+  .tab-demo-grid {
     grid-template-columns: 1fr;
   }
 
