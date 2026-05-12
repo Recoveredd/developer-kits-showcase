@@ -12,7 +12,7 @@ const pages = [
     path: '/',
     title: 'Developer Kits | TypeScript utilities for developer data',
     description:
-      'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching and SVG parsing.',
+      'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing and front matter.',
     schemaType: 'CollectionPage'
   },
   {
@@ -70,6 +70,13 @@ const pages = [
     description: 'Parse SVG markup into a typed JSON AST with traversal, lookup and stats helpers.',
     packageName: 'svg-ast-kit',
     repository: 'https://github.com/Recoveredd/svg-ast-kit'
+  },
+  {
+    path: '/frontmatter-kit',
+    title: 'frontmatter-kit demo | Developer Kits',
+    description: 'Parse and inspect front matter with typed metadata, body ranges and readable diagnostics.',
+    packageName: 'frontmatter-kit',
+    repository: 'https://github.com/Recoveredd/frontmatter-kit'
   }
 ];
 

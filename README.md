@@ -14,6 +14,7 @@ Live site: https://packages.wasta-wocket.fr/
 - [terminal-table-kit](https://packages.wasta-wocket.fr/terminal-table-kit/) — parse terminal table output.
 - [text-similarity-kit](https://packages.wasta-wocket.fr/text-similarity-kit/) — compare and rank short strings.
 - [svg-ast-kit](https://packages.wasta-wocket.fr/svg-ast-kit/) — parse SVG markup into a typed JSON AST.
+- [frontmatter-kit](https://packages.wasta-wocket.fr/frontmatter-kit/) — parse front matter with ranges and diagnostics.
 
 ## Local development
 

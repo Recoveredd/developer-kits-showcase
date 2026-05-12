@@ -1,4 +1,6 @@
 import { arrayToHtmlTable, arrayToMarkdownTable } from 'array-table-kit';
+import { hasFrontmatter, stringifyFrontmatter, tryParseFrontmatter } from 'frontmatter-kit';
+import type { FrontmatterLanguage, FrontmatterRange } from 'frontmatter-kit';
 import { jsonToCsv } from 'json-csv-kit';
 import { createJsonHtmlViewer, getThemeStyleTag, renderJsonToHtml } from 'json-html-kit';
 import type { JsonHtmlThemeName, JsonHtmlViewer } from 'json-html-kit';
@@ -19,7 +21,8 @@ type LibrarySlug =
   | 'object-key-paths'
   | 'terminal-table-kit'
   | 'text-similarity-kit'
-  | 'svg-ast-kit';
+  | 'svg-ast-kit'
+  | 'frontmatter-kit';
 
 type LibraryMeta = {
   slug: LibrarySlug;
@@ -43,7 +46,7 @@ type RouteMeta = {
 const SITE_URL = 'https://packages.wasta-wocket.fr';
 const SITE_NAME = 'Developer Kits';
 const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching and SVG parsing.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing and front matter.';
 
 const libraries: LibraryMeta[] = [
   {
@@ -141,6 +144,18 @@ const libraries: LibraryMeta[] = [
     demoLabel: 'SVG AST',
     highlight: 'Inspect element counts, attributes and parser output.',
     accent: '#2563eb'
+  },
+  {
+    slug: 'frontmatter-kit',
+    name: 'frontmatter-kit',
+    summary: 'Parse and inspect front matter with typed metadata, body ranges and readable diagnostics.',
+    install: 'npm install frontmatter-kit',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/frontmatter-kit',
+    npm: 'https://www.npmjs.com/package/frontmatter-kit',
+    demoLabel: 'Front matter',
+    highlight: 'Inspector-friendly ranges, diagnostics and stringify helpers.',
+    accent: '#7c3aed'
   }
 ];
 
@@ -152,7 +167,8 @@ const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Key inventory', slug: 'object-key-paths' },
   { label: 'Terminal rows', slug: 'terminal-table-kit' },
   { label: 'Text matching', slug: 'text-similarity-kit' },
-  { label: 'SVG AST', slug: 'svg-ast-kit' }
+  { label: 'SVG AST', slug: 'svg-ast-kit' },
+  { label: 'Front matter', slug: 'frontmatter-kit' }
 ];
 
 const reportSample = {
@@ -221,6 +237,24 @@ const svgSample = `<svg viewBox="0 0 240 120" role="img" aria-labelledby="title 
   <!-- baseline -->
   <path d="M18 96H222" stroke="#111827" stroke-width="2" />
 </svg>`;
+
+const frontmatterSample = `---
+title: Release notes
+draft: false
+tags:
+  - docs
+  - release
+author:
+  name: Developer Kits
+  team: Content tooling
+---
+# Release notes
+
+Short intro for the public changelog.
+
+<!-- more -->
+
+Full article body with implementation details.`;
 
 function routeFromLocation(): LibrarySlug | 'home' {
   const slug = window.location.pathname.replace(/^\/+|\/+$/g, '') as LibrarySlug;
@@ -414,7 +448,7 @@ function renderHome(): string {
         <div class="hero-copy">
           <h1>Focused TypeScript utilities for JSON, tables and developer data.</h1>
           <p>
-            Eight small packages built around the same idea: take awkward developer data and turn it
+            Nine small packages built around the same idea: take awkward developer data and turn it
             into something readable, exportable or easy to map.
           </p>
           <div class="hero-actions">
@@ -722,6 +756,41 @@ function renderDemoMarkup(slug: LibrarySlug): string {
     `;
   }
 
+  if (slug === 'frontmatter-kit') {
+    return `
+      <div class="panel input-panel">
+        <label for="frontmatter-input">Markdown document</label>
+        <textarea id="frontmatter-input" spellcheck="false">${escapeHtml(frontmatterSample)}</textarea>
+        <div class="control-row">
+          <label for="frontmatter-language">Parse as</label>
+          <select id="frontmatter-language">
+            <option value="auto" selected>auto</option>
+            <option value="yaml">yaml</option>
+            <option value="json">json</option>
+            <option value="toml">toml</option>
+          </select>
+        </div>
+        <div class="control-row">
+          <label for="frontmatter-stringify">Stringify as</label>
+          <select id="frontmatter-stringify">
+            <option value="yaml" selected>yaml</option>
+            <option value="json">json</option>
+            <option value="toml">toml</option>
+          </select>
+        </div>
+        <label class="check-control">
+          <input id="frontmatter-excerpt" type="checkbox" checked />
+          <span>Use excerpt separator</span>
+        </label>
+      </div>
+      <div class="panel output-panel">
+        <div class="panel-title">Parsed front matter</div>
+        <div id="frontmatter-summary" class="table-output compact-table-output"></div>
+        <div id="frontmatter-output" class="frontmatter-output"></div>
+      </div>
+    `;
+  }
+
   return `
     <div class="panel input-panel">
       <label for="terminal-table-input">Terminal output</label>
@@ -770,6 +839,8 @@ function bindDemo(slug: LibrarySlug): void {
     bindTerminalTableDemo();
   } else if (slug === 'text-similarity-kit') {
     bindTextSimilarityDemo();
+  } else if (slug === 'frontmatter-kit') {
+    bindFrontmatterDemo();
   } else {
     bindSvgAstDemo();
   }
@@ -1091,6 +1162,96 @@ function bindSvgAstDemo(): void {
   keepComments.addEventListener('change', update);
   includePositions.addEventListener('change', update);
   update();
+}
+
+function bindFrontmatterDemo(): void {
+  const input = byId<HTMLTextAreaElement>('frontmatter-input');
+  const language = byId<HTMLSelectElement>('frontmatter-language');
+  const stringifyLanguage = byId<HTMLSelectElement>('frontmatter-stringify');
+  const excerpt = byId<HTMLInputElement>('frontmatter-excerpt');
+  const summary = byId<HTMLDivElement>('frontmatter-summary');
+  const output = byId<HTMLDivElement>('frontmatter-output');
+
+  const update = (): void => {
+    const parseLanguage = language.value === 'auto' ? undefined : (language.value as FrontmatterLanguage);
+    const parsed = tryParseFrontmatter(input.value, {
+      ...(parseLanguage ? { language: parseLanguage } : {}),
+      excerptSeparator: excerpt.checked ? '<!-- more -->' : false
+    });
+
+    if (!parsed.ok) {
+      summary.innerHTML = '';
+      output.innerHTML = renderError(parsed.error.message);
+      return;
+    }
+
+    const result = parsed.result;
+    const outputLanguage = stringifyLanguage.value as FrontmatterLanguage;
+    const stringified = stringifyFrontmatter(result.attributes, result.body, {
+      language: outputLanguage,
+      delimiter: outputLanguage === 'toml' ? '+++' : '---'
+    });
+
+    summary.innerHTML = arrayToHtmlTable(
+      [
+        { metric: 'startsWithFrontmatter', value: String(hasFrontmatter(input.value)) },
+        { metric: 'completeBlock', value: String(result.hasFrontmatter) },
+        { metric: 'language', value: result.language ?? 'none' },
+        { metric: 'attributes', value: Object.keys(result.attributes).length },
+        { metric: 'diagnostics', value: result.diagnostics.length },
+        { metric: 'excerpt', value: result.excerpt ? 'yes' : 'none' }
+      ],
+      { columns: ['metric', 'value'] }
+    );
+
+    output.innerHTML = `
+      <section>
+        <h2>Attributes</h2>
+        <pre class="code-output small-code">${escapeHtml(JSON.stringify(result.attributes, null, 2))}</pre>
+      </section>
+      <section>
+        <h2>Diagnostics</h2>
+        ${
+          result.diagnostics.length > 0
+            ? arrayToHtmlTable(
+                result.diagnostics.map((diagnostic) => ({
+                  severity: diagnostic.severity,
+                  code: diagnostic.code,
+                  range: diagnostic.range ? formatRange(diagnostic.range) : '-',
+                  message: diagnostic.message
+                })),
+                { columns: ['severity', 'code', 'range', 'message'] }
+              )
+            : '<p class="empty-state">No diagnostics.</p>'
+        }
+      </section>
+      <section>
+        <h2>Ranges</h2>
+        ${arrayToHtmlTable(
+          Object.entries(result.ranges).map(([name, range]) => ({
+            name,
+            range: formatRange(range),
+            offsets: `${range.start.offset}-${range.end.offset}`
+          })),
+          { columns: ['name', 'range', 'offsets'] }
+        )}
+      </section>
+      <section>
+        <h2>Stringified document</h2>
+        <pre class="code-output small-code">${escapeHtml(stringified)}</pre>
+      </section>
+    `;
+  };
+
+  input.addEventListener('input', update);
+  language.addEventListener('change', update);
+  stringifyLanguage.addEventListener('change', update);
+  excerpt.addEventListener('change', update);
+  update();
+}
+
+function formatRange(range: FrontmatterRange): string {
+  return `${range.start.line}:${range.start.column} -> ${range.end.line}:${range.end.column}`;
 }
 
 function summaryRows(stats: SvgStats, foundCount: number): Array<{ metric: string; value: string | number }> {
