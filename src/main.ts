@@ -446,7 +446,7 @@ function renderShell(content: string): string {
       <div class="footer-links">
         <a href="https://github.com/Recoveredd" target="_blank" rel="noreferrer">GitHub</a>
         <a href="https://www.npmjs.com/~recoveredd" target="_blank" rel="noreferrer">npm</a>
-        <a href="${SUPPORT_URL}" target="_blank" rel="noopener noreferrer">Support maintenance</a>
+        <a href="${SUPPORT_URL}" target="_blank" rel="noopener noreferrer" aria-label="Support Developer Kits on Ko-fi">Ko-fi</a>
       </div>
     </footer>
   `;
