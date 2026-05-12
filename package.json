@@ -1,0 +1,24 @@
+{
+  "name": "developer-kits-showcase",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Portfolio and demos for small TypeScript developer utility packages.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -p tsconfig.json && vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "array-table-kit": "^0.2.2",
+    "json-csv-kit": "^0.1.0",
+    "json-html-kit": "^0.4.1",
+    "object-key-paths": "^0.1.0",
+    "object-path-kit": "^0.1.2",
+    "terminal-table-kit": "^0.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
+  }
+}
