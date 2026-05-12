@@ -487,7 +487,7 @@ function renderHome(): string {
           </p>
           <div class="hero-actions">
             <a href="/json-html-kit/" data-link class="primary-action">Explore the demos</a>
-            <a href="https://www.npmjs.com/~recoveredd" target="_blank" rel="noreferrer" class="secondary-action">View npm packages</a>
+            <a href="https://www.npmjs.com/~recoveredd" rel="noreferrer" class="secondary-action">View npm packages</a>
           </div>
         </div>
         <div class="hero-demo" aria-label="Package ecosystem preview">
