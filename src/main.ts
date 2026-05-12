@@ -2,7 +2,7 @@ import { arrayToHtmlTable, arrayToMarkdownTable } from 'array-table-kit';
 import { jsonToCsv } from 'json-csv-kit';
 import { createJsonHtmlViewer, getThemeStyleTag, renderJsonToHtml } from 'json-html-kit';
 import type { JsonHtmlThemeName, JsonHtmlViewer } from 'json-html-kit';
-import { getPath, normalizePath, parsePath } from 'object-path-kit';
+import { deletePathImmutable, getPath, normalizePath, parsePath } from 'object-path-kit';
 import { getPathEntries } from 'object-key-paths';
 import { parseTerminalTable } from 'terminal-table-kit';
 import './styles.css';
@@ -20,9 +20,11 @@ type LibraryMeta = {
   name: string;
   summary: string;
   install: string;
+  version: string;
   github: string;
   npm: string;
   demoLabel: string;
+  highlight: string;
   accent: string;
 };
 
@@ -43,9 +45,11 @@ const libraries: LibraryMeta[] = [
     name: 'json-html-kit',
     summary: 'Render JSON as safe, themed HTML that stays readable in docs, reports and support tools.',
     install: 'npm install json-html-kit',
+    version: '0.4.2',
     github: 'https://github.com/Recoveredd/json-html-kit',
     npm: 'https://www.npmjs.com/package/json-html-kit',
     demoLabel: 'JSON viewer',
+    highlight: 'Paginated viewer with readable page metadata.',
     accent: '#3f6df6'
   },
   {
@@ -53,9 +57,11 @@ const libraries: LibraryMeta[] = [
     name: 'array-table-kit',
     summary: 'Turn arrays of objects into Markdown or HTML tables with explicit columns and clean escaping.',
     install: 'npm install array-table-kit',
+    version: '0.2.3',
     github: 'https://github.com/Recoveredd/array-table-kit',
     npm: 'https://www.npmjs.com/package/array-table-kit',
     demoLabel: 'Markdown table',
+    highlight: 'Readonly-friendly TypeScript API for fixture data.',
     accent: '#0f9f7a'
   },
   {
@@ -63,9 +69,11 @@ const libraries: LibraryMeta[] = [
     name: 'json-csv-kit',
     summary: 'Convert JSON records to CSV with TypeScript-first options, safe escaping and nested data support.',
     install: 'npm install json-csv-kit',
+    version: '0.1.1',
     github: 'https://github.com/Recoveredd/json-csv-kit',
     npm: 'https://www.npmjs.com/package/json-csv-kit',
     demoLabel: 'CSV export',
+    highlight: 'Optional UTF-8 BOM for spreadsheet exports.',
     accent: '#d97706'
   },
   {
@@ -73,9 +81,11 @@ const libraries: LibraryMeta[] = [
     name: 'object-path-kit',
     summary: 'Parse, normalize and safely access JavaScript object paths, including bracket notation.',
     install: 'npm install object-path-kit',
+    version: '0.1.3',
     github: 'https://github.com/Recoveredd/object-path-kit',
     npm: 'https://www.npmjs.com/package/object-path-kit',
     demoLabel: 'Path reader',
+    highlight: 'Immutable get, set and delete helpers.',
     accent: '#6d5dfc'
   },
   {
@@ -83,9 +93,11 @@ const libraries: LibraryMeta[] = [
     name: 'object-key-paths',
     summary: 'List nested key paths from objects and arrays for schema inspection, mapping and docs.',
     install: 'npm install object-key-paths',
+    version: '0.1.1',
     github: 'https://github.com/Recoveredd/object-key-paths',
     npm: 'https://www.npmjs.com/package/object-key-paths',
     demoLabel: 'Path inventory',
+    highlight: 'Bound large scans with an entry limit.',
     accent: '#0f8ea8'
   },
   {
@@ -93,9 +105,11 @@ const libraries: LibraryMeta[] = [
     name: 'terminal-table-kit',
     summary: 'Parse fixed-width terminal table output into typed rows for scripts, dashboards and docs.',
     install: 'npm install terminal-table-kit',
+    version: '0.1.2',
     github: 'https://github.com/Recoveredd/terminal-table-kit',
     npm: 'https://www.npmjs.com/package/terminal-table-kit',
     demoLabel: 'Terminal parser',
+    highlight: 'Limit parsed rows from long command output.',
     accent: '#1f7a4f'
   }
 ];
@@ -265,6 +279,8 @@ function setStructuredData(route: LibrarySlug | 'home', meta: RouteMeta, url: st
             name: library.name,
             codeRepository: library.github,
             programmingLanguage: 'TypeScript',
+            softwareVersion: library.version,
+            license: 'https://www.mozilla.org/MPL/2.0/',
             url: `${SITE_URL}/${library.slug}/`,
             description: library.summary
           }))
@@ -275,6 +291,8 @@ function setStructuredData(route: LibrarySlug | 'home', meta: RouteMeta, url: st
           name: libraryBySlug(route).name,
           codeRepository: libraryBySlug(route).github,
           programmingLanguage: 'TypeScript',
+          softwareVersion: libraryBySlug(route).version,
+          license: 'https://www.mozilla.org/MPL/2.0/',
           url,
           description: meta.description,
           isPartOf: {
@@ -321,6 +339,11 @@ function renderHome(): string {
             <p class="card-label">${library.demoLabel}</p>
             <h3>${library.name}</h3>
             <p>${library.summary}</p>
+            <div class="package-badges" aria-label="${library.name} package metadata">
+              <span>v${library.version}</span>
+              <span>MPL-2.0</span>
+            </div>
+            <p class="card-highlight">${library.highlight}</p>
           </div>
           <div class="card-actions">
             <a href="${libraryPath(library.slug)}" data-link>Open demo</a>
@@ -386,6 +409,10 @@ function renderLibraryPage(library: LibraryMeta): string {
           </div>
           <div class="install-box">
             <code>${library.install}</code>
+            <div class="package-badges install-badges" aria-label="Package metadata">
+              <span>v${library.version}</span>
+              <span>MPL-2.0</span>
+            </div>
             <div>
               <a href="${library.github}" target="_blank" rel="noreferrer">GitHub</a>
               <a href="${library.npm}" target="_blank" rel="noreferrer">npm</a>
@@ -465,6 +492,7 @@ function renderDemoMarkup(slug: LibrarySlug): string {
           </div>
           <div class="panel output-panel">
             <div class="panel-title">Paginated viewer</div>
+            <div id="json-html-page-info" class="demo-meta"></div>
             <div id="json-html-pagination-output" class="rendered-json"></div>
           </div>
         </div>
@@ -504,6 +532,10 @@ function renderDemoMarkup(slug: LibrarySlug): string {
             <option value=";">semicolon</option>
           </select>
         </div>
+        <label class="check-control">
+          <input id="json-csv-bom" type="checkbox" />
+          <span>UTF-8 BOM</span>
+        </label>
       </div>
       <div class="panel output-panel">
         <div class="panel-title">CSV output</div>
@@ -519,6 +551,10 @@ function renderDemoMarkup(slug: LibrarySlug): string {
         <textarea id="object-path-input" spellcheck="false">${jsonValue}</textarea>
         <label for="object-path-query">Path</label>
         <input id="object-path-query" value='customer["name"]' />
+        <label class="check-control">
+          <input id="object-path-delete" type="checkbox" />
+          <span>Preview immutable delete</span>
+        </label>
       </div>
       <div class="panel output-panel">
         <div class="panel-title">Path result</div>
@@ -539,6 +575,14 @@ function renderDemoMarkup(slug: LibrarySlug): string {
             <option value="bracket">bracket</option>
           </select>
         </div>
+        <div class="control-row">
+          <label for="object-key-limit">Entry limit</label>
+          <select id="object-key-limit">
+            <option value="0">unlimited</option>
+            <option value="5">5 entries</option>
+            <option value="10" selected>10 entries</option>
+          </select>
+        </div>
       </div>
       <div class="panel output-panel">
         <div class="panel-title">Discovered paths</div>
@@ -551,6 +595,14 @@ function renderDemoMarkup(slug: LibrarySlug): string {
     <div class="panel input-panel">
       <label for="terminal-table-input">Terminal output</label>
       <textarea id="terminal-table-input" spellcheck="false">${terminalSample}</textarea>
+      <div class="control-row">
+        <label for="terminal-table-max-rows">Max rows</label>
+        <select id="terminal-table-max-rows">
+          <option value="0">all rows</option>
+          <option value="1">1 row</option>
+          <option value="2" selected>2 rows</option>
+        </select>
+      </div>
     </div>
     <div class="panel output-panel">
       <div class="panel-title">Parsed rows</div>
@@ -597,7 +649,19 @@ function bindJsonHtmlDemo(): void {
   const pageTheme = byId<HTMLSelectElement>('json-html-page-theme');
   const pageSize = byId<HTMLSelectElement>('json-html-page-size');
   const pageOutput = byId<HTMLDivElement>('json-html-pagination-output');
+  const pageInfo = byId<HTMLDivElement>('json-html-page-info');
   let viewer: JsonHtmlViewer | undefined;
+
+  const updatePageInfo = (): void => {
+    if (!viewer) {
+      pageInfo.textContent = '';
+      return;
+    }
+
+    const info = viewer.getPageInfo();
+    const firstVisible = info.totalItems === 0 ? 0 : info.startIndex + 1;
+    pageInfo.textContent = `${info.totalItems} rows · page ${info.page + 1}/${info.pageCount} · showing ${firstVisible}-${info.endIndex}`;
+  };
 
   const update = (): void => {
     const value = parseJson(input.value);
@@ -622,6 +686,7 @@ function bindJsonHtmlDemo(): void {
       tableMode: 'auto',
       collapseDepth: 1
     });
+    updatePageInfo();
   };
 
   document.querySelectorAll<HTMLButtonElement>('[data-json-html-tab]').forEach((tab) => {
@@ -646,6 +711,7 @@ function bindJsonHtmlDemo(): void {
   collapseDepth.addEventListener('input', update);
   pageTheme.addEventListener('change', updateViewer);
   pageSize.addEventListener('change', updateViewer);
+  pageOutput.addEventListener('click', () => window.requestAnimationFrame(updatePageInfo));
   update();
   updateViewer();
 }
@@ -677,6 +743,7 @@ function bindArrayTableDemo(): void {
 function bindJsonCsvDemo(): void {
   const input = byId<HTMLTextAreaElement>('json-csv-input');
   const delimiter = byId<HTMLSelectElement>('json-csv-delimiter');
+  const bom = byId<HTMLInputElement>('json-csv-bom');
   const output = byId<HTMLElement>('json-csv-output');
 
   const update = (): void => {
@@ -688,18 +755,21 @@ function bindJsonCsvDemo(): void {
     }
 
     output.textContent = jsonToCsv(value.data as Array<Record<string, unknown>>, {
-      delimiter: delimiter.value
+      delimiter: delimiter.value,
+      bom: bom.checked
     });
   };
 
   input.addEventListener('input', update);
   delimiter.addEventListener('change', update);
+  bom.addEventListener('change', update);
   update();
 }
 
 function bindObjectPathDemo(): void {
   const input = byId<HTMLTextAreaElement>('object-path-input');
   const path = byId<HTMLInputElement>('object-path-query');
+  const deleteMode = byId<HTMLInputElement>('object-path-delete');
   const output = byId<HTMLElement>('object-path-output');
 
   const update = (): void => {
@@ -711,11 +781,16 @@ function bindObjectPathDemo(): void {
     }
 
     try {
+      const nextValue = deleteMode.checked
+        ? deletePathImmutable(value.data, path.value)
+        : undefined;
+
       output.textContent = JSON.stringify(
         {
           normalized: normalizePath(path.value),
           segments: parsePath(path.value),
-          value: getPath(value.data, path.value, null)
+          value: getPath(value.data, path.value, null),
+          ...(deleteMode.checked ? { afterDelete: nextValue } : {})
         },
         null,
         2
@@ -727,12 +802,14 @@ function bindObjectPathDemo(): void {
 
   input.addEventListener('input', update);
   path.addEventListener('input', update);
+  deleteMode.addEventListener('change', update);
   update();
 }
 
 function bindObjectKeyDemo(): void {
   const input = byId<HTMLTextAreaElement>('object-key-input');
   const style = byId<HTMLSelectElement>('object-key-style');
+  const limit = byId<HTMLSelectElement>('object-key-limit');
   const output = byId<HTMLDivElement>('object-key-output');
 
   const update = (): void => {
@@ -745,7 +822,8 @@ function bindObjectKeyDemo(): void {
 
     const entries = getPathEntries(value.data, {
       pathStyle: style.value as 'dot' | 'bracket',
-      includeIntermediate: true
+      includeIntermediate: true,
+      limit: limit.value === '0' ? Number.POSITIVE_INFINITY : Number(limit.value)
     }).map((entry) => ({
       path: entry.path,
       depth: entry.depth,
@@ -759,22 +837,28 @@ function bindObjectKeyDemo(): void {
 
   input.addEventListener('input', update);
   style.addEventListener('change', update);
+  limit.addEventListener('change', update);
   update();
 }
 
 function bindTerminalTableDemo(): void {
   const input = byId<HTMLTextAreaElement>('terminal-table-input');
+  const maxRows = byId<HTMLSelectElement>('terminal-table-max-rows');
   const output = byId<HTMLDivElement>('terminal-table-output');
 
   const update = (): void => {
     try {
-      output.innerHTML = arrayToHtmlTable(parseTerminalTable(input.value, { keyStyle: 'camel' }));
+      output.innerHTML = arrayToHtmlTable(parseTerminalTable(input.value, {
+        keyStyle: 'camel',
+        maxRows: maxRows.value === '0' ? Number.POSITIVE_INFINITY : Number(maxRows.value)
+      }));
     } catch (error) {
       output.innerHTML = renderError(error instanceof Error ? error.message : 'Unable to parse table.');
     }
   };
 
   input.addEventListener('input', update);
+  maxRows.addEventListener('change', update);
   update();
 }
 
