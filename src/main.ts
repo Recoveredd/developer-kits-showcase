@@ -551,11 +551,7 @@ function renderSignalsSection(): string {
           </div>
           <div>
             <strong>${formatNumber(packageSignals.packages.length)}</strong>
-            <span>tracked packages</span>
-          </div>
-          <div>
-            <strong>${formatNumber(packageSignals.totals.openIssues)}</strong>
-            <span>open GitHub issues</span>
+            <span>published packages</span>
           </div>
         </div>
         <ol class="signal-list">${topPackages}</ol>
