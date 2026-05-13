@@ -1,0 +1,44 @@
+export type LibrarySlug =
+  | 'json-html-kit'
+  | 'array-table-kit'
+  | 'json-csv-kit'
+  | 'object-path-kit'
+  | 'object-key-paths'
+  | 'terminal-table-kit'
+  | 'text-similarity-kit'
+  | 'svg-ast-kit'
+  | 'frontmatter-kit'
+  | 'data-url-kit'
+  | 'hex-color-token-kit'
+  | 'human-duration-parse-kit'
+  | 'import-specifier-scan-kit'
+  | 'localized-price-parse-kit'
+  | 'css-font-shorthand-kit'
+  | 'jmx-k6-migration-kit'
+  | 'proto-form-kit';
+
+export type LibraryMeta = {
+  slug: LibrarySlug;
+  name: string;
+  summary: string;
+  install?: string;
+  version: string;
+  github: string;
+  npm?: string;
+  status?: 'published' | 'preview';
+  demoLabel: string;
+  highlight: string;
+  accent: string;
+  features?: string[];
+};
+
+export type RouteMeta = {
+  title: string;
+  description: string;
+  path: string;
+};
+
+export type DemoModule = {
+  renderDemo: () => string;
+  bindDemo: () => void | Promise<void>;
+};

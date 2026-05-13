@@ -1,0 +1,40 @@
+import type { DemoModule, LibrarySlug } from '../types';
+
+export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
+  switch (slug) {
+    case 'json-html-kit':
+      return import('./json-html-kit');
+    case 'array-table-kit':
+      return import('./array-table-kit');
+    case 'json-csv-kit':
+      return import('./json-csv-kit');
+    case 'object-path-kit':
+      return import('./object-path-kit');
+    case 'object-key-paths':
+      return import('./object-key-paths');
+    case 'terminal-table-kit':
+      return import('./terminal-table-kit');
+    case 'text-similarity-kit':
+      return import('./text-similarity-kit');
+    case 'svg-ast-kit':
+      return import('./svg-ast-kit');
+    case 'frontmatter-kit':
+      return import('./frontmatter-kit');
+    case 'data-url-kit':
+      return import('./data-url-kit');
+    case 'hex-color-token-kit':
+      return import('./hex-color-token-kit');
+    case 'human-duration-parse-kit':
+      return import('./human-duration-parse-kit');
+    case 'import-specifier-scan-kit':
+      return import('./import-specifier-scan-kit');
+    case 'localized-price-parse-kit':
+      return import('./localized-price-parse-kit');
+    case 'css-font-shorthand-kit':
+      return import('./css-font-shorthand-kit');
+    case 'jmx-k6-migration-kit':
+      return import('./jmx-k6-migration-kit');
+    case 'proto-form-kit':
+      return import('./proto-form-kit');
+  }
+}

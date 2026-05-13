@@ -1,0 +1,263 @@
+import type { LibraryMeta, LibrarySlug, RouteMeta } from './types';
+
+export const SITE_URL = 'https://packages.wasta-wocket.fr';
+export const SITE_NAME = 'Developer Kits';
+export const SUPPORT_URL = 'https://ko-fi.com/recovered';
+export const HOME_DESCRIPTION =
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter and data URLs.';
+
+export const libraries: LibraryMeta[] = [
+  {
+    slug: 'json-html-kit',
+    name: 'json-html-kit',
+    summary: 'Render JSON as safe, themed HTML that stays readable in docs, reports and support tools.',
+    install: 'npm install json-html-kit',
+    version: '0.4.2',
+    github: 'https://github.com/Recoveredd/json-html-kit',
+    npm: 'https://www.npmjs.com/package/json-html-kit',
+    demoLabel: 'JSON viewer',
+    highlight: 'Paginated viewer with readable page metadata.',
+    accent: '#3f6df6'
+  },
+  {
+    slug: 'array-table-kit',
+    name: 'array-table-kit',
+    summary: 'Turn arrays of objects into Markdown or HTML tables with explicit columns and clean escaping.',
+    install: 'npm install array-table-kit',
+    version: '0.2.3',
+    github: 'https://github.com/Recoveredd/array-table-kit',
+    npm: 'https://www.npmjs.com/package/array-table-kit',
+    demoLabel: 'Markdown table',
+    highlight: 'Readonly-friendly TypeScript API for fixture data.',
+    accent: '#0f9f7a'
+  },
+  {
+    slug: 'json-csv-kit',
+    name: 'json-csv-kit',
+    summary: 'Convert JSON records to CSV with TypeScript-first options, safe escaping and nested data support.',
+    install: 'npm install json-csv-kit',
+    version: '0.1.1',
+    github: 'https://github.com/Recoveredd/json-csv-kit',
+    npm: 'https://www.npmjs.com/package/json-csv-kit',
+    demoLabel: 'CSV export',
+    highlight: 'Optional UTF-8 BOM for spreadsheet exports.',
+    accent: '#d97706'
+  },
+  {
+    slug: 'object-path-kit',
+    name: 'object-path-kit',
+    summary: 'Parse, normalize and safely access JavaScript object paths, including bracket notation.',
+    install: 'npm install object-path-kit',
+    version: '0.1.3',
+    github: 'https://github.com/Recoveredd/object-path-kit',
+    npm: 'https://www.npmjs.com/package/object-path-kit',
+    demoLabel: 'Path reader',
+    highlight: 'Immutable get, set and delete helpers.',
+    accent: '#6d5dfc'
+  },
+  {
+    slug: 'object-key-paths',
+    name: 'object-key-paths',
+    summary: 'List nested key paths from objects and arrays for schema inspection, mapping and docs.',
+    install: 'npm install object-key-paths',
+    version: '0.1.1',
+    github: 'https://github.com/Recoveredd/object-key-paths',
+    npm: 'https://www.npmjs.com/package/object-key-paths',
+    demoLabel: 'Path inventory',
+    highlight: 'Bound large scans with an entry limit.',
+    accent: '#0f8ea8'
+  },
+  {
+    slug: 'terminal-table-kit',
+    name: 'terminal-table-kit',
+    summary: 'Parse fixed-width terminal table output into typed rows for scripts, dashboards and docs.',
+    install: 'npm install terminal-table-kit',
+    version: '0.1.2',
+    github: 'https://github.com/Recoveredd/terminal-table-kit',
+    npm: 'https://www.npmjs.com/package/terminal-table-kit',
+    demoLabel: 'Terminal parser',
+    highlight: 'Limit parsed rows from long command output.',
+    accent: '#1f7a4f'
+  },
+  {
+    slug: 'text-similarity-kit',
+    name: 'text-similarity-kit',
+    summary: 'Compare and rank short strings with TypeScript-first fuzzy matching helpers.',
+    install: 'npm install text-similarity-kit',
+    version: '0.1.1',
+    github: 'https://github.com/Recoveredd/text-similarity-kit',
+    npm: 'https://www.npmjs.com/package/text-similarity-kit',
+    demoLabel: 'Text matching',
+    highlight: 'Dice, Levenshtein, Jaro, Jaro-Winkler and threshold helpers.',
+    accent: '#b91c5c'
+  },
+  {
+    slug: 'svg-ast-kit',
+    name: 'svg-ast-kit',
+    summary: 'Parse SVG markup into a typed JSON AST with traversal, lookup and stats helpers.',
+    install: 'npm install svg-ast-kit',
+    version: '0.1.1',
+    github: 'https://github.com/Recoveredd/svg-ast-kit',
+    npm: 'https://www.npmjs.com/package/svg-ast-kit',
+    demoLabel: 'SVG AST',
+    highlight: 'Inspect element names, counts, attributes and parser output.',
+    accent: '#2563eb'
+  },
+  {
+    slug: 'frontmatter-kit',
+    name: 'frontmatter-kit',
+    summary: 'Parse and inspect front matter with typed metadata, body ranges and readable diagnostics.',
+    install: 'npm install frontmatter-kit',
+    version: '0.1.1',
+    github: 'https://github.com/Recoveredd/frontmatter-kit',
+    npm: 'https://www.npmjs.com/package/frontmatter-kit',
+    demoLabel: 'Front matter',
+    highlight: 'Inspector-friendly ranges, diagnostics, stringify and strip helpers.',
+    accent: '#7c3aed'
+  },
+  {
+    slug: 'data-url-kit',
+    name: 'data-url-kit',
+    summary: 'Parse, validate and inspect data URLs with typed diagnostics, byte metadata and decoded output.',
+    install: 'npm install data-url-kit',
+    version: '0.1.1',
+    github: 'https://github.com/Recoveredd/data-url-kit',
+    npm: 'https://www.npmjs.com/package/data-url-kit',
+    demoLabel: 'Data URL inspector',
+    highlight: 'Readable diagnostics and quick metadata helpers for previews.',
+    accent: '#0891b2'
+  },
+  {
+    slug: 'hex-color-token-kit',
+    name: 'hex-color-token-kit',
+    summary: 'Extract and validate CSS hex color tokens with spans, normalized values and readable diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/hex-color-token-kit',
+    status: 'preview',
+    demoLabel: 'Color tokens',
+    highlight: 'Find valid and malformed CSS hex colors without Node APIs.',
+    accent: '#c2410c',
+    features: ['#rgb, #rgba, #rrggbb and #rrggbbaa support', 'source offsets for editor tooling', 'normalized channels and alpha detection']
+  },
+  {
+    slug: 'human-duration-parse-kit',
+    name: 'human-duration-parse-kit',
+    summary: 'Parse compact human duration strings into milliseconds with structured tokens and diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/human-duration-parse-kit',
+    status: 'preview',
+    demoLabel: 'Duration parser',
+    highlight: 'Designed for forms and import tools that need explainable duration input.',
+    accent: '#4f46e5',
+    features: ['number words such as twenty-five minutes', 'negative terms and subtraction support', 'opt-in month and year approximations']
+  },
+  {
+    slug: 'import-specifier-scan-kit',
+    name: 'import-specifier-scan-kit',
+    summary: 'Scan JavaScript source text for import, export, dynamic import and require specifiers.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/import-specifier-scan-kit',
+    status: 'preview',
+    demoLabel: 'Import scanner',
+    highlight: 'Includes package-name helpers for dependency previews and audits.',
+    accent: '#9333ea',
+    features: ['static import, export-from, dynamic import and require scanning', 'spans for quick editor overlays', 'bare package extraction from subpath imports']
+  },
+  {
+    slug: 'localized-price-parse-kit',
+    name: 'localized-price-parse-kit',
+    summary: 'Parse localized price strings into decimal values, currency hints and separator metadata.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/localized-price-parse-kit',
+    status: 'preview',
+    demoLabel: 'Price parser',
+    highlight: 'Handles common ecommerce and invoice display prices.',
+    accent: '#15803d',
+    features: ['safe decimal string plus convenience number', 'currency symbol and ISO code hints', 'space and apostrophe grouped prices such as CHF 1’234.50']
+  },
+  {
+    slug: 'css-font-shorthand-kit',
+    name: 'css-font-shorthand-kit',
+    summary: 'Parse and format CSS font shorthand values with structured diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/css-font-shorthand-kit',
+    status: 'preview',
+    demoLabel: 'Font shorthand',
+    highlight: 'Small browser-friendly parser for design-token and editor tooling.',
+    accent: '#be123c',
+    features: ['system font keyword support', 'font family parsing with quoted names', 'format parsed values back to CSS']
+  },
+  {
+    slug: 'jmx-k6-migration-kit',
+    name: 'jmx-k6-migration-kit',
+    summary: 'Audit JMeter JMX files and generate safe k6 migration scaffolds with explicit diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/jmx-k6-migration-kit',
+    status: 'preview',
+    demoLabel: 'JMX to k6',
+    highlight: 'Conservative migration assistant for professional load-test handoffs.',
+    accent: '#0f766e',
+    features: ['HTTP sampler conversion', 'migration report for unsupported components', 'CLI plus browser-friendly core parser']
+  },
+  {
+    slug: 'proto-form-kit',
+    name: 'proto-form-kit',
+    summary: 'Turn Protocol Buffer schemas into form-friendly metadata, method hints and JSON examples.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/proto-form-kit',
+    status: 'preview',
+    demoLabel: 'Proto forms',
+    highlight: 'Useful for API explorers and internal tooling that inspect .proto source text.',
+    accent: '#2563eb',
+    features: ['message, enum and service metadata', 'neutral form control hints', 'method input/output example generation']
+  }
+];
+
+export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
+  { label: 'HTML viewer', slug: 'json-html-kit' },
+  { label: 'Markdown table', slug: 'array-table-kit' },
+  { label: 'CSV export', slug: 'json-csv-kit' },
+  { label: 'Object paths', slug: 'object-path-kit' },
+  { label: 'Key inventory', slug: 'object-key-paths' },
+  { label: 'Terminal rows', slug: 'terminal-table-kit' },
+  { label: 'Text matching', slug: 'text-similarity-kit' },
+  { label: 'SVG AST', slug: 'svg-ast-kit' },
+  { label: 'Front matter', slug: 'frontmatter-kit' },
+  { label: 'Data URL', slug: 'data-url-kit' }
+];
+
+export function libraryBySlug(slug: LibrarySlug): LibraryMeta {
+  const library = libraries.find((item) => item.slug === slug);
+
+  if (!library) {
+    throw new Error(`Unknown library: ${slug}`);
+  }
+
+  return library;
+}
+
+export function libraryPath(slug: LibrarySlug): string {
+  return `/${slug}/`;
+}
+
+export function isPublished(library: LibraryMeta): boolean {
+  return library.status !== 'preview';
+}
+
+export function routeMeta(route: LibrarySlug | 'home'): RouteMeta {
+  if (route === 'home') {
+    return {
+      title: `${SITE_NAME} | TypeScript utilities for developer data`,
+      description: HOME_DESCRIPTION,
+      path: '/'
+    };
+  }
+
+  const library = libraryBySlug(route);
+
+  return {
+    title: `${library.name} ${isPublished(library) ? 'demo' : 'preview'} | ${SITE_NAME}`,
+    description: library.summary,
+    path: `/${library.slug}/`
+  };
+}
