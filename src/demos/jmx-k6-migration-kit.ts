@@ -23,11 +23,11 @@ export async function bindDemo(): Promise<void> {
   const input = byId<HTMLTextAreaElement>('jmx-input');
   const mode = byId<HTMLSelectElement>('jmx-output-mode');
   const output = byId<HTMLElement>('jmx-output');
-  const { formatMigrationReport, migrateJmxToK6 } = await import('../../../jmx-k6-migration-kit/src/index.ts');
+  const { formatMigrationReport, migrateJmxToK6 } = await import('jmx-k6-migration-kit');
 
   const update = (): void => {
     const result = migrateJmxToK6(input.value, {
-      sourceName: 'preview.jmx',
+      sourceName: 'demo.jmx',
       baseUrl: 'https://api.example.com'
     });
 

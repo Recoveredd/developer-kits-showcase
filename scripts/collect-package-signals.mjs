@@ -14,7 +14,14 @@ const packages = [
   'text-similarity-kit',
   'svg-ast-kit',
   'frontmatter-kit',
-  'data-url-kit'
+  'data-url-kit',
+  'hex-color-token-kit',
+  'human-duration-parse-kit',
+  'import-specifier-scan-kit',
+  'localized-price-parse-kit',
+  'css-font-shorthand-kit',
+  'jmx-k6-migration-kit',
+  'proto-form-kit'
 ];
 
 const generatedAt = new Date().toISOString();

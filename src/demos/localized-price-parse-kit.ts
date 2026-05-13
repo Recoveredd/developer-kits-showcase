@@ -3,7 +3,6 @@ import { byId } from '../shared';
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <div class="preview-note">Interactive preview · lazy-loaded from local GitHub-ready source</div>
       <label for="price-input">Price input</label>
       <input id="price-input" value="CHF 1’234.50" />
       <div class="control-row">
@@ -21,7 +20,7 @@ export function renderDemo(): string {
     </div>
     <div class="panel output-panel">
       <div class="panel-title">Parsed price</div>
-      <pre id="price-output" class="code-output">Loading preview module...</pre>
+      <pre id="price-output" class="code-output">Rendering demo...</pre>
     </div>
   `;
 }
@@ -31,7 +30,7 @@ export async function bindDemo(): Promise<void> {
   const decimal = byId<HTMLSelectElement>('price-decimal');
   const allowNegative = byId<HTMLInputElement>('price-negative');
   const output = byId<HTMLElement>('price-output');
-  const { parseLocalizedPrice } = await import('../../../localized-price-parse-kit/src/index.ts');
+  const { parseLocalizedPrice } = await import('localized-price-parse-kit');
 
   const update = (): void => {
     output.textContent = JSON.stringify(

@@ -185,6 +185,17 @@ function renderHome(): string {
     .filter((library) => !isPublished(library))
     .map(renderLibraryCard)
     .join('');
+  const previewSection = previewCards
+    ? `
+      <section class="library-section preview-library-section" aria-label="GitHub preview demos">
+        <div class="section-heading">
+          <h2>GitHub previews</h2>
+          <p>These libraries are ready on GitHub and waiting for npm publication. Their demos lazy-load the local source.</p>
+        </div>
+        <div class="library-grid">${previewCards}</div>
+      </section>
+    `
+    : '';
 
   return renderShell(`
     <main>
@@ -214,8 +225,8 @@ function renderHome(): string {
         <div>
           <h2>Small by design, useful together.</h2>
           <p>
-            Published pages run the npm packages in the browser. Preview pages lazy-load local libraries
-            from GitHub-ready source while npm publishing is temporarily blocked.
+            Every published page runs the corresponding npm package directly in the browser, with demos that
+            show the practical output instead of a marketing shell.
           </p>
         </div>
         <div class="principle-list">
@@ -232,13 +243,7 @@ function renderHome(): string {
         </div>
         <div class="library-grid">${publishedCards}</div>
       </section>
-      <section class="library-section preview-library-section" aria-label="GitHub preview demos">
-        <div class="section-heading">
-          <h2>GitHub previews</h2>
-          <p>These libraries are ready on GitHub and waiting for npm publication. Their demos lazy-load the local source.</p>
-        </div>
-        <div class="library-grid">${previewCards}</div>
-      </section>
+      ${previewSection}
     </main>
   `);
 }

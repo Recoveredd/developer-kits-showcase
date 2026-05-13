@@ -19,7 +19,7 @@ export async function bindDemo(): Promise<void> {
   const input = byId<HTMLTextAreaElement>('hex-color-input');
   const includeInvalid = byId<HTMLInputElement>('hex-color-invalid');
   const output = byId<HTMLElement>('hex-color-output');
-  const { extractHexColorTokens } = await import('../../../hex-color-token-kit/src/index.ts');
+  const { extractHexColorTokens } = await import('hex-color-token-kit');
 
   const update = (): void => {
     const result = extractHexColorTokens(input.value, { includeInvalid: includeInvalid.checked });

@@ -33,14 +33,13 @@ export function renderPreviewDemoShell(
 ): string {
   return `
     <div class="panel input-panel">
-      <div class="preview-note">Interactive preview · lazy-loaded from local GitHub-ready source</div>
       <label for="${inputId}">${inputLabel}</label>
       <textarea id="${inputId}" spellcheck="false">${escapeHtml(inputValue)}</textarea>
       ${controls}
     </div>
     <div class="panel output-panel">
       <div class="panel-title">${outputTitle}</div>
-      <pre id="${outputId}" class="code-output">Loading preview module...</pre>
+      <pre id="${outputId}" class="code-output">Rendering demo...</pre>
     </div>
   `;
 }

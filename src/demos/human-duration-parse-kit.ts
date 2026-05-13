@@ -4,7 +4,6 @@ import { byId } from '../shared';
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <div class="preview-note">Interactive preview · lazy-loaded from local GitHub-ready source</div>
       <label for="duration-input">Duration input</label>
       <input id="duration-input" value="2 weeks, 3 days and 45 minutes" />
       <label class="check-control">
@@ -19,7 +18,7 @@ export function renderDemo(): string {
     <div class="panel output-panel">
       <div class="panel-title">Parsed duration</div>
       <div id="duration-summary" class="table-output compact-table-output"></div>
-      <pre id="duration-output" class="code-output">Loading preview module...</pre>
+      <pre id="duration-output" class="code-output">Rendering demo...</pre>
     </div>
   `;
 }
@@ -30,7 +29,7 @@ export async function bindDemo(): Promise<void> {
   const allowNegative = byId<HTMLInputElement>('duration-negative');
   const summary = byId<HTMLDivElement>('duration-summary');
   const output = byId<HTMLElement>('duration-output');
-  const { humanDurationMilliseconds, parseHumanDuration } = await import('../../../human-duration-parse-kit/src/index.ts');
+  const { humanDurationMilliseconds, parseHumanDuration } = await import('human-duration-parse-kit');
 
   const update = (): void => {
     const options = {

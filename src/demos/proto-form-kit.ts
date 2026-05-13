@@ -19,7 +19,7 @@ export async function bindDemo(): Promise<void> {
   const input = byId<HTMLTextAreaElement>('proto-input');
   const methodInput = byId<HTMLInputElement>('proto-method');
   const output = byId<HTMLElement>('proto-output');
-  const { createProtoMethodExample, parseProtoFormSchema } = await import('../../../proto-form-kit/src/index.ts');
+  const { createProtoMethodExample, parseProtoFormSchema } = await import('proto-form-kit');
 
   const update = (): void => {
     const schema = parseProtoFormSchema(input.value);

@@ -19,7 +19,7 @@ export async function bindDemo(): Promise<void> {
   const input = byId<HTMLTextAreaElement>('import-scan-input');
   const includeNodeBuiltins = byId<HTMLInputElement>('import-scan-node');
   const output = byId<HTMLElement>('import-scan-output');
-  const { listPackageSpecifiers, scanImportSpecifiers } = await import('../../../import-specifier-scan-kit/src/index.ts');
+  const { listPackageSpecifiers, scanImportSpecifiers } = await import('import-specifier-scan-kit');
 
   const update = (): void => {
     const result = scanImportSpecifiers(input.value);
