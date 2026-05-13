@@ -22,6 +22,7 @@
     "json-csv-kit": "^0.1.1",
     "json-html-kit": "^0.4.2",
     "localized-price-parse-kit": "^0.1.0",
+    "number-range-list-kit": "^0.1.0",
     "object-key-paths": "^0.1.1",
     "object-path-kit": "^0.1.3",
     "proto-form-kit": "^0.1.0",

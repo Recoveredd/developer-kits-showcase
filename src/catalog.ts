@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter and data URLs.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs and range lists.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -217,6 +217,19 @@ export const libraries: LibraryMeta[] = [
     highlight: 'Useful for API explorers and internal tooling that inspect .proto source text.',
     accent: '#2563eb',
     features: ['message, enum and service metadata', 'neutral form control hints', 'method input/output example generation']
+  },
+  {
+    slug: 'number-range-list-kit',
+    name: 'number-range-list-kit',
+    summary: 'Parse integer range lists into safe expanded values, normalized segments and readable diagnostics.',
+    install: 'npm install number-range-list-kit',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/number-range-list-kit',
+    npm: 'https://www.npmjs.com/package/number-range-list-kit',
+    demoLabel: 'Range lists',
+    highlight: 'Form-friendly parser with spans, warnings and expansion guards.',
+    accent: '#7c2d12',
+    features: ['bounded integer expansion', 'source spans for diagnostics', 'boolean validation helper for forms']
   }
 ];
 
@@ -230,7 +243,8 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Text matching', slug: 'text-similarity-kit' },
   { label: 'SVG AST', slug: 'svg-ast-kit' },
   { label: 'Front matter', slug: 'frontmatter-kit' },
-  { label: 'Data URL', slug: 'data-url-kit' }
+  { label: 'Data URL', slug: 'data-url-kit' },
+  { label: 'Range lists', slug: 'number-range-list-kit' }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {

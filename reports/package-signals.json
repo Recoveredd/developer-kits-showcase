@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-13T19:49:45.210Z",
+  "generatedAt": "2026-05-13T20:46:35.798Z",
   "totals": {
     "downloadsLastWeek": 3099,
     "stars": 0,
@@ -191,6 +191,17 @@
       "openIssues": 0,
       "latestVersion": "0.1.0",
       "pushedAt": "2026-05-13T15:17:15Z",
+      "errors": []
+    },
+    {
+      "name": "number-range-list-kit",
+      "npmUrl": "https://www.npmjs.com/package/number-range-list-kit",
+      "githubUrl": "https://github.com/Recoveredd/number-range-list-kit",
+      "downloadsLastWeek": 0,
+      "stars": 0,
+      "openIssues": 0,
+      "latestVersion": "0.1.0",
+      "pushedAt": "2026-05-13T20:40:31Z",
       "errors": []
     }
   ]

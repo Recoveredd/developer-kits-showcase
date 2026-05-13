@@ -36,5 +36,7 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./jmx-k6-migration-kit');
     case 'proto-form-kit':
       return import('./proto-form-kit');
+    case 'number-range-list-kit':
+      return import('./number-range-list-kit');
   }
 }

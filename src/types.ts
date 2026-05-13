@@ -15,7 +15,8 @@ export type LibrarySlug =
   | 'localized-price-parse-kit'
   | 'css-font-shorthand-kit'
   | 'jmx-k6-migration-kit'
-  | 'proto-form-kit';
+  | 'proto-form-kit'
+  | 'number-range-list-kit';
 
 export type LibraryMeta = {
   slug: LibrarySlug;

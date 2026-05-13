@@ -1,6 +1,6 @@
 # Developer Kits package signals
 
-Generated at: 2026-05-13T19:49:45.210Z
+Generated at: 2026-05-13T20:46:35.798Z
 
 - Last-week npm downloads: 3099
 - GitHub stars: 0
@@ -25,3 +25,4 @@ Generated at: 2026-05-13T19:49:45.210Z
 | [css-font-shorthand-kit](https://www.npmjs.com/package/css-font-shorthand-kit) | 0 | 0 | 0 | 0.1.0 | 2026-05-13T15:17:14Z |
 | [jmx-k6-migration-kit](https://www.npmjs.com/package/jmx-k6-migration-kit) | 0 | 0 | 0 | 0.1.0 | 2026-05-13T15:17:15Z |
 | [proto-form-kit](https://www.npmjs.com/package/proto-form-kit) | 0 | 0 | 0 | 0.1.0 | 2026-05-13T15:17:15Z |
+| [number-range-list-kit](https://www.npmjs.com/package/number-range-list-kit) | 0 | 0 | 0 | 0.1.0 | 2026-05-13T20:40:31Z |
