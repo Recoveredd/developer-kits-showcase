@@ -347,11 +347,41 @@ main {
   margin: 8px 0 0 !important;
 }
 
+.library-section {
+  padding: 24px 0 28px;
+}
+
+.library-section + .library-section {
+  border-top: 1px solid var(--border);
+}
+
+.section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.55fr);
+  gap: 28px;
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 58px);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
 .library-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
-  padding: 24px 0 80px;
+  padding: 0 0 36px;
 }
 
 .library-card {
@@ -363,6 +393,10 @@ main {
   border-top: 5px solid var(--accent);
   background: var(--surface);
   padding: 24px;
+}
+
+.library-card.is-preview {
+  background: linear-gradient(180deg, #fff 0%, #fbfcf8 100%);
 }
 
 .card-label {
@@ -497,6 +531,25 @@ main {
   white-space: nowrap;
 }
 
+.preview-status-box {
+  display: grid !important;
+  gap: 6px !important;
+  margin: 0 !important;
+  padding: 14px;
+  background: #11151b;
+  color: #fff;
+}
+
+.preview-status-box strong {
+  font-size: 14px;
+}
+
+.preview-status-box span {
+  color: #d8dce5;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .install-box div {
   display: flex;
   gap: 8px;
@@ -563,6 +616,17 @@ main {
 
 .input-panel {
   padding: 18px;
+}
+
+.preview-note {
+  margin: 0 0 14px;
+  border: 1px solid #dfe3da;
+  background: #f9faf7;
+  color: #303640;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 820;
 }
 
 .output-panel {
@@ -825,6 +889,7 @@ select:focus {
   .hero-section,
   .principles-section,
   .signals-section,
+  .section-heading,
   .library-heading,
   .demo-shell,
   .tab-demo-grid {

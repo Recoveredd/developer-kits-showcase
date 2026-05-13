@@ -105,6 +105,62 @@ const pages = [
     version: '0.1.1',
     repository: 'https://github.com/Recoveredd/data-url-kit',
     npm: 'https://www.npmjs.com/package/data-url-kit'
+  },
+  {
+    path: '/hex-color-token-kit',
+    title: 'hex-color-token-kit preview | Developer Kits',
+    description: 'Extract and validate CSS hex color tokens with spans, normalized values and readable diagnostics.',
+    packageName: 'hex-color-token-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/hex-color-token-kit'
+  },
+  {
+    path: '/human-duration-parse-kit',
+    title: 'human-duration-parse-kit preview | Developer Kits',
+    description: 'Parse compact human duration strings into milliseconds with structured tokens and diagnostics.',
+    packageName: 'human-duration-parse-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/human-duration-parse-kit'
+  },
+  {
+    path: '/import-specifier-scan-kit',
+    title: 'import-specifier-scan-kit preview | Developer Kits',
+    description: 'Scan JavaScript source text for import, export, dynamic import and require specifiers.',
+    packageName: 'import-specifier-scan-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/import-specifier-scan-kit'
+  },
+  {
+    path: '/localized-price-parse-kit',
+    title: 'localized-price-parse-kit preview | Developer Kits',
+    description: 'Parse localized price strings into decimal values, currency hints and separator metadata.',
+    packageName: 'localized-price-parse-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/localized-price-parse-kit'
+  },
+  {
+    path: '/css-font-shorthand-kit',
+    title: 'css-font-shorthand-kit preview | Developer Kits',
+    description: 'Parse and format CSS font shorthand values with structured diagnostics.',
+    packageName: 'css-font-shorthand-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/css-font-shorthand-kit'
+  },
+  {
+    path: '/jmx-k6-migration-kit',
+    title: 'jmx-k6-migration-kit preview | Developer Kits',
+    description: 'Audit JMeter JMX files and generate safe k6 migration scaffolds with explicit diagnostics.',
+    packageName: 'jmx-k6-migration-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/jmx-k6-migration-kit'
+  },
+  {
+    path: '/proto-form-kit',
+    title: 'proto-form-kit preview | Developer Kits',
+    description: 'Turn Protocol Buffer schemas into form-friendly metadata, method hints and JSON examples.',
+    packageName: 'proto-form-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/proto-form-kit'
   }
 ];
 

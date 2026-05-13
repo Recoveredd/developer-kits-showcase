@@ -25,19 +25,28 @@ type LibrarySlug =
   | 'text-similarity-kit'
   | 'svg-ast-kit'
   | 'frontmatter-kit'
-  | 'data-url-kit';
+  | 'data-url-kit'
+  | 'hex-color-token-kit'
+  | 'human-duration-parse-kit'
+  | 'import-specifier-scan-kit'
+  | 'localized-price-parse-kit'
+  | 'css-font-shorthand-kit'
+  | 'jmx-k6-migration-kit'
+  | 'proto-form-kit';
 
 type LibraryMeta = {
   slug: LibrarySlug;
   name: string;
   summary: string;
-  install: string;
+  install?: string;
   version: string;
   github: string;
-  npm: string;
+  npm?: string;
+  status?: 'published' | 'preview';
   demoLabel: string;
   highlight: string;
   accent: string;
+  features?: string[];
 };
 
 type RouteMeta = {
@@ -172,6 +181,90 @@ const libraries: LibraryMeta[] = [
     demoLabel: 'Data URL inspector',
     highlight: 'Readable diagnostics and quick metadata helpers for previews.',
     accent: '#0891b2'
+  },
+  {
+    slug: 'hex-color-token-kit',
+    name: 'hex-color-token-kit',
+    summary: 'Extract and validate CSS hex color tokens with spans, normalized values and readable diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/hex-color-token-kit',
+    status: 'preview',
+    demoLabel: 'Color tokens',
+    highlight: 'Find valid and malformed CSS hex colors without Node APIs.',
+    accent: '#c2410c',
+    features: ['#rgb, #rgba, #rrggbb and #rrggbbaa support', 'source offsets for editor tooling', 'normalized channels and alpha detection']
+  },
+  {
+    slug: 'human-duration-parse-kit',
+    name: 'human-duration-parse-kit',
+    summary: 'Parse compact human duration strings into milliseconds with structured tokens and diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/human-duration-parse-kit',
+    status: 'preview',
+    demoLabel: 'Duration parser',
+    highlight: 'Designed for forms and import tools that need explainable duration input.',
+    accent: '#4f46e5',
+    features: ['number words such as twenty-five minutes', 'negative terms and subtraction support', 'opt-in month and year approximations']
+  },
+  {
+    slug: 'import-specifier-scan-kit',
+    name: 'import-specifier-scan-kit',
+    summary: 'Scan JavaScript source text for import, export, dynamic import and require specifiers.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/import-specifier-scan-kit',
+    status: 'preview',
+    demoLabel: 'Import scanner',
+    highlight: 'Includes package-name helpers for dependency previews and audits.',
+    accent: '#9333ea',
+    features: ['static import, export-from, dynamic import and require scanning', 'spans for quick editor overlays', 'bare package extraction from subpath imports']
+  },
+  {
+    slug: 'localized-price-parse-kit',
+    name: 'localized-price-parse-kit',
+    summary: 'Parse localized price strings into decimal values, currency hints and separator metadata.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/localized-price-parse-kit',
+    status: 'preview',
+    demoLabel: 'Price parser',
+    highlight: 'Handles common ecommerce and invoice display prices.',
+    accent: '#15803d',
+    features: ['safe decimal string plus convenience number', 'currency symbol and ISO code hints', 'space and apostrophe grouped prices such as CHF 1’234.50']
+  },
+  {
+    slug: 'css-font-shorthand-kit',
+    name: 'css-font-shorthand-kit',
+    summary: 'Parse and format CSS font shorthand values with structured diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/css-font-shorthand-kit',
+    status: 'preview',
+    demoLabel: 'Font shorthand',
+    highlight: 'Small browser-friendly parser for design-token and editor tooling.',
+    accent: '#be123c',
+    features: ['system font keyword support', 'font family parsing with quoted names', 'format parsed values back to CSS']
+  },
+  {
+    slug: 'jmx-k6-migration-kit',
+    name: 'jmx-k6-migration-kit',
+    summary: 'Audit JMeter JMX files and generate safe k6 migration scaffolds with explicit diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/jmx-k6-migration-kit',
+    status: 'preview',
+    demoLabel: 'JMX to k6',
+    highlight: 'Conservative migration assistant for professional load-test handoffs.',
+    accent: '#0f766e',
+    features: ['HTTP sampler conversion', 'migration report for unsupported components', 'CLI plus browser-friendly core parser']
+  },
+  {
+    slug: 'proto-form-kit',
+    name: 'proto-form-kit',
+    summary: 'Turn Protocol Buffer schemas into form-friendly metadata, method hints and JSON examples.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/proto-form-kit',
+    status: 'preview',
+    demoLabel: 'Proto forms',
+    highlight: 'Useful for API explorers and internal tooling that inspect .proto source text.',
+    accent: '#2563eb',
+    features: ['message, enum and service metadata', 'neutral form control hints', 'method input/output example generation']
   }
 ];
 
@@ -276,6 +369,77 @@ Full article body with implementation details.`;
 const dataUrlSample =
   'data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%220%200%20240%20120%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22240%22%20height%3D%22120%22%20rx%3D%2218%22%20fill%3D%22%230891b2%22%2F%3E%3Ctext%20x%3D%22120%22%20y%3D%2268%22%20font-size%3D%2228%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3Edata-url-kit%3C%2Ftext%3E%3C%2Fsvg%3E';
 
+const colorCssSample = `.button {
+  color: #fff;
+  background: #336699;
+  border-color: #12zzzz;
+  box-shadow: 0 0 0 3px #0f38;
+}`;
+
+const importSourceSample = `import React from "react";
+import jsx from "react/jsx-runtime";
+import local from "./local.js";
+export { helper } from "@scope/pkg/subpath";
+const legacy = require("legacy-package/utils");
+const fs = await import("node:fs");`;
+
+const jmxSample = `<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2">
+  <hashTree>
+    <TestPlan testname="Checkout load test">
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments">
+        <collectionProp name="Arguments.arguments" />
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup testname="Users">
+        <stringProp name="ThreadGroup.num_threads">5</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController">
+          <stringProp name="LoopController.loops">3</stringProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy testname="Search API">
+          <stringProp name="HTTPSampler.domain">api.example.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">/v1/search</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree />
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>`;
+
+const protoSample = `syntax = "proto3";
+
+package demo.inventory;
+
+message ListProductsRequest {
+  string query = 1;
+  repeated string tags = 2;
+  map<string, int32> limits_by_region = 3;
+}
+
+message ListProductsResponse {
+  repeated Product products = 1;
+}
+
+message Product {
+  string id = 1;
+  Status status = 2;
+}
+
+enum Status {
+  STATUS_UNKNOWN = 0;
+  STATUS_ACTIVE = 1;
+}
+
+service ProductCatalog {
+  rpc ListProducts(ListProductsRequest) returns (ListProductsResponse);
+}`;
+
 function routeFromLocation(): LibrarySlug | 'home' {
   const slug = window.location.pathname.replace(/^\/+|\/+$/g, '') as LibrarySlug;
   return libraries.some((library) => library.slug === slug) ? slug : 'home';
@@ -299,6 +463,10 @@ function libraryBySlug(slug: LibrarySlug): LibraryMeta {
 
 function libraryPath(slug: LibrarySlug): string {
   return `/${slug}/`;
+}
+
+function isPublished(library: LibraryMeta): boolean {
+  return library.status !== 'preview';
 }
 
 function render(): void {
@@ -330,7 +498,7 @@ function routeMeta(route: LibrarySlug | 'home'): RouteMeta {
   const library = libraryBySlug(route);
 
   return {
-    title: `${library.name} demo | ${SITE_NAME}`,
+    title: `${library.name} ${isPublished(library) ? 'demo' : 'preview'} | ${SITE_NAME}`,
     description: library.summary,
     path: `/${library.slug}/`
   };
@@ -454,27 +622,13 @@ function renderShell(content: string, activeSlug?: LibrarySlug): string {
 }
 
 function renderHome(): string {
-  const cards = libraries
-    .map(
-      (library) => `
-        <article class="library-card" style="--accent: ${library.accent}">
-          <div>
-            <p class="card-label">${library.demoLabel}</p>
-            <h3>${library.name}</h3>
-            <p>${library.summary}</p>
-            <div class="package-badges" aria-label="${library.name} package metadata">
-              <span>v${library.version}</span>
-              <span>MPL-2.0</span>
-            </div>
-            <p class="card-highlight">${library.highlight}</p>
-          </div>
-          <div class="card-actions">
-            <a href="${libraryPath(library.slug)}" data-link>Open demo</a>
-            <a href="${library.github}" target="_blank" rel="noreferrer">Source</a>
-          </div>
-        </article>
-      `
-    )
+  const publishedCards = libraries
+    .filter(isPublished)
+    .map(renderLibraryCard)
+    .join('');
+  const previewCards = libraries
+    .filter((library) => !isPublished(library))
+    .map(renderLibraryCard)
     .join('');
 
   return renderShell(`
@@ -483,7 +637,7 @@ function renderHome(): string {
         <div class="hero-copy">
           <h1>Focused TypeScript utilities for JSON, tables and developer data.</h1>
           <p>
-            Ten small packages built around the same idea: take awkward developer data and turn it
+            A growing set of small packages built around the same idea: take awkward developer data and turn it
             into something readable, exportable or easy to map.
           </p>
           <div class="hero-actions">
@@ -505,8 +659,8 @@ function renderHome(): string {
         <div>
           <h2>Small by design, useful together.</h2>
           <p>
-            Each package does one practical job without framework lock-in. The pages below are not
-            marketing mockups: they run the actual published libraries in the browser.
+            Published pages run the npm packages in the browser. Preview pages lazy-load local libraries
+            from GitHub-ready source while npm publishing is temporarily blocked.
           </p>
         </div>
         <div class="principle-list">
@@ -516,9 +670,46 @@ function renderHome(): string {
         </div>
       </section>
       ${renderSignalsSection()}
-      <section class="library-grid" aria-label="Library demos">${cards}</section>
+      <section class="library-section" aria-label="Published library demos">
+        <div class="section-heading">
+          <h2>Published demos</h2>
+          <p>These packages are available on npm and run directly in the browser.</p>
+        </div>
+        <div class="library-grid">${publishedCards}</div>
+      </section>
+      <section class="library-section preview-library-section" aria-label="GitHub preview demos">
+        <div class="section-heading">
+          <h2>GitHub previews</h2>
+          <p>These libraries are ready on GitHub and waiting for npm publication. Their demos lazy-load the local source.</p>
+        </div>
+        <div class="library-grid">${previewCards}</div>
+      </section>
     </main>
   `);
+}
+
+function renderLibraryCard(library: LibraryMeta): string {
+  const status = isPublished(library) ? 'npm package' : 'GitHub preview';
+
+  return `
+    <article class="library-card${isPublished(library) ? '' : ' is-preview'}" style="--accent: ${library.accent}">
+      <div>
+        <p class="card-label">${library.demoLabel}</p>
+        <h3>${library.name}</h3>
+        <p>${library.summary}</p>
+        <div class="package-badges" aria-label="${library.name} package metadata">
+          <span>v${library.version}</span>
+          <span>${status}</span>
+          <span>MPL-2.0</span>
+        </div>
+        <p class="card-highlight">${library.highlight}</p>
+      </div>
+      <div class="card-actions">
+        <a href="${libraryPath(library.slug)}" data-link>${isPublished(library) ? 'Open demo' : 'Open preview'}</a>
+        <a href="${library.github}" target="_blank" rel="noreferrer">Source</a>
+      </div>
+    </article>
+  `;
 }
 
 function renderSignalsSection(): string {
@@ -562,6 +753,17 @@ function renderSignalsSection(): string {
 }
 
 function renderLibraryPage(library: LibraryMeta): string {
+  const installContent = isPublished(library)
+    ? `<code>${library.install}</code>`
+    : `<div class="preview-status-box">
+        <strong>GitHub preview</strong>
+        <span>npm publication is pending while registry rate limiting is resolved.</span>
+      </div>`;
+  const packageLinks = `
+    <a href="${library.github}" target="_blank" rel="noreferrer">GitHub</a>
+    ${library.npm ? `<a href="${library.npm}" target="_blank" rel="noreferrer">npm</a>` : ''}
+  `;
+
   return renderShell(`
     <main>
       <section class="library-hero" style="--accent: ${library.accent}">
@@ -576,15 +778,13 @@ function renderLibraryPage(library: LibraryMeta): string {
             <p>${library.summary}</p>
           </div>
           <div class="install-box">
-            <code>${library.install}</code>
+            ${installContent}
             <div class="package-badges install-badges" aria-label="Package metadata">
               <span>v${library.version}</span>
+              <span>${isPublished(library) ? 'npm package' : 'preview'}</span>
               <span>MPL-2.0</span>
             </div>
-            <div>
-              <a href="${library.github}" target="_blank" rel="noreferrer">GitHub</a>
-              <a href="${library.npm}" target="_blank" rel="noreferrer">npm</a>
-            </div>
+            <div>${packageLinks}</div>
           </div>
         </div>
       </section>
@@ -900,6 +1100,128 @@ function renderDemoMarkup(slug: LibrarySlug): string {
     `;
   }
 
+  if (slug === 'hex-color-token-kit') {
+    return renderPreviewDemoShell(
+      'CSS input',
+      'hex-color-input',
+      colorCssSample,
+      'Extracted tokens',
+      'hex-color-output',
+      `<label class="check-control">
+        <input id="hex-color-invalid" type="checkbox" checked />
+        <span>Include invalid candidates</span>
+      </label>`
+    );
+  }
+
+  if (slug === 'human-duration-parse-kit') {
+    return `
+      <div class="panel input-panel">
+        <label for="duration-input">Duration input</label>
+        <input id="duration-input" value="2 weeks, 3 days and 45 minutes" />
+        <label class="check-control">
+          <input id="duration-calendar" type="checkbox" />
+          <span>Allow month/year approximations</span>
+        </label>
+        <label class="check-control">
+          <input id="duration-negative" type="checkbox" checked />
+          <span>Allow negative terms</span>
+        </label>
+      </div>
+      <div class="panel output-panel">
+        <div class="panel-title">Parsed duration</div>
+        <div id="duration-summary" class="table-output compact-table-output"></div>
+        <pre id="duration-output" class="code-output"></pre>
+      </div>
+    `;
+  }
+
+  if (slug === 'import-specifier-scan-kit') {
+    return renderPreviewDemoShell(
+      'JavaScript source',
+      'import-scan-input',
+      importSourceSample,
+      'Detected specifiers',
+      'import-scan-output',
+      `<label class="check-control">
+        <input id="import-scan-node" type="checkbox" />
+        <span>Include Node builtins in package list</span>
+      </label>`
+    );
+  }
+
+  if (slug === 'localized-price-parse-kit') {
+    return `
+      <div class="panel input-panel">
+        <label for="price-input">Price input</label>
+        <input id="price-input" value="CHF 1’234.50" />
+        <div class="control-row">
+          <label for="price-decimal">Decimal separator</label>
+          <select id="price-decimal">
+            <option value="auto" selected>auto</option>
+            <option value=".">dot</option>
+            <option value=",">comma</option>
+          </select>
+        </div>
+        <label class="check-control">
+          <input id="price-negative" type="checkbox" checked />
+          <span>Allow negative values</span>
+        </label>
+      </div>
+      <div class="panel output-panel">
+        <div class="panel-title">Parsed price</div>
+        <pre id="price-output" class="code-output"></pre>
+      </div>
+    `;
+  }
+
+  if (slug === 'css-font-shorthand-kit') {
+    return `
+      <div class="panel input-panel">
+        <label for="font-input">CSS font shorthand</label>
+        <input id="font-input" value='italic 700 1rem/1.4 "Inter", system-ui' />
+        <label for="font-family-input">Font-family list</label>
+        <input id="font-family-input" value='"Inter", system-ui, sans-serif' />
+      </div>
+      <div class="panel output-panel">
+        <div class="panel-title">Parsed font</div>
+        <pre id="font-output" class="code-output"></pre>
+      </div>
+    `;
+  }
+
+  if (slug === 'jmx-k6-migration-kit') {
+    return renderPreviewDemoShell(
+      'JMeter JMX input',
+      'jmx-input',
+      jmxSample,
+      'Migration output',
+      'jmx-output',
+      `<div class="control-row">
+        <label for="jmx-output-mode">Output</label>
+        <select id="jmx-output-mode">
+          <option value="summary" selected>summary</option>
+          <option value="script">k6 script</option>
+          <option value="report">Markdown report</option>
+        </select>
+      </div>`
+    );
+  }
+
+  if (slug === 'proto-form-kit') {
+    return renderPreviewDemoShell(
+      'Protocol Buffer source',
+      'proto-input',
+      protoSample,
+      'Form metadata',
+      'proto-output',
+      `<div class="control-row">
+        <label for="proto-method">Method</label>
+        <input id="proto-method" value="ProductCatalog.ListProducts" />
+      </div>`
+    );
+  }
+
   return `
     <div class="panel input-panel">
       <label for="terminal-table-input">Terminal output</label>
@@ -916,6 +1238,28 @@ function renderDemoMarkup(slug: LibrarySlug): string {
     <div class="panel output-panel">
       <div class="panel-title">Parsed rows</div>
       <div id="terminal-table-output" class="table-output"></div>
+    </div>
+  `;
+}
+
+function renderPreviewDemoShell(
+  inputLabel: string,
+  inputId: string,
+  inputValue: string,
+  outputTitle: string,
+  outputId: string,
+  controls = ''
+): string {
+  return `
+    <div class="panel input-panel">
+      <div class="preview-note">Interactive preview · lazy-loaded from local GitHub-ready source</div>
+      <label for="${inputId}">${inputLabel}</label>
+      <textarea id="${inputId}" spellcheck="false">${escapeHtml(inputValue)}</textarea>
+      ${controls}
+    </div>
+    <div class="panel output-panel">
+      <div class="panel-title">${outputTitle}</div>
+      <pre id="${outputId}" class="code-output">Loading preview module...</pre>
     </div>
   `;
 }
@@ -952,6 +1296,20 @@ function bindDemo(slug: LibrarySlug): void {
     bindFrontmatterDemo();
   } else if (slug === 'data-url-kit') {
     bindDataUrlDemo();
+  } else if (slug === 'hex-color-token-kit') {
+    void bindHexColorDemo();
+  } else if (slug === 'human-duration-parse-kit') {
+    void bindHumanDurationDemo();
+  } else if (slug === 'import-specifier-scan-kit') {
+    void bindImportSpecifierDemo();
+  } else if (slug === 'localized-price-parse-kit') {
+    void bindLocalizedPriceDemo();
+  } else if (slug === 'css-font-shorthand-kit') {
+    void bindCssFontDemo();
+  } else if (slug === 'jmx-k6-migration-kit') {
+    void bindJmxK6Demo();
+  } else if (slug === 'proto-form-kit') {
+    void bindProtoFormDemo();
   } else {
     bindSvgAstDemo();
   }
@@ -1433,6 +1791,234 @@ function bindDataUrlDemo(): void {
   input.addEventListener('input', update);
   maxBytes.addEventListener('change', update);
   allowWhitespace.addEventListener('change', update);
+  update();
+}
+
+async function bindHexColorDemo(): Promise<void> {
+  const input = byId<HTMLTextAreaElement>('hex-color-input');
+  const includeInvalid = byId<HTMLInputElement>('hex-color-invalid');
+  const output = byId<HTMLElement>('hex-color-output');
+  const { extractHexColorTokens } = await import('../../hex-color-token-kit/src/index.ts');
+
+  const update = (): void => {
+    const result = extractHexColorTokens(input.value, { includeInvalid: includeInvalid.checked });
+    output.textContent = JSON.stringify(
+      {
+        valid: result.valid.map((token) => ({
+          input: token.input,
+          normalized: token.normalized,
+          channels: token.channels,
+          span: `${token.start}-${token.end}`
+        })),
+        invalid: result.invalid.map((token) => ({
+          input: token.input,
+          issues: token.issues.map((issue) => issue.code),
+          span: `${token.start}-${token.end}`
+        })),
+        issues: result.issues
+      },
+      null,
+      2
+    );
+  };
+
+  input.addEventListener('input', update);
+  includeInvalid.addEventListener('change', update);
+  update();
+}
+
+async function bindHumanDurationDemo(): Promise<void> {
+  const input = byId<HTMLInputElement>('duration-input');
+  const allowCalendarUnits = byId<HTMLInputElement>('duration-calendar');
+  const allowNegative = byId<HTMLInputElement>('duration-negative');
+  const summary = byId<HTMLDivElement>('duration-summary');
+  const output = byId<HTMLElement>('duration-output');
+  const { humanDurationMilliseconds, parseHumanDuration } = await import('../../human-duration-parse-kit/src/index.ts');
+
+  const update = (): void => {
+    const options = {
+      allowCalendarUnits: allowCalendarUnits.checked,
+      allowNegative: allowNegative.checked
+    };
+    const result = parseHumanDuration(input.value, options);
+    summary.innerHTML = arrayToHtmlTable(
+      [
+        { metric: 'valid', value: String(result.ok) },
+        { metric: 'milliseconds', value: humanDurationMilliseconds(input.value, options) ?? '-' },
+        { metric: 'tokens', value: result.tokens.length },
+        { metric: 'issues', value: result.issues.length }
+      ],
+      { columns: ['metric', 'value'] }
+    );
+    output.textContent = JSON.stringify(result, null, 2);
+  };
+
+  input.addEventListener('input', update);
+  allowCalendarUnits.addEventListener('change', update);
+  allowNegative.addEventListener('change', update);
+  update();
+}
+
+async function bindImportSpecifierDemo(): Promise<void> {
+  const input = byId<HTMLTextAreaElement>('import-scan-input');
+  const includeNodeBuiltins = byId<HTMLInputElement>('import-scan-node');
+  const output = byId<HTMLElement>('import-scan-output');
+  const { listPackageSpecifiers, scanImportSpecifiers } = await import('../../import-specifier-scan-kit/src/index.ts');
+
+  const update = (): void => {
+    const result = scanImportSpecifiers(input.value);
+    output.textContent = JSON.stringify(
+      {
+        packageNames: listPackageSpecifiers(input.value, {
+          includeNodeBuiltins: includeNodeBuiltins.checked
+        }),
+        specifiers: result.specifiers.map((match) => ({
+          kind: match.kind,
+          specifier: match.specifier,
+          span: `${match.specifierStart}-${match.specifierEnd}`
+        })),
+        issues: result.issues
+      },
+      null,
+      2
+    );
+  };
+
+  input.addEventListener('input', update);
+  includeNodeBuiltins.addEventListener('change', update);
+  update();
+}
+
+async function bindLocalizedPriceDemo(): Promise<void> {
+  const input = byId<HTMLInputElement>('price-input');
+  const decimal = byId<HTMLSelectElement>('price-decimal');
+  const allowNegative = byId<HTMLInputElement>('price-negative');
+  const output = byId<HTMLElement>('price-output');
+  const { parseLocalizedPrice } = await import('../../localized-price-parse-kit/src/index.ts');
+
+  const update = (): void => {
+    output.textContent = JSON.stringify(
+      parseLocalizedPrice(input.value, {
+        decimalSeparator: decimal.value as '.' | ',' | 'auto',
+        allowNegative: allowNegative.checked
+      }),
+      null,
+      2
+    );
+  };
+
+  input.addEventListener('input', update);
+  decimal.addEventListener('change', update);
+  allowNegative.addEventListener('change', update);
+  update();
+}
+
+async function bindCssFontDemo(): Promise<void> {
+  const input = byId<HTMLInputElement>('font-input');
+  const familyInput = byId<HTMLInputElement>('font-family-input');
+  const output = byId<HTMLElement>('font-output');
+  const { formatFontShorthand, parseFontFamilyList, parseFontShorthand } = await import('../../css-font-shorthand-kit/src/index.ts');
+
+  const update = (): void => {
+    const parsed = parseFontShorthand(input.value);
+    output.textContent = JSON.stringify(
+      {
+        shorthand: parsed,
+        formatted: parsed.ok ? formatFontShorthand(parsed.value) : null,
+        families: parseFontFamilyList(familyInput.value)
+      },
+      null,
+      2
+    );
+  };
+
+  input.addEventListener('input', update);
+  familyInput.addEventListener('input', update);
+  update();
+}
+
+async function bindJmxK6Demo(): Promise<void> {
+  const input = byId<HTMLTextAreaElement>('jmx-input');
+  const mode = byId<HTMLSelectElement>('jmx-output-mode');
+  const output = byId<HTMLElement>('jmx-output');
+  const { formatMigrationReport, migrateJmxToK6 } = await import('../../jmx-k6-migration-kit/src/index.ts');
+
+  const update = (): void => {
+    const result = migrateJmxToK6(input.value, {
+      sourceName: 'preview.jmx',
+      baseUrl: 'https://api.example.com'
+    });
+
+    if (mode.value === 'script') {
+      output.textContent = result.k6.ok ? result.k6.script : JSON.stringify(result.k6.findings, null, 2);
+      return;
+    }
+
+    if (mode.value === 'report') {
+      output.textContent = formatMigrationReport({ analysis: result.analysis, k6: result.k6 });
+      return;
+    }
+
+    output.textContent = JSON.stringify(
+      {
+        summary: result.analysis.summary,
+        findings: result.analysis.findings,
+        httpRequests: result.analysis.httpRequests.map((request) => ({
+          name: request.name,
+          method: request.method,
+          url: `${request.protocol ?? 'https'}://${request.domain ?? 'example.com'}${request.path}`,
+          checks: request.checks.length,
+          notes: request.migrationNotes.length
+        }))
+      },
+      null,
+      2
+    );
+  };
+
+  input.addEventListener('input', update);
+  mode.addEventListener('change', update);
+  update();
+}
+
+async function bindProtoFormDemo(): Promise<void> {
+  const input = byId<HTMLTextAreaElement>('proto-input');
+  const methodInput = byId<HTMLInputElement>('proto-method');
+  const output = byId<HTMLElement>('proto-output');
+  const { createProtoMethodExample, parseProtoFormSchema } = await import('../../proto-form-kit/src/index.ts');
+
+  const update = (): void => {
+    const schema = parseProtoFormSchema(input.value);
+    const [serviceName = '', methodName = ''] = methodInput.value.split('.');
+    const methodExample = serviceName && methodName
+      ? createProtoMethodExample(schema, serviceName, methodName)
+      : null;
+
+    output.textContent = JSON.stringify(
+      {
+        ok: schema.ok,
+        packageName: schema.packageName,
+        messages: schema.messages.map((message) => ({
+          name: message.fullName,
+          fields: message.fields.map((field) => ({
+            name: field.name,
+            jsonName: field.jsonName,
+            type: field.type,
+            control: field.control,
+            enumValues: field.enumValues
+          }))
+        })),
+        services: schema.services,
+        methodExample,
+        diagnostics: schema.diagnostics
+      },
+      null,
+      2
+    );
+  };
+
+  input.addEventListener('input', update);
+  methodInput.addEventListener('input', update);
   update();
 }
 
