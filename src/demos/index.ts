@@ -40,5 +40,7 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./number-range-list-kit');
     case 'hex-grid-kit':
       return import('./hex-grid-kit');
+    case 'filepath-validator-kit':
+      return import('./filepath-validator-kit');
   }
 }

@@ -13,7 +13,7 @@ const pages = [
     path: '/',
     title: 'Developer Kits | TypeScript utilities for developer data',
     description:
-      'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter and data URLs.',
+      'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists, file paths and hex grids.',
     schemaType: 'CollectionPage'
   },
   {
@@ -108,59 +108,93 @@ const pages = [
   },
   {
     path: '/hex-color-token-kit',
-    title: 'hex-color-token-kit preview | Developer Kits',
+    title: 'hex-color-token-kit demo | Developer Kits',
     description: 'Extract and validate CSS hex color tokens with spans, normalized values and readable diagnostics.',
     packageName: 'hex-color-token-kit',
     version: '0.1.0',
-    repository: 'https://github.com/Recoveredd/hex-color-token-kit'
+    repository: 'https://github.com/Recoveredd/hex-color-token-kit',
+    npm: 'https://www.npmjs.com/package/hex-color-token-kit'
   },
   {
     path: '/human-duration-parse-kit',
-    title: 'human-duration-parse-kit preview | Developer Kits',
+    title: 'human-duration-parse-kit demo | Developer Kits',
     description: 'Parse compact human duration strings into milliseconds with structured tokens and diagnostics.',
     packageName: 'human-duration-parse-kit',
     version: '0.1.0',
-    repository: 'https://github.com/Recoveredd/human-duration-parse-kit'
+    repository: 'https://github.com/Recoveredd/human-duration-parse-kit',
+    npm: 'https://www.npmjs.com/package/human-duration-parse-kit'
   },
   {
     path: '/import-specifier-scan-kit',
-    title: 'import-specifier-scan-kit preview | Developer Kits',
+    title: 'import-specifier-scan-kit demo | Developer Kits',
     description: 'Scan JavaScript source text for import, export, dynamic import and require specifiers.',
     packageName: 'import-specifier-scan-kit',
     version: '0.1.0',
-    repository: 'https://github.com/Recoveredd/import-specifier-scan-kit'
+    repository: 'https://github.com/Recoveredd/import-specifier-scan-kit',
+    npm: 'https://www.npmjs.com/package/import-specifier-scan-kit'
   },
   {
     path: '/localized-price-parse-kit',
-    title: 'localized-price-parse-kit preview | Developer Kits',
+    title: 'localized-price-parse-kit demo | Developer Kits',
     description: 'Parse localized price strings into decimal values, currency hints and separator metadata.',
     packageName: 'localized-price-parse-kit',
     version: '0.1.0',
-    repository: 'https://github.com/Recoveredd/localized-price-parse-kit'
+    repository: 'https://github.com/Recoveredd/localized-price-parse-kit',
+    npm: 'https://www.npmjs.com/package/localized-price-parse-kit'
   },
   {
     path: '/css-font-shorthand-kit',
-    title: 'css-font-shorthand-kit preview | Developer Kits',
+    title: 'css-font-shorthand-kit demo | Developer Kits',
     description: 'Parse and format CSS font shorthand values with structured diagnostics.',
     packageName: 'css-font-shorthand-kit',
     version: '0.1.0',
-    repository: 'https://github.com/Recoveredd/css-font-shorthand-kit'
+    repository: 'https://github.com/Recoveredd/css-font-shorthand-kit',
+    npm: 'https://www.npmjs.com/package/css-font-shorthand-kit'
   },
   {
     path: '/jmx-k6-migration-kit',
-    title: 'jmx-k6-migration-kit preview | Developer Kits',
+    title: 'jmx-k6-migration-kit demo | Developer Kits',
     description: 'Audit JMeter JMX files and generate safe k6 migration scaffolds with explicit diagnostics.',
     packageName: 'jmx-k6-migration-kit',
     version: '0.1.0',
-    repository: 'https://github.com/Recoveredd/jmx-k6-migration-kit'
+    repository: 'https://github.com/Recoveredd/jmx-k6-migration-kit',
+    npm: 'https://www.npmjs.com/package/jmx-k6-migration-kit'
   },
   {
     path: '/proto-form-kit',
-    title: 'proto-form-kit preview | Developer Kits',
+    title: 'proto-form-kit demo | Developer Kits',
     description: 'Turn Protocol Buffer schemas into form-friendly metadata, method hints and JSON examples.',
     packageName: 'proto-form-kit',
     version: '0.1.0',
-    repository: 'https://github.com/Recoveredd/proto-form-kit'
+    repository: 'https://github.com/Recoveredd/proto-form-kit',
+    npm: 'https://www.npmjs.com/package/proto-form-kit'
+  },
+  {
+    path: '/number-range-list-kit',
+    title: 'number-range-list-kit demo | Developer Kits',
+    description: 'Parse integer range lists into safe expanded values, normalized segments and readable diagnostics.',
+    packageName: 'number-range-list-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/number-range-list-kit',
+    npm: 'https://www.npmjs.com/package/number-range-list-kit'
+  },
+  {
+    path: '/hex-grid-kit',
+    title: 'hex-grid-kit demo | Developer Kits',
+    description: 'Build interactive SVG hex grids with cube coordinates, hit testing and framework-agnostic helpers.',
+    packageName: 'hex-grid-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/hex-grid-kit',
+    npm: 'https://www.npmjs.com/package/hex-grid-kit'
+  },
+  {
+    path: '/filepath-validator-kit',
+    title: 'filepath-validator-kit demo | Developer Kits',
+    description: 'Validate file path strings with portable, POSIX or Windows policies and structured diagnostics.',
+    packageName: 'filepath-validator-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/filepath-validator-kit',
+    npm: 'https://www.npmjs.com/package/filepath-validator-kit'
   }
 ];
 
@@ -174,6 +208,8 @@ for (const page of pages) {
   await mkdir(dirname(target), { recursive: true });
   await writeFile(target, output);
 }
+
+await writeFile(join(dist, 'sitemap.xml'), renderSitemap(pages));
 
 function withMetadata(source, page, url) {
   const schema = page.packageName
@@ -256,4 +292,27 @@ function escapeHtml(value) {
     .replaceAll('"', '&quot;')
     .replaceAll('<', '&lt;')
     .replaceAll('>', '&gt;');
+}
+
+function renderSitemap(items) {
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const urls = items
+    .map((page) => {
+      const loc = `${siteUrl}${page.path === '/' ? '/' : `${page.path}/`}`;
+      const priority = page.path === '/' ? '1.0' : '0.8';
+
+      return `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+    })
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
 }

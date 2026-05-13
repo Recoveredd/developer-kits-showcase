@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists and hex grids.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists, file paths and hex grids.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -243,6 +243,19 @@ export const libraries: LibraryMeta[] = [
     highlight: 'Interactive cube-coordinate boards for games, editors and map tools.',
     accent: '#2563eb',
     features: ['cube-first coordinate helpers', 'hexagon, rectangle, parallelogram and custom shapes', 'per-cell data, fills and pointer callbacks']
+  },
+  {
+    slug: 'filepath-validator-kit',
+    name: 'filepath-validator-kit',
+    summary: 'Validate file path strings with portable, POSIX or Windows policies and structured diagnostics.',
+    install: 'npm install filepath-validator-kit',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/filepath-validator-kit',
+    npm: 'https://www.npmjs.com/package/filepath-validator-kit',
+    demoLabel: 'File paths',
+    highlight: 'Form-friendly validation with segment spans, stable issue codes and reusable policies.',
+    accent: '#334155',
+    features: ['portable, POSIX and Windows validation policies', 'source offsets for path segments', 'reusable validators with default options']
   }
 ];
 
@@ -258,7 +271,8 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Front matter', slug: 'frontmatter-kit' },
   { label: 'Data URL', slug: 'data-url-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
-  { label: 'Hex grid', slug: 'hex-grid-kit' }
+  { label: 'Hex grid', slug: 'hex-grid-kit' },
+  { label: 'File paths', slug: 'filepath-validator-kit' }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {

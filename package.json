@@ -14,6 +14,7 @@
     "array-table-kit": "^0.2.3",
     "css-font-shorthand-kit": "^0.1.0",
     "data-url-kit": "^0.1.1",
+    "filepath-validator-kit": "^0.1.0",
     "frontmatter-kit": "^0.1.1",
     "hex-color-token-kit": "^0.1.0",
     "hex-grid-kit": "^0.1.0",

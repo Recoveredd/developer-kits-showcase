@@ -25,6 +25,7 @@ Live site: https://packages.wasta-wocket.fr/
 - [proto-form-kit](https://packages.wasta-wocket.fr/proto-form-kit/) — derive form metadata from Protocol Buffer schemas.
 - [number-range-list-kit](https://packages.wasta-wocket.fr/number-range-list-kit/) — parse integer range lists.
 - [hex-grid-kit](https://packages.wasta-wocket.fr/hex-grid-kit/) — build interactive SVG hex grids.
+- [filepath-validator-kit](https://packages.wasta-wocket.fr/filepath-validator-kit/) — validate file paths with structured diagnostics.
 
 ## Local development
 

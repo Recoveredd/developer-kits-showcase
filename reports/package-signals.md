@@ -1,6 +1,6 @@
 # Developer Kits package signals
 
-Generated at: 2026-05-13T22:16:52.794Z
+Generated at: 2026-05-13T23:12:16.315Z
 
 - Last-week npm downloads: 3099
 - GitHub stars: 0
@@ -26,4 +26,5 @@ Generated at: 2026-05-13T22:16:52.794Z
 | [jmx-k6-migration-kit](https://www.npmjs.com/package/jmx-k6-migration-kit) | 0 | 0 | 0 | 0.1.0 | 2026-05-13T15:17:15Z |
 | [proto-form-kit](https://www.npmjs.com/package/proto-form-kit) | 0 | 0 | 0 | 0.1.0 | 2026-05-13T15:17:15Z |
 | [number-range-list-kit](https://www.npmjs.com/package/number-range-list-kit) | 0 | 0 | 0 | 0.1.0 | 2026-05-13T20:49:35Z |
-| [hex-grid-kit](https://www.npmjs.com/package/hex-grid-kit) | 0 | 0 | 0 | 0.1.0 | 2026-05-13T22:08:00Z |
+| [hex-grid-kit](https://www.npmjs.com/package/hex-grid-kit) | 0 | 0 | 0 | 0.1.0 | 2026-05-13T22:36:07Z |
+| [filepath-validator-kit](https://www.npmjs.com/package/filepath-validator-kit) | 0 | 0 | 0 | 0.1.0 | 2026-05-13T23:07:12Z |

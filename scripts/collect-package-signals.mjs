@@ -23,7 +23,8 @@ const packages = [
   'jmx-k6-migration-kit',
   'proto-form-kit',
   'number-range-list-kit',
-  'hex-grid-kit'
+  'hex-grid-kit',
+  'filepath-validator-kit'
 ];
 
 const generatedAt = new Date().toISOString();
