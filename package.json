@@ -16,6 +16,7 @@
     "data-url-kit": "^0.1.1",
     "frontmatter-kit": "^0.1.1",
     "hex-color-token-kit": "^0.1.0",
+    "hex-grid-kit": "^0.1.0",
     "human-duration-parse-kit": "^0.1.0",
     "import-specifier-scan-kit": "^0.1.0",
     "jmx-k6-migration-kit": "^0.1.0",

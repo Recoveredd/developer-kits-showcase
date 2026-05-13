@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-13T20:46:35.798Z",
+  "generatedAt": "2026-05-13T22:16:52.794Z",
   "totals": {
     "downloadsLastWeek": 3099,
     "stars": 0,
@@ -201,7 +201,18 @@
       "stars": 0,
       "openIssues": 0,
       "latestVersion": "0.1.0",
-      "pushedAt": "2026-05-13T20:40:31Z",
+      "pushedAt": "2026-05-13T20:49:35Z",
+      "errors": []
+    },
+    {
+      "name": "hex-grid-kit",
+      "npmUrl": "https://www.npmjs.com/package/hex-grid-kit",
+      "githubUrl": "https://github.com/Recoveredd/hex-grid-kit",
+      "downloadsLastWeek": 0,
+      "stars": 0,
+      "openIssues": 0,
+      "latestVersion": "0.1.0",
+      "pushedAt": "2026-05-13T22:08:00Z",
       "errors": []
     }
   ]

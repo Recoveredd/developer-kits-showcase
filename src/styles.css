@@ -775,6 +775,61 @@ select:focus {
   padding: 18px;
 }
 
+.hex-grid-demo-panel {
+  min-height: 640px;
+}
+
+.hex-grid-board {
+  flex: 1;
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  padding: 22px;
+  background:
+    linear-gradient(rgba(24, 27, 34, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 27, 34, 0.035) 1px, transparent 1px),
+    #fbfcf8;
+  background-size: 24px 24px;
+}
+
+.hex-grid-board svg {
+  max-width: min(100%, 760px);
+  max-height: 520px;
+}
+
+.hex-grid-board .hex-grid__cell {
+  cursor: pointer;
+  transition:
+    filter 120ms ease,
+    stroke-width 120ms ease;
+}
+
+.hex-grid-board .hex-grid__cell:hover {
+  filter: brightness(0.96);
+  stroke-width: 2.2;
+}
+
+.hex-grid-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding: 12px 18px;
+}
+
+.hex-grid-stats span {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #dfe3da;
+  background: #f9faf7;
+  color: #303640;
+  padding: 5px 9px;
+  font-size: 12px;
+  font-weight: 820;
+}
+
 .frontmatter-output section {
   min-width: 0;
 }

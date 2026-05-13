@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs and range lists.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists and hex grids.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -230,6 +230,19 @@ export const libraries: LibraryMeta[] = [
     highlight: 'Form-friendly parser with spans, warnings and expansion guards.',
     accent: '#7c2d12',
     features: ['bounded integer expansion', 'source spans for diagnostics', 'boolean validation helper for forms']
+  },
+  {
+    slug: 'hex-grid-kit',
+    name: 'hex-grid-kit',
+    summary: 'Build interactive SVG hex grids with cube coordinates, hit testing and framework-agnostic helpers.',
+    install: 'npm install hex-grid-kit',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/hex-grid-kit',
+    npm: 'https://www.npmjs.com/package/hex-grid-kit',
+    demoLabel: 'Hex grid',
+    highlight: 'Interactive cube-coordinate boards for games, editors and map tools.',
+    accent: '#2563eb',
+    features: ['cube-first coordinate helpers', 'hexagon, rectangle, parallelogram and custom shapes', 'per-cell data, fills and pointer callbacks']
   }
 ];
 
@@ -244,7 +257,8 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'SVG AST', slug: 'svg-ast-kit' },
   { label: 'Front matter', slug: 'frontmatter-kit' },
   { label: 'Data URL', slug: 'data-url-kit' },
-  { label: 'Range lists', slug: 'number-range-list-kit' }
+  { label: 'Range lists', slug: 'number-range-list-kit' },
+  { label: 'Hex grid', slug: 'hex-grid-kit' }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {

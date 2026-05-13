@@ -16,7 +16,8 @@ export type LibrarySlug =
   | 'css-font-shorthand-kit'
   | 'jmx-k6-migration-kit'
   | 'proto-form-kit'
-  | 'number-range-list-kit';
+  | 'number-range-list-kit'
+  | 'hex-grid-kit';
 
 export type LibraryMeta = {
   slug: LibrarySlug;
