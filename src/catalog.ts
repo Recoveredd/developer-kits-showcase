@@ -206,6 +206,22 @@ export const libraries: LibraryMeta[] = [
     features: ['HTTP sampler conversion', 'migration report for unsupported components', 'CLI plus browser-friendly core parser']
   },
   {
+    slug: 'junit-report-doctor-kit',
+    name: 'junit-report-doctor-kit',
+    summary: 'Normalize JUnit XML reports with stable diagnostics for CI pipelines and test report uploads.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/junit-report-doctor-kit',
+    status: 'preview',
+    demoLabel: 'JUnit doctor',
+    highlight: 'Preview detects counter mismatches, XML quirks, attachments and normalized test outcomes.',
+    accent: '#1d4ed8',
+    features: [
+      'JUnit XML summary and JSON normalization',
+      'strict counter diagnostics for CI preflight checks',
+      'CDATA, namespaces, nested suites and attachment metadata'
+    ]
+  },
+  {
     slug: 'proto-form-kit',
     name: 'proto-form-kit',
     summary: 'Turn Protocol Buffer schemas into form-friendly metadata, method hints and JSON examples.',
@@ -306,6 +322,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'SVG AST', slug: 'svg-ast-kit' },
   { label: 'Front matter', slug: 'frontmatter-kit' },
   { label: 'Data URL', slug: 'data-url-kit' },
+  { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },
   { label: 'File paths', slug: 'filepath-validator-kit' },

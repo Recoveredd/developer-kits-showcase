@@ -15,6 +15,7 @@ export type LibrarySlug =
   | 'localized-price-parse-kit'
   | 'css-font-shorthand-kit'
   | 'jmx-k6-migration-kit'
+  | 'junit-report-doctor-kit'
   | 'proto-form-kit'
   | 'number-range-list-kit'
   | 'hex-grid-kit'

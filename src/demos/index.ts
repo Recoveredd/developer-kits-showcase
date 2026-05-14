@@ -34,6 +34,8 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./css-font-shorthand-kit');
     case 'jmx-k6-migration-kit':
       return import('./jmx-k6-migration-kit');
+    case 'junit-report-doctor-kit':
+      return import('./junit-report-doctor-kit');
     case 'proto-form-kit':
       return import('./proto-form-kit');
     case 'number-range-list-kit':
