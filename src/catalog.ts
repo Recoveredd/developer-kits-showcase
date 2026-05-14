@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists, file paths, hex grids and large logs.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists, file paths, hex grids, large logs and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -308,6 +308,18 @@ export const libraries: LibraryMeta[] = [
     highlight: 'Preview demonstrates fixed-row virtualization, safe ANSI rendering and bounded search.',
     accent: '#0f766e',
     features: ['offset-backed line indexing without splitting every row', 'virtual windows for fixed-height log viewers', 'chunked search and ANSI-aware safe HTML output']
+  },
+  {
+    slug: 'har-redaction-kit',
+    name: 'har-redaction-kit',
+    summary: 'Redact sensitive fields from HAR files with deterministic reports for support handoffs.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/har-redaction-kit',
+    status: 'preview',
+    demoLabel: 'HAR redaction',
+    highlight: 'Preview masks headers, cookies, query strings and post bodies without leaking original secret values.',
+    accent: '#b91c1c',
+    features: ['request and response cookie/header redaction', 'JSON and form postData cleanup', 'change report with paths, rules and value lengths']
   }
 ];
 
@@ -328,7 +340,8 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'File paths', slug: 'filepath-validator-kit' },
   { label: 'Unit parser', slug: 'numeric-unit-parse-kit' },
   { label: 'Extensions', slug: 'file-extension-inspect-kit' },
-  { label: 'Large logs', slug: 'large-log-viewer-kit' }
+  { label: 'Large logs', slug: 'large-log-viewer-kit' },
+  { label: 'HAR cleanup', slug: 'har-redaction-kit' }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {

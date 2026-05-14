@@ -22,7 +22,8 @@ export type LibrarySlug =
   | 'filepath-validator-kit'
   | 'numeric-unit-parse-kit'
   | 'file-extension-inspect-kit'
-  | 'large-log-viewer-kit';
+  | 'large-log-viewer-kit'
+  | 'har-redaction-kit';
 
 export type LibraryMeta = {
   slug: LibrarySlug;

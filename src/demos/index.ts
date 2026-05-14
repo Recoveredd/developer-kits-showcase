@@ -50,5 +50,7 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./file-extension-inspect-kit');
     case 'large-log-viewer-kit':
       return import('./large-log-viewer-kit');
+    case 'har-redaction-kit':
+      return import('./har-redaction-kit');
   }
 }
