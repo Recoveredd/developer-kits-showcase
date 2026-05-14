@@ -28,6 +28,8 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./color-nearest-match-kit');
     case 'currency-code-symbol-kit':
       return import('./currency-code-symbol-kit');
+    case 'node-lockfile-doctor-kit':
+      return import('./node-lockfile-doctor-kit');
     case 'human-duration-parse-kit':
       return import('./human-duration-parse-kit');
     case 'import-specifier-scan-kit':

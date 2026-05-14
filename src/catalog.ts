@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, retry plans, string hashes, range lists, file paths, hex grids, color matching, currency symbols, large logs, systemd units and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, retry plans, string hashes, range lists, file paths, hex grids, color matching, currency symbols, Node lockfiles, large logs, systemd units and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -170,6 +170,22 @@ export const libraries: LibraryMeta[] = [
       'locale-aware Intl.NumberFormat symbol lookup',
       'invalid code and invalid locale diagnostics',
       'caller-scoped same-symbol collision checks'
+    ]
+  },
+  {
+    slug: 'node-lockfile-doctor-kit',
+    name: 'node-lockfile-doctor-kit',
+    summary: 'Inspect Node package-manager lockfile consistency with structured diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/node-lockfile-doctor-kit',
+    status: 'preview',
+    demoLabel: 'Lockfile doctor',
+    highlight: 'Preview catches package-manager drift, missing locks and lockfile conflicts.',
+    accent: '#334155',
+    features: [
+      'npm, pnpm, Yarn and Bun lockfile detection',
+      'packageManager, workspace and dependency drift diagnostics',
+      'browser-friendly core plus optional Node CLI'
     ]
   },
   {
@@ -456,6 +472,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Data URL', slug: 'data-url-kit' },
   { label: 'Color match', slug: 'color-nearest-match-kit' },
   { label: 'Currency symbols', slug: 'currency-code-symbol-kit' },
+  { label: 'Lockfiles', slug: 'node-lockfile-doctor-kit' },
   { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },
