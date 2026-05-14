@@ -32,6 +32,8 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./node-lockfile-doctor-kit');
     case 'package-author-parse-kit':
       return import('./package-author-parse-kit');
+    case 'css-media-query-match-kit':
+      return import('./css-media-query-match-kit');
     case 'human-duration-parse-kit':
       return import('./human-duration-parse-kit');
     case 'import-specifier-scan-kit':

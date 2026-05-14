@@ -205,6 +205,22 @@ export const libraries: LibraryMeta[] = [
     ]
   },
   {
+    slug: 'css-media-query-match-kit',
+    name: 'css-media-query-match-kit',
+    summary: 'Parse and match small CSS media query lists with stable diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/css-media-query-match-kit',
+    status: 'preview',
+    demoLabel: 'Media query matcher',
+    highlight: 'Preview evaluates responsive rules against explicit viewport environments.',
+    accent: '#2563eb',
+    features: [
+      'comma-separated media query lists with not, only and and conditions',
+      'width, height, orientation, aspect-ratio, resolution, hover and pointer matching',
+      'structured diagnostics for unsupported CSS syntax and invalid values'
+    ]
+  },
+  {
     slug: 'human-duration-parse-kit',
     name: 'human-duration-parse-kit',
     summary: 'Parse compact human duration strings into milliseconds with structured tokens and diagnostics.',
@@ -490,6 +506,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Currency symbols', slug: 'currency-code-symbol-kit' },
   { label: 'Lockfiles', slug: 'node-lockfile-doctor-kit' },
   { label: 'Package author', slug: 'package-author-parse-kit' },
+  { label: 'Media query', slug: 'css-media-query-match-kit' },
   { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },
