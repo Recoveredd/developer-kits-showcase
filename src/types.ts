@@ -11,6 +11,7 @@ export type LibrarySlug =
   | 'data-url-kit'
   | 'hex-color-token-kit'
   | 'color-nearest-match-kit'
+  | 'currency-code-symbol-kit'
   | 'human-duration-parse-kit'
   | 'import-specifier-scan-kit'
   | 'localized-price-parse-kit'

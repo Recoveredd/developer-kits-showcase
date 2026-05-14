@@ -26,6 +26,8 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./hex-color-token-kit');
     case 'color-nearest-match-kit':
       return import('./color-nearest-match-kit');
+    case 'currency-code-symbol-kit':
+      return import('./currency-code-symbol-kit');
     case 'human-duration-parse-kit':
       return import('./human-duration-parse-kit');
     case 'import-specifier-scan-kit':

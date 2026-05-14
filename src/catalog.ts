@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, retry plans, string hashes, range lists, file paths, hex grids, color matching, large logs, systemd units and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, retry plans, string hashes, range lists, file paths, hex grids, color matching, currency symbols, large logs, systemd units and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -154,6 +154,22 @@ export const libraries: LibraryMeta[] = [
       'hex and RGB object inputs',
       'top-N nearest palette matches with distances',
       'structured diagnostics for invalid colors and palettes'
+    ]
+  },
+  {
+    slug: 'currency-code-symbol-kit',
+    name: 'currency-code-symbol-kit',
+    summary: 'Resolve ISO currency codes to locale-aware symbols with structured diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/currency-code-symbol-kit',
+    status: 'preview',
+    demoLabel: 'Currency symbols',
+    highlight: 'Preview shows Intl-backed symbols, invalid locales and same-symbol collisions.',
+    accent: '#0f766e',
+    features: [
+      'locale-aware Intl.NumberFormat symbol lookup',
+      'invalid code and invalid locale diagnostics',
+      'caller-scoped same-symbol collision checks'
     ]
   },
   {
@@ -439,6 +455,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Front matter', slug: 'frontmatter-kit' },
   { label: 'Data URL', slug: 'data-url-kit' },
   { label: 'Color match', slug: 'color-nearest-match-kit' },
+  { label: 'Currency symbols', slug: 'currency-code-symbol-kit' },
   { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },
