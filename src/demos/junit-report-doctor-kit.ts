@@ -27,6 +27,7 @@ const sampleXml = `<?xml version="1.0"?>
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
+      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="junit-input">JUnit XML report</label>
       <textarea id="junit-input" spellcheck="false">${escapeHtml(sampleXml)}</textarea>
       <label class="check-control">
