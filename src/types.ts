@@ -13,6 +13,7 @@ export type LibrarySlug =
   | 'color-nearest-match-kit'
   | 'currency-code-symbol-kit'
   | 'node-lockfile-doctor-kit'
+  | 'package-author-parse-kit'
   | 'human-duration-parse-kit'
   | 'import-specifier-scan-kit'
   | 'localized-price-parse-kit'

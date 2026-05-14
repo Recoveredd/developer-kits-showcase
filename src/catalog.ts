@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, retry plans, string hashes, range lists, file paths, hex grids, color matching, currency symbols, Node lockfiles, large logs, systemd units and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, package metadata, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, retry plans, string hashes, range lists, file paths, hex grids, color matching, currency symbols, Node lockfiles, large logs, systemd units and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -186,6 +186,22 @@ export const libraries: LibraryMeta[] = [
       'npm, pnpm, Yarn and Bun lockfile detection',
       'packageManager, workspace and dependency drift diagnostics',
       'browser-friendly core plus optional Node CLI'
+    ]
+  },
+  {
+    slug: 'package-author-parse-kit',
+    name: 'package-author-parse-kit',
+    summary: 'Parse package author, maintainer and contributor strings with stable diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/package-author-parse-kit',
+    status: 'preview',
+    demoLabel: 'Package authors',
+    highlight: 'Preview exposes name, email, URL tokens and source offsets for package metadata editors.',
+    accent: '#6d5dfc',
+    features: [
+      'npm-style person field parsing',
+      'source offsets for author, maintainer and contributor forms',
+      'diagnostics for duplicate fields, invalid email and invalid URL'
     ]
   },
   {
@@ -473,6 +489,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Color match', slug: 'color-nearest-match-kit' },
   { label: 'Currency symbols', slug: 'currency-code-symbol-kit' },
   { label: 'Lockfiles', slug: 'node-lockfile-doctor-kit' },
+  { label: 'Package author', slug: 'package-author-parse-kit' },
   { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },

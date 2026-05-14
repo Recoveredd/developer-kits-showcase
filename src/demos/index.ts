@@ -30,6 +30,8 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./currency-code-symbol-kit');
     case 'node-lockfile-doctor-kit':
       return import('./node-lockfile-doctor-kit');
+    case 'package-author-parse-kit':
+      return import('./package-author-parse-kit');
     case 'human-duration-parse-kit':
       return import('./human-duration-parse-kit');
     case 'import-specifier-scan-kit':
