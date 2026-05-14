@@ -58,5 +58,7 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./har-redaction-kit');
     case 'systemd-unit-doctor-kit':
       return import('./systemd-unit-doctor-kit');
+    case 'retry-delay-plan-kit':
+      return import('./retry-delay-plan-kit');
   }
 }

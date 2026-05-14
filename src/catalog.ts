@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, range lists, file paths, hex grids, large logs, systemd units and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, retry plans, range lists, file paths, hex grids, large logs, systemd units and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -360,6 +360,22 @@ export const libraries: LibraryMeta[] = [
       'line and directive metadata for editor or CI output',
       'browser-friendly core with a thin Node CLI wrapper'
     ]
+  },
+  {
+    slug: 'retry-delay-plan-kit',
+    name: 'retry-delay-plan-kit',
+    summary: 'Build deterministic retry delay plans with diagnostics, jitter and Retry-After helpers.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/retry-delay-plan-kit',
+    status: 'preview',
+    demoLabel: 'Retry planner',
+    highlight: 'Preview renders retry schedules before any timer or network call runs.',
+    accent: '#6d5dfc',
+    features: [
+      'deterministic full, equal or no jitter plans',
+      'issue reporting for unsafe user-provided options',
+      'Retry-After delta-seconds and HTTP-date parsing'
+    ]
   }
 ];
 
@@ -384,7 +400,8 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Extensions', slug: 'file-extension-inspect-kit' },
   { label: 'Large logs', slug: 'large-log-viewer-kit' },
   { label: 'HAR cleanup', slug: 'har-redaction-kit' },
-  { label: 'systemd units', slug: 'systemd-unit-doctor-kit' }
+  { label: 'systemd units', slug: 'systemd-unit-doctor-kit' },
+  { label: 'Retry plans', slug: 'retry-delay-plan-kit' }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {

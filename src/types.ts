@@ -26,7 +26,8 @@ export type LibrarySlug =
   | 'file-extension-inspect-kit'
   | 'large-log-viewer-kit'
   | 'har-redaction-kit'
-  | 'systemd-unit-doctor-kit';
+  | 'systemd-unit-doctor-kit'
+  | 'retry-delay-plan-kit';
 
 export type LibraryMeta = {
   slug: LibrarySlug;
