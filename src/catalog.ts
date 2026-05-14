@@ -221,6 +221,22 @@ export const libraries: LibraryMeta[] = [
     ]
   },
   {
+    slug: 'lcov-trace-doctor-kit',
+    name: 'lcov-trace-doctor-kit',
+    summary: 'Inspect LCOV tracefiles with structured diagnostics and coverage summaries.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/lcov-trace-doctor-kit',
+    status: 'preview',
+    demoLabel: 'LCOV doctor',
+    highlight: 'Preview checks coverage counters, duplicate details and malformed LCOV records.',
+    accent: '#0f766e',
+    features: [
+      'line, function and branch coverage summaries',
+      'declared counter mismatch diagnostics for CI preflight',
+      'browser-friendly parser for pasted or uploaded lcov.info content'
+    ]
+  },
+  {
     slug: 'human-duration-parse-kit',
     name: 'human-duration-parse-kit',
     summary: 'Parse compact human duration strings into milliseconds with structured tokens and diagnostics.',
@@ -507,6 +523,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Lockfiles', slug: 'node-lockfile-doctor-kit' },
   { label: 'Package author', slug: 'package-author-parse-kit' },
   { label: 'Media query', slug: 'css-media-query-match-kit' },
+  { label: 'LCOV doctor', slug: 'lcov-trace-doctor-kit' },
   { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },

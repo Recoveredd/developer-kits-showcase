@@ -15,6 +15,7 @@ export type LibrarySlug =
   | 'node-lockfile-doctor-kit'
   | 'package-author-parse-kit'
   | 'css-media-query-match-kit'
+  | 'lcov-trace-doctor-kit'
   | 'human-duration-parse-kit'
   | 'import-specifier-scan-kit'
   | 'localized-price-parse-kit'
