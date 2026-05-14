@@ -25,7 +25,8 @@ export type LibrarySlug =
   | 'numeric-unit-parse-kit'
   | 'file-extension-inspect-kit'
   | 'large-log-viewer-kit'
-  | 'har-redaction-kit';
+  | 'har-redaction-kit'
+  | 'systemd-unit-doctor-kit';
 
 export type LibraryMeta = {
   slug: LibrarySlug;

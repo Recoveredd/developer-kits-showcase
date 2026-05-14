@@ -56,5 +56,7 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./large-log-viewer-kit');
     case 'har-redaction-kit':
       return import('./har-redaction-kit');
+    case 'systemd-unit-doctor-kit':
+      return import('./systemd-unit-doctor-kit');
   }
 }

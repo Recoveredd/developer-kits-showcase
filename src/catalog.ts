@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, range lists, file paths, hex grids, large logs and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, range lists, file paths, hex grids, large logs, systemd units and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -344,6 +344,22 @@ export const libraries: LibraryMeta[] = [
     highlight: 'Preview masks headers, cookies, query strings, post bodies and JSON response content.',
     accent: '#b91c1c',
     features: ['request and response cookie/header redaction', 'JSON and form postData cleanup', 'strict or broad sensitive key matching']
+  },
+  {
+    slug: 'systemd-unit-doctor-kit',
+    name: 'systemd-unit-doctor-kit',
+    summary: 'Inspect systemd unit files with portable diagnostics for browsers, CLIs and CI.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/systemd-unit-doctor-kit',
+    status: 'preview',
+    demoLabel: 'systemd doctor',
+    highlight: 'Preview reports malformed sections, risky service policies, timer issues and unknown directives.',
+    accent: '#334155',
+    features: [
+      'portable .service, .timer and .socket diagnostics',
+      'line and directive metadata for editor or CI output',
+      'browser-friendly core with a thin Node CLI wrapper'
+    ]
   }
 ];
 
@@ -367,7 +383,8 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Unit parser', slug: 'numeric-unit-parse-kit' },
   { label: 'Extensions', slug: 'file-extension-inspect-kit' },
   { label: 'Large logs', slug: 'large-log-viewer-kit' },
-  { label: 'HAR cleanup', slug: 'har-redaction-kit' }
+  { label: 'HAR cleanup', slug: 'har-redaction-kit' },
+  { label: 'systemd units', slug: 'systemd-unit-doctor-kit' }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {
