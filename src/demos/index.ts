@@ -60,5 +60,7 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./systemd-unit-doctor-kit');
     case 'retry-delay-plan-kit':
       return import('./retry-delay-plan-kit');
+    case 'murmur-string-hash-kit':
+      return import('./murmur-string-hash-kit');
   }
 }

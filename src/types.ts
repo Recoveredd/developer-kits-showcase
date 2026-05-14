@@ -27,7 +27,8 @@ export type LibrarySlug =
   | 'large-log-viewer-kit'
   | 'har-redaction-kit'
   | 'systemd-unit-doctor-kit'
-  | 'retry-delay-plan-kit';
+  | 'retry-delay-plan-kit'
+  | 'murmur-string-hash-kit';
 
 export type LibraryMeta = {
   slug: LibrarySlug;

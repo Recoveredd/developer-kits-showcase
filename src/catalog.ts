@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, retry plans, range lists, file paths, hex grids, large logs, systemd units and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, retry plans, string hashes, range lists, file paths, hex grids, large logs, systemd units and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -376,6 +376,22 @@ export const libraries: LibraryMeta[] = [
       'issue reporting for unsafe user-provided options',
       'Retry-After delta-seconds and HTTP-date parsing'
     ]
+  },
+  {
+    slug: 'murmur-string-hash-kit',
+    name: 'murmur-string-hash-kit',
+    summary: 'Hash UTF-8 strings with browser-friendly MurmurHash3 x86_32 helpers.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/murmur-string-hash-kit',
+    status: 'preview',
+    demoLabel: 'String hash',
+    highlight: 'Preview hashes UTF-8 strings into uint32, hex and base36 fingerprints.',
+    accent: '#0f8ea8',
+    features: [
+      'explicit UTF-8 byte hashing with byte count metadata',
+      'seeded uint32, hex and base36 helpers',
+      'optional maxBytes guard for untrusted input'
+    ]
   }
 ];
 
@@ -401,7 +417,8 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Large logs', slug: 'large-log-viewer-kit' },
   { label: 'HAR cleanup', slug: 'har-redaction-kit' },
   { label: 'systemd units', slug: 'systemd-unit-doctor-kit' },
-  { label: 'Retry plans', slug: 'retry-delay-plan-kit' }
+  { label: 'Retry plans', slug: 'retry-delay-plan-kit' },
+  { label: 'String hash', slug: 'murmur-string-hash-kit' }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {
