@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, retry plans, string hashes, range lists, file paths, hex grids, large logs, systemd units and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, retry plans, string hashes, range lists, file paths, hex grids, color matching, large logs, systemd units and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -139,6 +139,22 @@ export const libraries: LibraryMeta[] = [
     highlight: 'Find valid and malformed CSS hex colors without Node APIs.',
     accent: '#c2410c',
     features: ['#rgb, #rgba, #rrggbb and #rrggbbaa support', 'source offsets for editor tooling', 'normalized channels and alpha detection']
+  },
+  {
+    slug: 'color-nearest-match-kit',
+    name: 'color-nearest-match-kit',
+    summary: 'Match a color against a named palette with ranked results and readable diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/color-nearest-match-kit',
+    status: 'preview',
+    demoLabel: 'Color matching',
+    highlight: 'Preview ranks design-token palette colors without Node APIs.',
+    accent: '#2563eb',
+    features: [
+      'hex and RGB object inputs',
+      'top-N nearest palette matches with distances',
+      'structured diagnostics for invalid colors and palettes'
+    ]
   },
   {
     slug: 'human-duration-parse-kit',
@@ -422,6 +438,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'SVG AST', slug: 'svg-ast-kit' },
   { label: 'Front matter', slug: 'frontmatter-kit' },
   { label: 'Data URL', slug: 'data-url-kit' },
+  { label: 'Color match', slug: 'color-nearest-match-kit' },
   { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },

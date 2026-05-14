@@ -10,6 +10,7 @@ export type LibrarySlug =
   | 'frontmatter-kit'
   | 'data-url-kit'
   | 'hex-color-token-kit'
+  | 'color-nearest-match-kit'
   | 'human-duration-parse-kit'
   | 'import-specifier-scan-kit'
   | 'localized-price-parse-kit'
