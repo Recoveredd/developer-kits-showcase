@@ -46,6 +46,8 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./filepath-validator-kit');
     case 'http-cache-control-kit':
       return import('./http-cache-control-kit');
+    case 'http-accept-language-kit':
+      return import('./http-accept-language-kit');
     case 'numeric-unit-parse-kit':
       return import('./numeric-unit-parse-kit');
     case 'file-extension-inspect-kit':

@@ -286,6 +286,18 @@ export const libraries: LibraryMeta[] = [
     features: ['request and response Cache-Control directives', 'stable diagnostics for malformed headers', 'formatter with sorting and quote controls']
   },
   {
+    slug: 'http-accept-language-kit',
+    name: 'http-accept-language-kit',
+    summary: 'Parse, format and lightly match HTTP Accept-Language headers with typed diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/http-accept-language-kit',
+    status: 'preview',
+    demoLabel: 'Accept-Language',
+    highlight: 'Preview shows q-value sorting, wildcard diagnostics and supported-language matching.',
+    accent: '#4338ca',
+    features: ['strict HTTP qvalue precision by default', 'source order and raw token preservation', 'small exact, base-language and wildcard matcher']
+  },
+  {
     slug: 'numeric-unit-parse-kit',
     name: 'numeric-unit-parse-kit',
     summary: 'Parse numeric values with units into structured amounts, normalized strings and readable diagnostics.',
@@ -351,6 +363,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Hex grid', slug: 'hex-grid-kit' },
   { label: 'File paths', slug: 'filepath-validator-kit' },
   { label: 'Cache-Control', slug: 'http-cache-control-kit' },
+  { label: 'Accept-Language', slug: 'http-accept-language-kit' },
   { label: 'Unit parser', slug: 'numeric-unit-parse-kit' },
   { label: 'Extensions', slug: 'file-extension-inspect-kit' },
   { label: 'Large logs', slug: 'large-log-viewer-kit' },

@@ -21,6 +21,7 @@ export type LibrarySlug =
   | 'hex-grid-kit'
   | 'filepath-validator-kit'
   | 'http-cache-control-kit'
+  | 'http-accept-language-kit'
   | 'numeric-unit-parse-kit'
   | 'file-extension-inspect-kit'
   | 'large-log-viewer-kit'
