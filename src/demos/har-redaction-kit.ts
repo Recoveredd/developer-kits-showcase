@@ -43,7 +43,11 @@ const sampleHar = {
             { name: 'Set-Cookie', value: 'sid=response-secret; HttpOnly' },
             { name: 'Content-Type', value: 'application/json' }
           ],
-          cookies: [{ name: 'sid', value: 'response-secret' }]
+          cookies: [{ name: 'sid', value: 'response-secret' }],
+          content: {
+            mimeType: 'application/json',
+            text: JSON.stringify({ token: 'response-body-secret', data: { ok: true } })
+          }
         }
       }
     ]
@@ -70,6 +74,13 @@ export function renderDemo(): string {
         <label for="har-placeholder">Placeholder</label>
         <input id="har-placeholder" type="text" value="[REDACTED]" />
       </div>
+      <div class="control-row">
+        <label for="har-key-match">Key match</label>
+        <select id="har-key-match">
+          <option value="contains" selected>contains</option>
+          <option value="exact">exact</option>
+        </select>
+      </div>
       <label class="check-control">
         <input id="har-keep-url" type="checkbox" />
         <span>Keep original request.url</span>
@@ -89,6 +100,7 @@ export function renderDemo(): string {
 export function bindDemo(): void {
   const input = byId<HTMLTextAreaElement>('har-input');
   const placeholder = byId<HTMLInputElement>('har-placeholder');
+  const keyMatch = byId<HTMLSelectElement>('har-key-match');
   const keepUrl = byId<HTMLInputElement>('har-keep-url');
   const summary = byId<HTMLDivElement>('har-summary');
   const changes = byId<HTMLDivElement>('har-changes');
@@ -102,6 +114,7 @@ export function bindDemo(): void {
     const options: HarRedactionOptions = {
       rules: selectedRules,
       placeholder: placeholder.value || '[REDACTED]',
+      sensitiveKeyMatch: keyMatch.value === 'exact' ? 'exact' : 'contains',
       keepOriginalUrl: keepUrl.checked,
       sensitiveKeys: [...defaultHarSensitiveKeys]
     };
@@ -142,6 +155,7 @@ export function bindDemo(): void {
 
   input.addEventListener('input', update);
   placeholder.addEventListener('input', update);
+  keyMatch.addEventListener('change', update);
   keepUrl.addEventListener('change', update);
   ruleInputs.forEach((ruleInput) => ruleInput.addEventListener('change', update));
   update();

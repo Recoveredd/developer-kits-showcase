@@ -317,9 +317,9 @@ export const libraries: LibraryMeta[] = [
     github: 'https://github.com/Recoveredd/har-redaction-kit',
     status: 'preview',
     demoLabel: 'HAR redaction',
-    highlight: 'Preview masks headers, cookies, query strings and post bodies without leaking original secret values.',
+    highlight: 'Preview masks headers, cookies, query strings, post bodies and JSON response content.',
     accent: '#b91c1c',
-    features: ['request and response cookie/header redaction', 'JSON and form postData cleanup', 'change report with paths, rules and value lengths']
+    features: ['request and response cookie/header redaction', 'JSON and form postData cleanup', 'strict or broad sensitive key matching']
   }
 ];
 
