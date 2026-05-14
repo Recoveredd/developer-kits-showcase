@@ -256,6 +256,30 @@ export const libraries: LibraryMeta[] = [
     highlight: 'Form-friendly validation with segment spans, stable issue codes and reusable policies.',
     accent: '#334155',
     features: ['portable, POSIX and Windows validation policies', 'source offsets for path segments', 'reusable validators with default options']
+  },
+  {
+    slug: 'numeric-unit-parse-kit',
+    name: 'numeric-unit-parse-kit',
+    summary: 'Parse numeric values with units into structured amounts, normalized strings and readable diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/numeric-unit-parse-kit',
+    status: 'preview',
+    demoLabel: 'Unit parser',
+    highlight: 'Preview validates spacing, token and measurement inputs before npm publication.',
+    accent: '#7c3aed',
+    features: ['allowed unit lists with case sensitivity controls', 'unitless zero and percent policies', 'reusable parser defaults for forms']
+  },
+  {
+    slug: 'file-extension-inspect-kit',
+    name: 'file-extension-inspect-kit',
+    summary: 'Inspect filename extensions with explicit dotfile, extensionless and compound-extension policies.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/file-extension-inspect-kit',
+    status: 'preview',
+    demoLabel: 'Extension inspector',
+    highlight: 'Preview shows dotfile handling, compound extension matching and comparison behavior.',
+    accent: '#475569',
+    features: ['dotfile and extensionless filename policies', 'compound extension support such as tar.gz and d.ts', 'case and trim controls for upload validators']
   }
 ];
 
@@ -272,7 +296,9 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Data URL', slug: 'data-url-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },
-  { label: 'File paths', slug: 'filepath-validator-kit' }
+  { label: 'File paths', slug: 'filepath-validator-kit' },
+  { label: 'Unit parser', slug: 'numeric-unit-parse-kit' },
+  { label: 'Extensions', slug: 'file-extension-inspect-kit' }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {

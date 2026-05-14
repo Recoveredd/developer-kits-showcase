@@ -195,6 +195,22 @@ const pages = [
     version: '0.1.0',
     repository: 'https://github.com/Recoveredd/filepath-validator-kit',
     npm: 'https://www.npmjs.com/package/filepath-validator-kit'
+  },
+  {
+    path: '/numeric-unit-parse-kit',
+    title: 'numeric-unit-parse-kit preview | Developer Kits',
+    description: 'Parse numeric values with units into structured amounts, normalized strings and readable diagnostics.',
+    packageName: 'numeric-unit-parse-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/numeric-unit-parse-kit'
+  },
+  {
+    path: '/file-extension-inspect-kit',
+    title: 'file-extension-inspect-kit preview | Developer Kits',
+    description: 'Inspect filename extensions with explicit dotfile, extensionless and compound-extension policies.',
+    packageName: 'file-extension-inspect-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/file-extension-inspect-kit'
   }
 ];
 

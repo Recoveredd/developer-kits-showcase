@@ -18,7 +18,9 @@ export type LibrarySlug =
   | 'proto-form-kit'
   | 'number-range-list-kit'
   | 'hex-grid-kit'
-  | 'filepath-validator-kit';
+  | 'filepath-validator-kit'
+  | 'numeric-unit-parse-kit'
+  | 'file-extension-inspect-kit';
 
 export type LibraryMeta = {
   slug: LibrarySlug;
