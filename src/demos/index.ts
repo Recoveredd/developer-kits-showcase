@@ -44,6 +44,8 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./hex-grid-kit');
     case 'filepath-validator-kit':
       return import('./filepath-validator-kit');
+    case 'http-cache-control-kit':
+      return import('./http-cache-control-kit');
     case 'numeric-unit-parse-kit':
       return import('./numeric-unit-parse-kit');
     case 'file-extension-inspect-kit':

@@ -20,6 +20,7 @@ export type LibrarySlug =
   | 'number-range-list-kit'
   | 'hex-grid-kit'
   | 'filepath-validator-kit'
+  | 'http-cache-control-kit'
   | 'numeric-unit-parse-kit'
   | 'file-extension-inspect-kit'
   | 'large-log-viewer-kit'

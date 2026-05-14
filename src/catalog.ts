@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists, file paths, hex grids, large logs and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, range lists, file paths, hex grids, large logs and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -274,6 +274,18 @@ export const libraries: LibraryMeta[] = [
     features: ['portable, POSIX and Windows validation policies', 'source offsets for path segments', 'reusable validators with default options']
   },
   {
+    slug: 'http-cache-control-kit',
+    name: 'http-cache-control-kit',
+    summary: 'Parse and format HTTP Cache-Control headers with typed diagnostics for tooling and tests.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/http-cache-control-kit',
+    status: 'preview',
+    demoLabel: 'Cache-Control',
+    highlight: 'Preview diagnoses directives, duplicate values, quoted strings and delta-seconds.',
+    accent: '#0f766e',
+    features: ['request and response Cache-Control directives', 'stable diagnostics for malformed headers', 'formatter with sorting and quote controls']
+  },
+  {
     slug: 'numeric-unit-parse-kit',
     name: 'numeric-unit-parse-kit',
     summary: 'Parse numeric values with units into structured amounts, normalized strings and readable diagnostics.',
@@ -338,6 +350,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },
   { label: 'File paths', slug: 'filepath-validator-kit' },
+  { label: 'Cache-Control', slug: 'http-cache-control-kit' },
   { label: 'Unit parser', slug: 'numeric-unit-parse-kit' },
   { label: 'Extensions', slug: 'file-extension-inspect-kit' },
   { label: 'Large logs', slug: 'large-log-viewer-kit' },
