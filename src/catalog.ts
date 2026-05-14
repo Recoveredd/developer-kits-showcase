@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, retry plans, string hashes, range lists, file paths, hex grids, large logs, systemd units and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, retry plans, string hashes, range lists, file paths, hex grids, large logs, systemd units and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -392,6 +392,22 @@ export const libraries: LibraryMeta[] = [
       'seeded uint32, hex and base36 helpers',
       'optional maxBytes guard for untrusted input'
     ]
+  },
+  {
+    slug: 'http-link-header-kit',
+    name: 'http-link-header-kit',
+    summary: 'Parse, inspect and format HTTP Link headers with diagnostics and pagination helpers.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/http-link-header-kit',
+    status: 'preview',
+    demoLabel: 'Link headers',
+    highlight: 'Preview resolves rel tokens, pagination shortcuts and malformed parameter diagnostics.',
+    accent: '#0f766e',
+    features: [
+      'non-throwing Link header parser with offsets',
+      'case-insensitive rel lookup and pagination helpers',
+      'formatter plus duplicate parameter diagnostics'
+    ]
   }
 ];
 
@@ -418,7 +434,8 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'HAR cleanup', slug: 'har-redaction-kit' },
   { label: 'systemd units', slug: 'systemd-unit-doctor-kit' },
   { label: 'Retry plans', slug: 'retry-delay-plan-kit' },
-  { label: 'String hash', slug: 'murmur-string-hash-kit' }
+  { label: 'String hash', slug: 'murmur-string-hash-kit' },
+  { label: 'Link headers', slug: 'http-link-header-kit' }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {

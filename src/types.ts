@@ -28,7 +28,8 @@ export type LibrarySlug =
   | 'har-redaction-kit'
   | 'systemd-unit-doctor-kit'
   | 'retry-delay-plan-kit'
-  | 'murmur-string-hash-kit';
+  | 'murmur-string-hash-kit'
+  | 'http-link-header-kit';
 
 export type LibraryMeta = {
   slug: LibrarySlug;

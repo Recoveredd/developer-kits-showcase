@@ -62,5 +62,7 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./retry-delay-plan-kit');
     case 'murmur-string-hash-kit':
       return import('./murmur-string-hash-kit');
+    case 'http-link-header-kit':
+      return import('./http-link-header-kit');
   }
 }
