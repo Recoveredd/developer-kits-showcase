@@ -152,6 +152,25 @@ main {
   margin: 24px 0 0;
 }
 
+.hero-status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.hero-status-strip span {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #dfe3da;
+  background: rgba(255, 255, 255, 0.72);
+  color: #303640;
+  padding: 5px 9px;
+  font-size: 12px;
+  font-weight: 820;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;

@@ -190,7 +190,7 @@ function renderHome(): string {
       <section class="library-section preview-library-section" aria-label="GitHub preview demos">
         <div class="section-heading">
           <h2>GitHub previews</h2>
-          <p>These libraries are ready on GitHub and waiting for npm publication. Their demos lazy-load the local source.</p>
+          <p>These libraries are ready on GitHub. Their demos run in the portfolio while npm publication waits.</p>
         </div>
         <div class="library-grid">${previewCards}</div>
       </section>
@@ -203,9 +203,14 @@ function renderHome(): string {
         <div class="hero-copy">
           <h1>Focused TypeScript utilities for JSON, tables and developer data.</h1>
           <p>
-            A growing set of small packages built around the same idea: take awkward developer data and turn it
-            into something readable, exportable or easy to map.
+            Published npm packages and GitHub previews, built around the same idea: take awkward developer data
+            and turn it into something readable, exportable or easy to map.
           </p>
+          <div class="hero-status-strip" aria-label="Portfolio scope">
+            <span>npm packages</span>
+            <span>GitHub previews</span>
+            <span>Interactive demos</span>
+          </div>
           <div class="hero-actions">
             <a href="/json-html-kit/" data-link class="primary-action">Explore the demos</a>
             <a href="https://www.npmjs.com/~recovered" rel="noreferrer" class="secondary-action">View npm packages</a>
@@ -225,8 +230,8 @@ function renderHome(): string {
         <div>
           <h2>Small by design, useful together.</h2>
           <p>
-            Every published page runs the corresponding npm package directly in the browser, with demos that
-            show the practical output instead of a marketing shell.
+            Published pages run the corresponding npm package directly in the browser. Preview pages stay clearly
+            marked until their npm package is available.
           </p>
         </div>
         <div class="principle-list">
@@ -317,7 +322,7 @@ function renderLibraryPage(library: LibraryMeta, demoMarkup: string): string {
     ? `<code>${library.install}</code>`
     : `<div class="preview-status-box">
         <strong>GitHub preview</strong>
-        <span>npm publication is pending while registry rate limiting is resolved.</span>
+        <span>Source and demo are available; the npm package is not published yet.</span>
       </div>`;
   const packageLinks = `
     <a href="${library.github}" target="_blank" rel="noreferrer">GitHub</a>
