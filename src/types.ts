@@ -20,7 +20,8 @@ export type LibrarySlug =
   | 'hex-grid-kit'
   | 'filepath-validator-kit'
   | 'numeric-unit-parse-kit'
-  | 'file-extension-inspect-kit';
+  | 'file-extension-inspect-kit'
+  | 'large-log-viewer-kit';
 
 export type LibraryMeta = {
   slug: LibrarySlug;

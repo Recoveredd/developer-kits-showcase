@@ -830,6 +830,159 @@ select:focus {
   font-weight: 820;
 }
 
+.large-log-input {
+  min-height: 320px;
+}
+
+.large-log-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.large-log-actions button,
+.large-log-search-results button {
+  min-height: 40px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: #171b22;
+  font: inherit;
+  font-weight: 820;
+  cursor: pointer;
+}
+
+.large-log-actions button:hover,
+.large-log-actions button:focus-visible,
+.large-log-search-results button:hover,
+.large-log-search-results button:focus-visible {
+  border-color: #11151b;
+  outline: none;
+}
+
+.large-log-panel {
+  min-height: 650px;
+}
+
+.large-log-scroll {
+  position: relative;
+  flex: 1;
+  min-height: 420px;
+  overflow: auto;
+  background: #11151b;
+  color: #d9f99d;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.large-log-spacer {
+  position: relative;
+  min-width: max-content;
+}
+
+.large-log-rows {
+  position: absolute;
+  inset: 0 0 auto;
+}
+
+.large-log-row {
+  display: grid;
+  grid-template-columns: 74px minmax(760px, 1fr);
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.large-log-row code {
+  overflow: hidden;
+  white-space: pre;
+  color: inherit;
+}
+
+.large-log-line-number {
+  padding: 0 12px;
+  color: #94a3b8;
+  text-align: right;
+  user-select: none;
+}
+
+.llv-fg-red {
+  color: #fca5a5;
+}
+
+.llv-fg-yellow {
+  color: #fde68a;
+}
+
+.llv-fg-green {
+  color: #86efac;
+}
+
+.llv-fg-blue {
+  color: #93c5fd;
+}
+
+.llv-bold {
+  font-weight: 800;
+}
+
+.llv-underline {
+  text-decoration: underline;
+}
+
+.llv-match {
+  background: #facc15;
+  color: #11151b;
+}
+
+.large-log-search-results {
+  border-top: 1px solid var(--border);
+  padding: 14px 18px 18px;
+}
+
+.large-log-result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.large-log-result-meta strong {
+  color: #171b22;
+  font-size: 14px;
+}
+
+.large-log-result-meta span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.large-log-search-results ol {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.large-log-search-results li {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.large-log-search-results code {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #25554d;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+}
+
 .frontmatter-output section {
   min-width: 0;
 }

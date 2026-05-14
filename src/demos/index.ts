@@ -46,5 +46,7 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./numeric-unit-parse-kit');
     case 'file-extension-inspect-kit':
       return import('./file-extension-inspect-kit');
+    case 'large-log-viewer-kit':
+      return import('./large-log-viewer-kit');
   }
 }

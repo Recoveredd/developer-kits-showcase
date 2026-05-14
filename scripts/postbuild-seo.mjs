@@ -13,7 +13,7 @@ const pages = [
     path: '/',
     title: 'Developer Kits | TypeScript utilities for developer data',
     description:
-      'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists, file paths and hex grids.',
+      'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists, file paths, hex grids and large logs.',
     schemaType: 'CollectionPage'
   },
   {
@@ -211,6 +211,14 @@ const pages = [
     packageName: 'file-extension-inspect-kit',
     version: '0.1.0',
     repository: 'https://github.com/Recoveredd/file-extension-inspect-kit'
+  },
+  {
+    path: '/large-log-viewer-kit',
+    title: 'large-log-viewer-kit preview | Developer Kits',
+    description: 'Inspect and render large browser logs with offset indexing, virtual windows and chunked search.',
+    packageName: 'large-log-viewer-kit',
+    version: '0.1.0',
+    repository: 'https://github.com/Recoveredd/large-log-viewer-kit'
   }
 ];
 

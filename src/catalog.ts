@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists, file paths and hex grids.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, text matching, SVG parsing, front matter, data URLs, range lists, file paths, hex grids and large logs.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -280,6 +280,18 @@ export const libraries: LibraryMeta[] = [
     highlight: 'Preview shows dotfile handling, compound extension matching and comparison behavior.',
     accent: '#475569',
     features: ['dotfile and extensionless filename policies', 'compound extension support such as tar.gz and d.ts', 'case and trim controls for upload validators']
+  },
+  {
+    slug: 'large-log-viewer-kit',
+    name: 'large-log-viewer-kit',
+    summary: 'Inspect and render large browser logs with offset indexing, virtual windows and chunked search.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/large-log-viewer-kit',
+    status: 'preview',
+    demoLabel: 'Large logs',
+    highlight: 'Preview demonstrates fixed-row virtualization, safe ANSI rendering and bounded search.',
+    accent: '#0f766e',
+    features: ['offset-backed line indexing without splitting every row', 'virtual windows for fixed-height log viewers', 'chunked search and ANSI-aware safe HTML output']
   }
 ];
 
@@ -298,7 +310,8 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Hex grid', slug: 'hex-grid-kit' },
   { label: 'File paths', slug: 'filepath-validator-kit' },
   { label: 'Unit parser', slug: 'numeric-unit-parse-kit' },
-  { label: 'Extensions', slug: 'file-extension-inspect-kit' }
+  { label: 'Extensions', slug: 'file-extension-inspect-kit' },
+  { label: 'Large logs', slug: 'large-log-viewer-kit' }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {
