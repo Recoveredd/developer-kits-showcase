@@ -1,7 +1,6 @@
 import { jsonToCsv } from 'json-csv-kit';
 import {
   demoNavGroups,
-  demoTiles,
   isPublished,
   libraries,
   libraryBySlug,
@@ -195,6 +194,7 @@ function renderShell(content: string, activeSlug?: LibrarySlug): string {
 }
 
 function renderHome(): string {
+  const featuredDemos = getFeaturedDemos();
   const publishedCards = libraries
     .filter(isPublished)
     .map(renderLibraryCard)
@@ -235,10 +235,21 @@ function renderHome(): string {
           </div>
         </div>
         <div class="hero-demo" aria-label="Package ecosystem preview">
-          <div class="flow-node source">JSON</div>
-          <div class="flow-grid">
-            ${demoTiles
-              .map((tile) => `<a href="${libraryPath(tile.slug)}" data-link>${tile.label}</a>`)
+          <div class="flow-node source">Top 10</div>
+          <div class="flow-heading">
+            <h2>Popular demos</h2>
+            <p>Ranked by weekly npm downloads.</p>
+          </div>
+          <div class="flow-grid compact-flow-grid">
+            ${featuredDemos
+              .map(
+                ({ library, downloads }) => `
+                  <a href="${libraryPath(library.slug)}" data-link>
+                    <span>${library.demoLabel}</span>
+                    <small>${formatNumber(downloads)} / week</small>
+                  </a>
+                `
+              )
               .join('')}
           </div>
           <pre>${escapeHtml(jsonToCsv(rowsSample, { columns: ['name', 'p95', 'requests'] }))}</pre>
@@ -269,6 +280,35 @@ function renderHome(): string {
       ${previewSection}
     </main>
   `);
+}
+
+function getFeaturedDemos(): Array<{ library: LibraryMeta; downloads: number }> {
+  const libraryByName = new Map(libraries.map((library) => [library.name, library]));
+  const rankedLibraries: Array<{ library: LibraryMeta; downloads: number }> = [];
+
+  packageSignals.packages.forEach((item) => {
+    const library = libraryByName.get(item.name);
+
+    if (library) {
+      rankedLibraries.push({ library, downloads: item.downloadsLastWeek ?? 0 });
+    }
+  });
+
+  rankedLibraries
+    .sort((left, right) => right.downloads - left.downloads)
+    .splice(10);
+
+  if (rankedLibraries.length >= 10) {
+    return rankedLibraries;
+  }
+
+  const seen = new Set(rankedLibraries.map(({ library }) => library.slug));
+  const fallback = libraries
+    .filter((library) => isPublished(library) && !seen.has(library.slug))
+    .slice(0, 10 - rankedLibraries.length)
+    .map((library) => ({ library, downloads: 0 }));
+
+  return [...rankedLibraries, ...fallback];
 }
 
 function renderLibraryCard(library: LibraryMeta): string {
