@@ -1,4 +1,4 @@
-import type { LibraryMeta, LibrarySlug, RouteMeta } from './types';
+import type { DemoNavGroup, LibraryMeta, LibrarySlug, RouteMeta } from './types';
 
 export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
@@ -599,6 +599,85 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Retry plans', slug: 'retry-delay-plan-kit' },
   { label: 'String hash', slug: 'murmur-string-hash-kit' },
   { label: 'Link headers', slug: 'http-link-header-kit' }
+];
+
+export const demoNavGroups: DemoNavGroup[] = [
+  {
+    label: 'Data',
+    description: 'JSON, CSV, tables and object paths',
+    items: [
+      { label: 'JSON HTML', slug: 'json-html-kit' },
+      { label: 'Array table', slug: 'array-table-kit' },
+      { label: 'JSON CSV', slug: 'json-csv-kit' },
+      { label: 'Object path', slug: 'object-path-kit' },
+      { label: 'Object keys', slug: 'object-key-paths' },
+      { label: 'Data URL', slug: 'data-url-kit' }
+    ]
+  },
+  {
+    label: 'Text',
+    description: 'Content parsing, matching and structured text',
+    items: [
+      { label: 'Text similarity', slug: 'text-similarity-kit' },
+      { label: 'Front matter', slug: 'frontmatter-kit' },
+      { label: 'SVG AST', slug: 'svg-ast-kit' },
+      { label: 'Captions', slug: 'caption-track-doctor-kit' },
+      { label: 'Duration', slug: 'human-duration-parse-kit' },
+      { label: 'Range lists', slug: 'number-range-list-kit' },
+      { label: 'Units', slug: 'numeric-unit-parse-kit' }
+    ]
+  },
+  {
+    label: 'Web',
+    description: 'HTTP headers, robots.txt and browser-facing cleanup',
+    items: [
+      { label: 'Cache-Control', slug: 'http-cache-control-kit' },
+      { label: 'Accept-Language', slug: 'http-accept-language-kit' },
+      { label: 'Link headers', slug: 'http-link-header-kit' },
+      { label: 'robots.txt', slug: 'robots-txt-kit' },
+      { label: 'HAR cleanup', slug: 'har-redaction-kit' }
+    ]
+  },
+  {
+    label: 'Code',
+    description: 'Package metadata, imports, CSS and file names',
+    items: [
+      { label: 'Import scan', slug: 'import-specifier-scan-kit' },
+      { label: 'Lockfiles', slug: 'node-lockfile-doctor-kit' },
+      { label: 'Package author', slug: 'package-author-parse-kit' },
+      { label: 'CSS font', slug: 'css-font-shorthand-kit' },
+      { label: 'Media query', slug: 'css-media-query-match-kit' },
+      { label: 'File paths', slug: 'filepath-validator-kit' },
+      { label: 'Extensions', slug: 'file-extension-inspect-kit' }
+    ]
+  },
+  {
+    label: 'Ops',
+    description: 'Reports, logs, migrations and runtime diagnostics',
+    items: [
+      { label: 'Large logs', slug: 'large-log-viewer-kit' },
+      { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
+      { label: 'LCOV doctor', slug: 'lcov-trace-doctor-kit' },
+      { label: 'systemd units', slug: 'systemd-unit-doctor-kit' },
+      { label: 'Cron timers', slug: 'crontab-timer-migration-kit' },
+      { label: 'Retry plans', slug: 'retry-delay-plan-kit' },
+      { label: 'JMeter to k6', slug: 'jmx-k6-migration-kit' },
+      { label: 'Terminal rows', slug: 'terminal-table-kit' }
+    ]
+  },
+  {
+    label: 'Values',
+    description: 'Colors, prices, hashes, grids and forms',
+    items: [
+      { label: 'Hex tokens', slug: 'hex-color-token-kit' },
+      { label: 'Color match', slug: 'color-nearest-match-kit' },
+      { label: 'Currency', slug: 'currency-code-symbol-kit' },
+      { label: 'Prices', slug: 'localized-price-parse-kit' },
+      { label: 'String hash', slug: 'murmur-string-hash-kit' },
+      { label: 'Hex grid', slug: 'hex-grid-kit' },
+      { label: 'Proto form', slug: 'proto-form-kit' }
+    ]
+  }
 ];
 
 export function libraryBySlug(slug: LibrarySlug): LibraryMeta {

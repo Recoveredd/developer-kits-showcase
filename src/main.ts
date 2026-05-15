@@ -1,5 +1,6 @@
 import { jsonToCsv } from 'json-csv-kit';
 import {
+  demoNavGroups,
   demoTiles,
   isPublished,
   libraries,
@@ -148,11 +149,28 @@ function setStructuredData(route: LibrarySlug | 'home', meta: RouteMeta, url: st
 }
 
 function renderShell(content: string, activeSlug?: LibrarySlug): string {
-  const navLinks = libraries
-    .map((library) => {
-      const isActive = library.slug === activeSlug;
+  const navGroups = demoNavGroups
+    .map((group) => {
+      const activeItem = group.items.find((item) => item.slug === activeSlug);
+      const links = group.items
+        .map((item) => {
+          const isActive = item.slug === activeSlug;
 
-      return `<a href="${libraryPath(library.slug)}" data-link class="demo-nav-link${isActive ? ' is-active' : ''}"${isActive ? ' aria-current="page"' : ''}>${library.name.replace('-kit', '')}</a>`;
+          return `<a href="${libraryPath(item.slug)}" data-link class="demo-nav-link${isActive ? ' is-active' : ''}"${isActive ? ' aria-current="page"' : ''}>${item.label}</a>`;
+        })
+        .join('');
+
+      return `
+        <details class="demo-nav-group${activeItem ? ' is-active' : ''}">
+          <summary>
+            <span>${group.label}</span>
+            ${activeItem ? `<small>${activeItem.label}</small>` : ''}
+          </summary>
+          <div class="demo-nav-menu" aria-label="${group.description}">
+            ${links}
+          </div>
+        </details>
+      `;
     })
     .join('');
 
@@ -162,7 +180,7 @@ function renderShell(content: string, activeSlug?: LibrarySlug): string {
         <img class="brand-mark" src="/brand/developer-kits-logo-192.png" alt="" width="34" height="34" />
         <span>Developer Kits</span>
       </a>
-      <nav class="demo-nav" aria-label="Demo navigation">${navLinks}</nav>
+      <nav class="demo-nav" aria-label="Demo navigation">${navGroups}</nav>
     </header>
     ${content}
     <footer class="site-footer">
@@ -368,6 +386,36 @@ function renderLibraryPage(library: LibraryMeta, demoMarkup: string): string {
 }
 
 function bindNavigation(root: HTMLElement): void {
+  const navGroups = [...root.querySelectorAll<HTMLDetailsElement>('.demo-nav-group')];
+
+  navGroups.forEach((group) => {
+    group.addEventListener('toggle', () => {
+      if (!group.open) return;
+
+      navGroups.forEach((otherGroup) => {
+        if (otherGroup !== group) {
+          otherGroup.open = false;
+        }
+      });
+    });
+  });
+
+  root.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+
+    navGroups.forEach((group) => {
+      group.open = false;
+    });
+  });
+
+  root.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('.demo-nav-group')) return;
+
+    navGroups.forEach((group) => {
+      group.open = false;
+    });
+  });
+
   root.querySelectorAll<HTMLAnchorElement>('a[data-link]').forEach((link) => {
     link.addEventListener('click', (event) => {
       const url = new URL(link.href);

@@ -75,24 +75,101 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 2px 12px;
+  gap: 8px;
   min-width: 0;
   padding: 3px 0;
 }
 
-.demo-nav-link {
+.demo-nav-group {
+  position: relative;
   flex: 0 0 auto;
+}
+
+.demo-nav-group summary {
+  list-style: none;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.74);
+  padding: 8px 11px;
+  font-size: 13px;
+  font-weight: 780;
+  color: #1f242c;
+}
+
+.demo-nav-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.demo-nav-group summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid #6d7581;
+  border-bottom: 2px solid #6d7581;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 140ms ease;
+}
+
+.demo-nav-group[open] summary::after {
+  transform: translateY(2px) rotate(225deg);
+}
+
+.demo-nav-group summary:hover,
+.demo-nav-group[open] summary,
+.demo-nav-group.is-active summary {
+  border-color: #aeb5a8;
+  background: #fff;
+}
+
+.demo-nav-group.is-active summary {
+  color: #11151b;
+}
+
+.demo-nav-group small {
+  max-width: 118px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 680;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.demo-nav-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  right: 0;
+  width: min(300px, calc(100vw - 40px));
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  border: 1px solid var(--border);
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(24, 27, 34, 0.14);
+  padding: 8px;
+}
+
+.demo-nav-link {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
   color: var(--muted);
   font-size: 13px;
   font-weight: 720;
-  padding: 7px 0;
-  border-bottom: 2px solid transparent;
+  padding: 8px 9px;
+  border: 1px solid transparent;
 }
 
 .demo-nav-link:hover,
 .demo-nav-link.is-active {
   color: #11151b;
-  border-bottom-color: #11151b;
+  border-color: var(--border);
+  background: #f5f6f1;
 }
 
 .secondary-action,
@@ -1214,6 +1291,27 @@ select:focus {
   .demo-nav {
     width: 100%;
     justify-content: flex-start;
+  }
+
+  .demo-nav-group,
+  .demo-nav-group summary {
+    width: 100%;
+  }
+
+  .demo-nav-group summary {
+    justify-content: space-between;
+  }
+
+  .demo-nav-group small {
+    max-width: none;
+    margin-left: auto;
+  }
+
+  .demo-nav-menu {
+    position: static;
+    width: 100%;
+    margin-top: 6px;
+    box-shadow: none;
   }
 
   .hero-copy h1,

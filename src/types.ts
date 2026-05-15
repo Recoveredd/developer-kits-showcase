@@ -55,6 +55,12 @@ export type LibraryMeta = {
   features?: string[];
 };
 
+export type DemoNavGroup = {
+  label: string;
+  description: string;
+  items: Array<{ label: string; slug: LibrarySlug }>;
+};
+
 export type RouteMeta = {
   title: string;
   description: string;
