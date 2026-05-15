@@ -36,6 +36,8 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./css-media-query-match-kit');
     case 'lcov-trace-doctor-kit':
       return import('./lcov-trace-doctor-kit');
+    case 'robots-txt-kit':
+      return import('./robots-txt-kit');
     case 'human-duration-parse-kit':
       return import('./human-duration-parse-kit');
     case 'import-specifier-scan-kit':

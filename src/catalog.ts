@@ -237,6 +237,22 @@ export const libraries: LibraryMeta[] = [
     ]
   },
   {
+    slug: 'robots-txt-kit',
+    name: 'robots-txt-kit',
+    summary: 'Parse and evaluate robots.txt crawl rules with structured diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/robots-txt-kit',
+    status: 'preview',
+    demoLabel: 'robots.txt inspector',
+    highlight: 'Preview evaluates crawler access with group merging, wildcards and percent-encoded paths.',
+    accent: '#334155',
+    features: [
+      'User-agent group parsing with wildcard fallback rules',
+      'Allow/Disallow matching with longest-rule and allow-tie behavior',
+      'sitemap extraction and stable diagnostics for malformed directives'
+    ]
+  },
+  {
     slug: 'human-duration-parse-kit',
     name: 'human-duration-parse-kit',
     summary: 'Parse compact human duration strings into milliseconds with structured tokens and diagnostics.',
@@ -524,6 +540,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Package author', slug: 'package-author-parse-kit' },
   { label: 'Media query', slug: 'css-media-query-match-kit' },
   { label: 'LCOV doctor', slug: 'lcov-trace-doctor-kit' },
+  { label: 'robots.txt', slug: 'robots-txt-kit' },
   { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },
