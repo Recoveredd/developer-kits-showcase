@@ -38,6 +38,8 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./lcov-trace-doctor-kit');
     case 'robots-txt-kit':
       return import('./robots-txt-kit');
+    case 'crontab-timer-migration-kit':
+      return import('./crontab-timer-migration-kit');
     case 'human-duration-parse-kit':
       return import('./human-duration-parse-kit');
     case 'import-specifier-scan-kit':

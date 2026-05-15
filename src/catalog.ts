@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, package metadata, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, retry plans, string hashes, range lists, file paths, hex grids, color matching, currency symbols, Node lockfiles, large logs, systemd units and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, package metadata, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, cron migrations, retry plans, string hashes, range lists, file paths, hex grids, color matching, currency symbols, Node lockfiles, large logs, systemd units and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -250,6 +250,22 @@ export const libraries: LibraryMeta[] = [
       'User-agent group parsing with wildcard fallback rules',
       'Allow/Disallow matching with longest-rule and allow-tie behavior',
       'sitemap extraction and stable diagnostics for malformed directives'
+    ]
+  },
+  {
+    slug: 'crontab-timer-migration-kit',
+    name: 'crontab-timer-migration-kit',
+    summary: 'Generate systemd timer migration drafts from crontab text with diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/crontab-timer-migration-kit',
+    status: 'preview',
+    demoLabel: 'Cron migration',
+    highlight: 'Preview turns simple cron jobs into reviewable .service and .timer drafts.',
+    accent: '#7c2d12',
+    features: [
+      'plain five-field cron schedule conversion to OnCalendar',
+      'environment capture, shell warnings and MAILTO migration hints',
+      'stable diagnostics for unsupported cron syntax and invalid field values'
     ]
   },
   {
@@ -541,6 +557,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'Media query', slug: 'css-media-query-match-kit' },
   { label: 'LCOV doctor', slug: 'lcov-trace-doctor-kit' },
   { label: 'robots.txt', slug: 'robots-txt-kit' },
+  { label: 'Cron timers', slug: 'crontab-timer-migration-kit' },
   { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },

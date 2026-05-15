@@ -17,6 +17,7 @@ export type LibrarySlug =
   | 'css-media-query-match-kit'
   | 'lcov-trace-doctor-kit'
   | 'robots-txt-kit'
+  | 'crontab-timer-migration-kit'
   | 'human-duration-parse-kit'
   | 'import-specifier-scan-kit'
   | 'localized-price-parse-kit'
