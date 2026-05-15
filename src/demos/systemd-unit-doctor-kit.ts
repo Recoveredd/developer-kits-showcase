@@ -2,8 +2,8 @@ import { arrayToHtmlTable } from 'array-table-kit';
 import {
   formatSystemdUnitDiagnostics,
   inspectSystemdUnit
-} from '../../../systemd-unit-doctor-kit/src/index';
-import type { InspectSystemdUnitOptions, SystemdUnitKind } from '../../../systemd-unit-doctor-kit/src/index';
+} from 'systemd-unit-doctor-kit';
+import type { InspectSystemdUnitOptions, SystemdUnitKind } from 'systemd-unit-doctor-kit';
 import { byId, escapeHtml } from '../shared';
 
 const sampleUnit = `[Unit]
@@ -23,7 +23,6 @@ WantedBy=multi-user.target
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="systemd-input">systemd unit file</label>
       <textarea id="systemd-input" spellcheck="false">${escapeHtml(sampleUnit)}</textarea>
       <div class="control-row">

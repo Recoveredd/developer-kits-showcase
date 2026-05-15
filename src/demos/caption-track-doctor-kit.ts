@@ -2,7 +2,7 @@ import { arrayToHtmlTable } from 'array-table-kit';
 import {
   convertSrtToWebVtt,
   inspectCaptionTrack
-} from '../../../caption-track-doctor-kit/src/index';
+} from 'caption-track-doctor-kit';
 import { byId, renderError } from '../shared';
 
 const sampleCaptions = `1
@@ -16,7 +16,6 @@ This cue overlaps the previous one`;
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="caption-input">Caption track</label>
       <textarea id="caption-input" spellcheck="false">${sampleCaptions}</textarea>
       <div class="control-grid">

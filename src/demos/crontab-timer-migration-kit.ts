@@ -1,5 +1,5 @@
 import { arrayToHtmlTable } from 'array-table-kit';
-import { migrateCrontabToSystemdTimers } from '../../../crontab-timer-migration-kit/src/index';
+import { migrateCrontabToSystemdTimers } from 'crontab-timer-migration-kit';
 import { byId, renderError } from '../shared';
 
 const sampleCrontab = `PATH=/usr/local/bin:/usr/bin
@@ -11,7 +11,6 @@ MAILTO=ops@example.test
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="crontab-input">Crontab</label>
       <textarea id="crontab-input" spellcheck="false">${sampleCrontab}</textarea>
       <div class="control-grid">

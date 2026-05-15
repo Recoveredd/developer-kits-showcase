@@ -3,7 +3,7 @@ import {
   formatNodeLockfileDoctorReport,
   inspectNodeLockfiles,
   type ProjectFiles
-} from '../../../node-lockfile-doctor-kit/src/index';
+} from 'node-lockfile-doctor-kit';
 import { byId, escapeHtml, parseJson, renderError } from '../shared';
 
 const samplePackageJson = JSON.stringify(
@@ -31,7 +31,6 @@ importers:
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="lockfile-package-json">package.json</label>
       <textarea id="lockfile-package-json" spellcheck="false">${escapeHtml(samplePackageJson)}</textarea>
       <label for="lockfile-main">Lockfile text</label>

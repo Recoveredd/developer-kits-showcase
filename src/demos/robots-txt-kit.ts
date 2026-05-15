@@ -3,7 +3,7 @@ import {
   checkRobotsTxt,
   listRobotsTxtSitemaps,
   parseRobotsTxt
-} from '../../../robots-txt-kit/src/index';
+} from 'robots-txt-kit';
 import { byId, renderError } from '../shared';
 
 const sampleRobots = `User-agent: *
@@ -21,7 +21,6 @@ Sitemap: https://example.com/sitemap.xml`;
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="robots-input">robots.txt</label>
       <textarea id="robots-input" spellcheck="false">${sampleRobots}</textarea>
       <div class="control-grid">

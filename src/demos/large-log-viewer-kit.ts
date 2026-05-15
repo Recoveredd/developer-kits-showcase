@@ -4,8 +4,8 @@ import {
   getLogLineScrollTop,
   renderLogLineHtml,
   stripAnsi
-} from '../../../large-log-viewer-kit/src/index';
-import type { LogDocument, LogSearchMatch } from '../../../large-log-viewer-kit/src/index';
+} from 'large-log-viewer-kit';
+import type { LogDocument, LogSearchMatch } from 'large-log-viewer-kit';
 import { byId, escapeHtml, formatNumber } from '../shared';
 
 const rowHeight = 24;
@@ -14,7 +14,6 @@ const sampleLog = createSyntheticLog(1_200);
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="large-log-input">Log text</label>
       <textarea id="large-log-input" class="large-log-input" spellcheck="false">${escapeHtml(sampleLog)}</textarea>
       <div class="control-row">

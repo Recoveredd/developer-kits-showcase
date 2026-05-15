@@ -2,7 +2,7 @@ import { arrayToHtmlTable } from 'array-table-kit';
 import {
   formatLcovDiagnostics,
   inspectLcovTrace
-} from '../../../lcov-trace-doctor-kit/src/index';
+} from 'lcov-trace-doctor-kit';
 import { byId, renderError } from '../shared';
 
 const sampleTrace = [
@@ -29,7 +29,6 @@ const sampleTrace = [
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="lcov-input">LCOV tracefile</label>
       <textarea id="lcov-input" spellcheck="false">${sampleTrace}</textarea>
       <div class="control-grid">

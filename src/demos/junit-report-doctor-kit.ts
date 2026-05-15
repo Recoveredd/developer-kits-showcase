@@ -1,6 +1,6 @@
 import { arrayToHtmlTable } from 'array-table-kit';
-import { inspectJunitXml, parseJunitXml } from '../../../junit-report-doctor-kit/src/index';
-import type { JunitInspectOptions } from '../../../junit-report-doctor-kit/src/index';
+import { inspectJunitXml, parseJunitXml } from 'junit-report-doctor-kit';
+import type { JunitInspectOptions } from 'junit-report-doctor-kit';
 import { byId, escapeHtml, renderError } from '../shared';
 
 const sampleXml = `<?xml version="1.0"?>
@@ -27,7 +27,6 @@ const sampleXml = `<?xml version="1.0"?>
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="junit-input">JUnit XML report</label>
       <textarea id="junit-input" spellcheck="false">${escapeHtml(sampleXml)}</textarea>
       <label class="check-control">

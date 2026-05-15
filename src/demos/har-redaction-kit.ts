@@ -5,7 +5,7 @@ import {
   redactHar,
   type HarRedactionOptions,
   type HarRedactionRule
-} from '../../../har-redaction-kit/src/index';
+} from 'har-redaction-kit';
 import { byId, escapeHtml, renderError } from '../shared';
 
 const sampleHar = {
@@ -68,7 +68,6 @@ export function renderDemo(): string {
 
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="har-input">HAR JSON</label>
       <textarea id="har-input" spellcheck="false">${escapeHtml(JSON.stringify(sampleHar, null, 2))}</textarea>
       <div class="control-row">

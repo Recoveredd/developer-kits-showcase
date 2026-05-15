@@ -4,7 +4,7 @@ import {
   formatLinkHeader,
   paginationLinks,
   parseLinkHeader
-} from '../../../http-link-header-kit/src/index';
+} from 'http-link-header-kit';
 import { byId, escapeHtml, renderError } from '../shared';
 
 const sampleHeader =
@@ -13,7 +13,6 @@ const sampleHeader =
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="link-header-input">HTTP Link header</label>
       <textarea id="link-header-input" spellcheck="false">${escapeHtml(sampleHeader)}</textarea>
       <div class="control-row">
