@@ -40,6 +40,8 @@ export async function loadDemo(slug: LibrarySlug): Promise<DemoModule> {
       return import('./robots-txt-kit');
     case 'crontab-timer-migration-kit':
       return import('./crontab-timer-migration-kit');
+    case 'caption-track-doctor-kit':
+      return import('./caption-track-doctor-kit');
     case 'human-duration-parse-kit':
       return import('./human-duration-parse-kit');
     case 'import-specifier-scan-kit':

@@ -4,7 +4,7 @@ export const SITE_URL = 'https://packages.wasta-wocket.fr';
 export const SITE_NAME = 'Developer Kits';
 export const SUPPORT_URL = 'https://ko-fi.com/recovered';
 export const HOME_DESCRIPTION =
-  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, package metadata, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, cron migrations, retry plans, string hashes, range lists, file paths, hex grids, color matching, currency symbols, Node lockfiles, large logs, systemd units and HAR cleanup.';
+  'Small TypeScript developer utilities for JSON, tables, paths, CSV exports, terminal output, package metadata, text matching, SVG parsing, front matter, data URLs, HTTP headers, Link headers, captions, cron migrations, retry plans, string hashes, range lists, file paths, hex grids, color matching, currency symbols, Node lockfiles, large logs, systemd units and HAR cleanup.';
 
 export const libraries: LibraryMeta[] = [
   {
@@ -266,6 +266,22 @@ export const libraries: LibraryMeta[] = [
       'plain five-field cron schedule conversion to OnCalendar',
       'environment capture, shell warnings and MAILTO migration hints',
       'stable diagnostics for unsupported cron syntax and invalid field values'
+    ]
+  },
+  {
+    slug: 'caption-track-doctor-kit',
+    name: 'caption-track-doctor-kit',
+    summary: 'Inspect SRT and WebVTT caption tracks with browser-focused diagnostics.',
+    version: '0.1.0',
+    github: 'https://github.com/Recoveredd/caption-track-doctor-kit',
+    status: 'preview',
+    demoLabel: 'Caption doctor',
+    highlight: 'Preview checks subtitle timing, cue overlap, WebVTT blocks and SRT conversion.',
+    accent: '#0f766e',
+    features: [
+      'SRT and WebVTT detection with stable diagnostics',
+      'cue overlap, empty text, inline timestamps and HTML-like tag warnings',
+      'conservative SRT to WebVTT conversion for browser previews'
     ]
   },
   {
@@ -558,6 +574,7 @@ export const demoTiles: Array<{ label: string; slug: LibrarySlug }> = [
   { label: 'LCOV doctor', slug: 'lcov-trace-doctor-kit' },
   { label: 'robots.txt', slug: 'robots-txt-kit' },
   { label: 'Cron timers', slug: 'crontab-timer-migration-kit' },
+  { label: 'Captions', slug: 'caption-track-doctor-kit' },
   { label: 'JUnit doctor', slug: 'junit-report-doctor-kit' },
   { label: 'Range lists', slug: 'number-range-list-kit' },
   { label: 'Hex grid', slug: 'hex-grid-kit' },
