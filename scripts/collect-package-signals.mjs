@@ -1,31 +1,11 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const owner = 'Recoveredd';
-const packages = [
-  'json-html-kit',
-  'array-table-kit',
-  'json-csv-kit',
-  'object-path-kit',
-  'object-key-paths',
-  'terminal-table-kit',
-  'text-similarity-kit',
-  'svg-ast-kit',
-  'frontmatter-kit',
-  'data-url-kit',
-  'hex-color-token-kit',
-  'human-duration-parse-kit',
-  'import-specifier-scan-kit',
-  'localized-price-parse-kit',
-  'css-font-shorthand-kit',
-  'jmx-k6-migration-kit',
-  'proto-form-kit',
-  'number-range-list-kit',
-  'hex-grid-kit',
-  'filepath-validator-kit'
-];
+const packageJson = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
+const packages = Object.keys(packageJson.dependencies ?? {}).sort();
 
 const generatedAt = new Date().toISOString();
 const headers = {
