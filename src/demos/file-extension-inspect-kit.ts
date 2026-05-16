@@ -5,8 +5,8 @@ import {
   hasFileExtension,
   inspectFileExtension,
   splitFileExtension
-} from '../../../file-extension-inspect-kit/src/index';
-import type { DotfilePolicy, ExtensionlessPolicy, InspectFileExtensionOptions } from '../../../file-extension-inspect-kit/src/index';
+} from 'file-extension-inspect-kit';
+import type { DotfilePolicy, ExtensionlessPolicy, InspectFileExtensionOptions } from 'file-extension-inspect-kit';
 import { byId, escapeHtml, renderError } from '../shared';
 
 const sample = '  uploads/archive.TAR.GZ  ';
@@ -14,7 +14,6 @@ const sample = '  uploads/archive.TAR.GZ  ';
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="file-extension-input">Filename or path-like input</label>
       <textarea id="file-extension-input" spellcheck="false">${escapeHtml(sample)}</textarea>
       <div class="control-row">

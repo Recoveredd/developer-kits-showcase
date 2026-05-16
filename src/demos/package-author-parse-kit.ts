@@ -1,11 +1,10 @@
 import { arrayToHtmlTable } from 'array-table-kit';
-import { parsePackageAuthor, stringifyPackageAuthor } from '../../../package-author-parse-kit/src/index';
+import { parsePackageAuthor, stringifyPackageAuthor } from 'package-author-parse-kit';
 import { byId, renderError } from '../shared';
 
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="package-author-input">Package person string</label>
       <textarea id="package-author-input" spellcheck="false">Ada Lovelace <ada@example.dev> (https://example.dev)</textarea>
       <div class="control-grid">

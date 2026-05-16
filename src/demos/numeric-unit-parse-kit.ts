@@ -3,8 +3,8 @@ import {
   createNumericUnitParser,
   formatNumericUnit,
   isNumericUnit
-} from '../../../numeric-unit-parse-kit/src/index';
-import type { ParseNumericUnitOptions } from '../../../numeric-unit-parse-kit/src/index';
+} from 'numeric-unit-parse-kit';
+import type { ParseNumericUnitOptions } from 'numeric-unit-parse-kit';
 import { byId, escapeHtml, renderError } from '../shared';
 
 const sample = '  1.5rem  ';
@@ -12,7 +12,6 @@ const sample = '  1.5rem  ';
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="numeric-unit-input">Numeric unit input</label>
       <textarea id="numeric-unit-input" spellcheck="false">${escapeHtml(sample)}</textarea>
       <div class="control-row">

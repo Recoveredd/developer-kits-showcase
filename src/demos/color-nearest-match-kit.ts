@@ -2,7 +2,7 @@ import {
   createColorMatcher,
   type DistanceMode,
   type PaletteEntry
-} from '../../../color-nearest-match-kit/src/index';
+} from 'color-nearest-match-kit';
 import { byId, escapeHtml, parseJson, renderError } from '../shared';
 
 const samplePalette = [
@@ -17,7 +17,6 @@ const samplePalette = [
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="color-match-palette">Palette JSON</label>
       <textarea id="color-match-palette" spellcheck="false">${escapeHtml(JSON.stringify(samplePalette, null, 2))}</textarea>
       <div class="control-grid">

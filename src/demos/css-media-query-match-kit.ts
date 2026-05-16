@@ -2,13 +2,12 @@ import { arrayToHtmlTable } from 'array-table-kit';
 import {
   formatMediaQueryList,
   matchMediaQueryList
-} from '../../../css-media-query-match-kit/src/index';
+} from 'css-media-query-match-kit';
 import { byId, renderError } from '../shared';
 
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="css-media-input">Media query list</label>
       <textarea id="css-media-input" spellcheck="false">screen and (min-width: 768px) and (orientation: landscape),
 print,

@@ -3,7 +3,7 @@ import {
   formatAcceptLanguage,
   parseAcceptLanguage,
   pickAcceptedLanguage
-} from '../../../http-accept-language-kit/src/index';
+} from 'http-accept-language-kit';
 import { byId, escapeHtml, renderError } from '../shared';
 
 const sample = 'fr-CA, fr;q=0.8, en-US;q=0.6, *;q=0.2';
@@ -12,7 +12,6 @@ const supportedSample = 'en-US\nfr-FR\nde-DE';
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="accept-language-input">Accept-Language header</label>
       <textarea id="accept-language-input" spellcheck="false">${escapeHtml(sample)}</textarea>
       <label for="accept-language-supported">Supported languages</label>

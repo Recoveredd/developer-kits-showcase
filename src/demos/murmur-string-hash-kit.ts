@@ -2,7 +2,7 @@ import { arrayToHtmlTable } from 'array-table-kit';
 import {
   hashString,
   hashStrings
-} from '../../../murmur-string-hash-kit/src/index';
+} from 'murmur-string-hash-kit';
 import { byId, escapeHtml, renderError } from '../shared';
 
 const sampleInputs = `café
@@ -12,7 +12,6 @@ tenant:northwind`;
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <p class="empty-state">MurmurHash3 is deterministic and fast, but not cryptographic. Do not use it for secrets, signatures or adversarial integrity checks.</p>
       <label for="murmur-input">Strings to hash</label>
       <textarea id="murmur-input" spellcheck="false">${escapeHtml(sampleInputs)}</textarea>

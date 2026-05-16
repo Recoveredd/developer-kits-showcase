@@ -1,11 +1,10 @@
 import { arrayToHtmlTable } from 'array-table-kit';
-import { inspectCurrencySymbol } from '../../../currency-code-symbol-kit/src/index';
+import { inspectCurrencySymbol } from 'currency-code-symbol-kit';
 import { byId, renderError } from '../shared';
 
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <div class="control-grid">
         <div>
           <label for="currency-code-input">Currency code</label>

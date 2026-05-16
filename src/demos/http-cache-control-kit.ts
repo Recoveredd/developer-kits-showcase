@@ -4,7 +4,7 @@ import {
   getCacheControlDeltaSeconds,
   hasCacheControlDirective,
   parseCacheControl
-} from '../../../http-cache-control-kit/src/index';
+} from 'http-cache-control-kit';
 import { byId, escapeHtml, renderError } from '../shared';
 
 const sample = 'public, max-age=3600, stale-while-revalidate=30, private="Authorization, Cookie"';
@@ -12,7 +12,6 @@ const sample = 'public, max-age=3600, stale-while-revalidate=30, private="Author
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <label for="cache-control-input">Cache-Control header</label>
       <textarea id="cache-control-input" spellcheck="false">${escapeHtml(sample)}</textarea>
       <div class="control-row">

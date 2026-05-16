@@ -2,14 +2,13 @@ import { arrayToHtmlTable } from 'array-table-kit';
 import {
   createRetryDelayPlan,
   parseRetryAfterDelay
-} from '../../../retry-delay-plan-kit/src/index';
-import type { RetryDelayJitter } from '../../../retry-delay-plan-kit/src/index';
+} from 'retry-delay-plan-kit';
+import type { RetryDelayJitter } from 'retry-delay-plan-kit';
 import { byId } from '../shared';
 
 export function renderDemo(): string {
   return `
     <div class="panel input-panel">
-      <p class="preview-note">Preview build: this demo lazy-loads the local source until the npm package is published.</p>
       <div class="control-grid">
         <label>
           Attempts
