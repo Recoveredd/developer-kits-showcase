@@ -4,131 +4,68 @@ Portfolio and interactive demo site for the Recoveredd TypeScript utility packag
 
 Live site: https://packages.wasta-wocket.fr/
 
-The site is intentionally static: it is built with Vite, deployed manually on an Apache-backed host, and each package page works as a small browser demo that can be linked from GitHub and npm.
+## Packages
 
-## What This Site Contains
+| Package | Description | Links |
+| --- | --- | --- |
+| [json-html-kit](https://packages.wasta-wocket.fr/json-html-kit/) | Render JSON as safe, themed HTML that stays readable in docs, reports and support tools. | [npm](https://www.npmjs.com/package/json-html-kit) · [GitHub](https://github.com/Recoveredd/json-html-kit) |
+| [array-table-kit](https://packages.wasta-wocket.fr/array-table-kit/) | Turn arrays of objects into Markdown or HTML tables with explicit columns and clean escaping. | [npm](https://www.npmjs.com/package/array-table-kit) · [GitHub](https://github.com/Recoveredd/array-table-kit) |
+| [json-csv-kit](https://packages.wasta-wocket.fr/json-csv-kit/) | Convert JSON records to CSV with TypeScript-first options, safe escaping and nested data support. | [npm](https://www.npmjs.com/package/json-csv-kit) · [GitHub](https://github.com/Recoveredd/json-csv-kit) |
+| [object-path-kit](https://packages.wasta-wocket.fr/object-path-kit/) | Parse, normalize and safely access JavaScript object paths, including bracket notation. | [npm](https://www.npmjs.com/package/object-path-kit) · [GitHub](https://github.com/Recoveredd/object-path-kit) |
+| [object-key-paths](https://packages.wasta-wocket.fr/object-key-paths/) | List nested key paths from objects and arrays for schema inspection, mapping and docs. | [npm](https://www.npmjs.com/package/object-key-paths) · [GitHub](https://github.com/Recoveredd/object-key-paths) |
+| [terminal-table-kit](https://packages.wasta-wocket.fr/terminal-table-kit/) | Parse fixed-width terminal table output into typed rows for scripts, dashboards and docs. | [npm](https://www.npmjs.com/package/terminal-table-kit) · [GitHub](https://github.com/Recoveredd/terminal-table-kit) |
+| [text-similarity-kit](https://packages.wasta-wocket.fr/text-similarity-kit/) | Compare and rank short strings with TypeScript-first fuzzy matching helpers. | [npm](https://www.npmjs.com/package/text-similarity-kit) · [GitHub](https://github.com/Recoveredd/text-similarity-kit) |
+| [svg-ast-kit](https://packages.wasta-wocket.fr/svg-ast-kit/) | Parse SVG markup into a typed JSON AST with traversal, lookup and stats helpers. | [npm](https://www.npmjs.com/package/svg-ast-kit) · [GitHub](https://github.com/Recoveredd/svg-ast-kit) |
+| [frontmatter-kit](https://packages.wasta-wocket.fr/frontmatter-kit/) | Parse and inspect front matter with typed metadata, body ranges and readable diagnostics. | [npm](https://www.npmjs.com/package/frontmatter-kit) · [GitHub](https://github.com/Recoveredd/frontmatter-kit) |
+| [data-url-kit](https://packages.wasta-wocket.fr/data-url-kit/) | Parse, validate and inspect data URLs with typed diagnostics, byte metadata and decoded output. | [npm](https://www.npmjs.com/package/data-url-kit) · [GitHub](https://github.com/Recoveredd/data-url-kit) |
+| [hex-color-token-kit](https://packages.wasta-wocket.fr/hex-color-token-kit/) | Extract and validate CSS hex color tokens with spans, normalized values and readable diagnostics. | [npm](https://www.npmjs.com/package/hex-color-token-kit) · [GitHub](https://github.com/Recoveredd/hex-color-token-kit) |
+| [color-nearest-match-kit](https://packages.wasta-wocket.fr/color-nearest-match-kit/) | Match a color against a named palette with ranked results and readable diagnostics. | [npm](https://www.npmjs.com/package/color-nearest-match-kit) · [GitHub](https://github.com/Recoveredd/color-nearest-match-kit) |
+| [currency-code-symbol-kit](https://packages.wasta-wocket.fr/currency-code-symbol-kit/) | Resolve ISO currency codes to locale-aware symbols with structured diagnostics. | [npm](https://www.npmjs.com/package/currency-code-symbol-kit) · [GitHub](https://github.com/Recoveredd/currency-code-symbol-kit) |
+| [node-lockfile-doctor-kit](https://packages.wasta-wocket.fr/node-lockfile-doctor-kit/) | Inspect Node package-manager lockfile consistency with structured diagnostics. | [npm](https://www.npmjs.com/package/node-lockfile-doctor-kit) · [GitHub](https://github.com/Recoveredd/node-lockfile-doctor-kit) |
+| [package-author-parse-kit](https://packages.wasta-wocket.fr/package-author-parse-kit/) | Parse package author, maintainer and contributor strings with stable diagnostics. | [npm](https://www.npmjs.com/package/package-author-parse-kit) · [GitHub](https://github.com/Recoveredd/package-author-parse-kit) |
+| [css-media-query-match-kit](https://packages.wasta-wocket.fr/css-media-query-match-kit/) | Parse and match small CSS media query lists with stable diagnostics. | [npm](https://www.npmjs.com/package/css-media-query-match-kit) · [GitHub](https://github.com/Recoveredd/css-media-query-match-kit) |
+| [lcov-trace-doctor-kit](https://packages.wasta-wocket.fr/lcov-trace-doctor-kit/) | Inspect LCOV tracefiles with structured diagnostics and coverage summaries. | [npm](https://www.npmjs.com/package/lcov-trace-doctor-kit) · [GitHub](https://github.com/Recoveredd/lcov-trace-doctor-kit) |
+| [robots-txt-kit](https://packages.wasta-wocket.fr/robots-txt-kit/) | Parse and evaluate robots.txt crawl rules with structured diagnostics. | [npm](https://www.npmjs.com/package/robots-txt-kit) · [GitHub](https://github.com/Recoveredd/robots-txt-kit) |
+| [crontab-timer-migration-kit](https://packages.wasta-wocket.fr/crontab-timer-migration-kit/) | Generate systemd timer migration drafts from crontab text with diagnostics. | [npm](https://www.npmjs.com/package/crontab-timer-migration-kit) · [GitHub](https://github.com/Recoveredd/crontab-timer-migration-kit) |
+| [caption-track-doctor-kit](https://packages.wasta-wocket.fr/caption-track-doctor-kit/) | Inspect SRT and WebVTT caption tracks with browser-focused diagnostics. | [npm](https://www.npmjs.com/package/caption-track-doctor-kit) · [GitHub](https://github.com/Recoveredd/caption-track-doctor-kit) |
+| [human-duration-parse-kit](https://packages.wasta-wocket.fr/human-duration-parse-kit/) | Parse compact human duration strings into milliseconds with structured tokens and diagnostics. | [npm](https://www.npmjs.com/package/human-duration-parse-kit) · [GitHub](https://github.com/Recoveredd/human-duration-parse-kit) |
+| [import-specifier-scan-kit](https://packages.wasta-wocket.fr/import-specifier-scan-kit/) | Scan JavaScript source text for import, export, dynamic import and require specifiers. | [npm](https://www.npmjs.com/package/import-specifier-scan-kit) · [GitHub](https://github.com/Recoveredd/import-specifier-scan-kit) |
+| [localized-price-parse-kit](https://packages.wasta-wocket.fr/localized-price-parse-kit/) | Parse localized price strings into decimal values, currency hints and separator metadata. | [npm](https://www.npmjs.com/package/localized-price-parse-kit) · [GitHub](https://github.com/Recoveredd/localized-price-parse-kit) |
+| [css-font-shorthand-kit](https://packages.wasta-wocket.fr/css-font-shorthand-kit/) | Parse and format CSS font shorthand values with structured diagnostics. | [npm](https://www.npmjs.com/package/css-font-shorthand-kit) · [GitHub](https://github.com/Recoveredd/css-font-shorthand-kit) |
+| [jmx-k6-migration-kit](https://packages.wasta-wocket.fr/jmx-k6-migration-kit/) | Audit JMeter JMX files and generate safe k6 migration scaffolds with explicit diagnostics. | [npm](https://www.npmjs.com/package/jmx-k6-migration-kit) · [GitHub](https://github.com/Recoveredd/jmx-k6-migration-kit) |
+| [junit-report-doctor-kit](https://packages.wasta-wocket.fr/junit-report-doctor-kit/) | Normalize JUnit XML reports with stable diagnostics for CI pipelines and test report uploads. | [npm](https://www.npmjs.com/package/junit-report-doctor-kit) · [GitHub](https://github.com/Recoveredd/junit-report-doctor-kit) |
+| [proto-form-kit](https://packages.wasta-wocket.fr/proto-form-kit/) | Turn Protocol Buffer schemas into form-friendly metadata, method hints and JSON examples. | [npm](https://www.npmjs.com/package/proto-form-kit) · [GitHub](https://github.com/Recoveredd/proto-form-kit) |
+| [number-range-list-kit](https://packages.wasta-wocket.fr/number-range-list-kit/) | Parse integer range lists into safe expanded values, normalized segments and readable diagnostics. | [npm](https://www.npmjs.com/package/number-range-list-kit) · [GitHub](https://github.com/Recoveredd/number-range-list-kit) |
+| [hex-grid-kit](https://packages.wasta-wocket.fr/hex-grid-kit/) | Build interactive SVG hex grids with cube coordinates, hit testing and framework-agnostic helpers. | [npm](https://www.npmjs.com/package/hex-grid-kit) · [GitHub](https://github.com/Recoveredd/hex-grid-kit) |
+| [filepath-validator-kit](https://packages.wasta-wocket.fr/filepath-validator-kit/) | Validate file path strings with portable, POSIX or Windows policies and structured diagnostics. | [npm](https://www.npmjs.com/package/filepath-validator-kit) · [GitHub](https://github.com/Recoveredd/filepath-validator-kit) |
+| [http-cache-control-kit](https://packages.wasta-wocket.fr/http-cache-control-kit/) | Parse and format HTTP Cache-Control headers with typed diagnostics for tooling and tests. | [npm](https://www.npmjs.com/package/http-cache-control-kit) · [GitHub](https://github.com/Recoveredd/http-cache-control-kit) |
+| [http-accept-language-kit](https://packages.wasta-wocket.fr/http-accept-language-kit/) | Parse, format and lightly match HTTP Accept-Language headers with typed diagnostics. | [npm](https://www.npmjs.com/package/http-accept-language-kit) · [GitHub](https://github.com/Recoveredd/http-accept-language-kit) |
+| [numeric-unit-parse-kit](https://packages.wasta-wocket.fr/numeric-unit-parse-kit/) | Parse numeric values with units into structured amounts, normalized strings and readable diagnostics. | [npm](https://www.npmjs.com/package/numeric-unit-parse-kit) · [GitHub](https://github.com/Recoveredd/numeric-unit-parse-kit) |
+| [file-extension-inspect-kit](https://packages.wasta-wocket.fr/file-extension-inspect-kit/) | Inspect filename extensions with explicit dotfile, extensionless and compound-extension policies. | [npm](https://www.npmjs.com/package/file-extension-inspect-kit) · [GitHub](https://github.com/Recoveredd/file-extension-inspect-kit) |
+| [large-log-viewer-kit](https://packages.wasta-wocket.fr/large-log-viewer-kit/) | Inspect and render large browser logs with offset indexing, virtual windows and chunked search. | [npm](https://www.npmjs.com/package/large-log-viewer-kit) · [GitHub](https://github.com/Recoveredd/large-log-viewer-kit) |
+| [har-redaction-kit](https://packages.wasta-wocket.fr/har-redaction-kit/) | Redact sensitive fields from HAR files with deterministic reports for support handoffs. | [npm](https://www.npmjs.com/package/har-redaction-kit) · [GitHub](https://github.com/Recoveredd/har-redaction-kit) |
+| [systemd-unit-doctor-kit](https://packages.wasta-wocket.fr/systemd-unit-doctor-kit/) | Inspect systemd unit files with portable diagnostics for browsers, CLIs and CI. | [npm](https://www.npmjs.com/package/systemd-unit-doctor-kit) · [GitHub](https://github.com/Recoveredd/systemd-unit-doctor-kit) |
+| [retry-delay-plan-kit](https://packages.wasta-wocket.fr/retry-delay-plan-kit/) | Build deterministic retry delay plans with diagnostics, jitter and Retry-After helpers. | [npm](https://www.npmjs.com/package/retry-delay-plan-kit) · [GitHub](https://github.com/Recoveredd/retry-delay-plan-kit) |
+| [murmur-string-hash-kit](https://packages.wasta-wocket.fr/murmur-string-hash-kit/) | Hash UTF-8 strings with browser-friendly MurmurHash3 x86_32 helpers. | [npm](https://www.npmjs.com/package/murmur-string-hash-kit) · [GitHub](https://github.com/Recoveredd/murmur-string-hash-kit) |
+| [http-link-header-kit](https://packages.wasta-wocket.fr/http-link-header-kit/) | Parse, inspect and format HTTP Link headers with diagnostics and pagination helpers. | [npm](https://www.npmjs.com/package/http-link-header-kit) · [GitHub](https://github.com/Recoveredd/http-link-header-kit) |
 
-- A landing page for the package collection.
-- One route per package, for example `/json-html-kit/` or `/hex-grid-kit/`.
-- Interactive demos powered by the published npm packages.
-- Package metadata: npm link, GitHub link, version, license and short install command.
-- Package signals generated from npm/GitHub activity.
-- Static SEO assets: `sitemap.xml`, `robots.txt`, canonical URLs, Open Graph metadata and `version.txt`.
-
-The current catalog is maintained in [`src/catalog.ts`](src/catalog.ts). It contains the package list, demo labels, summaries, links, versions and navigation groups.
-
-## Local Development
-
-Install dependencies:
+## Development
 
 ```bash
 npm install
-```
-
-Start the local Vite server:
-
-```bash
 npm run dev
 ```
 
-Build the static site:
+## Build
 
 ```bash
 npm run build
 ```
 
-Preview the production build locally:
-
-```bash
-npm run preview
-```
-
 ## Package Signals
-
-Refresh npm/GitHub activity before rebuilding when the homepage metrics should reflect the latest package activity:
 
 ```bash
 npm run signals
 ```
 
-This writes:
-
-- [`reports/package-signals.md`](reports/package-signals.md)
-- [`reports/package-signals.json`](reports/package-signals.json)
-- [`src/package-signals.ts`](src/package-signals.ts)
-
-The homepage uses `src/package-signals.ts`, so run `npm run build` after refreshing signals.
-
-## Adding A Package Page
-
-1. Install the package in this portfolio project:
-
-```bash
-npm install <package-name>
-```
-
-2. Add or update its entry in [`src/catalog.ts`](src/catalog.ts).
-3. Add the demo rendering logic in [`src/main.ts`](src/main.ts) if the package needs a custom interactive view.
-4. Keep the route slug identical to the package name unless there is a strong reason not to.
-5. Run:
-
-```bash
-npm run build
-```
-
-6. Check the page locally with `npm run preview`.
-
-When a package moves from preview/local source to npm, make sure the demo imports the published package instead of a local source path.
-
-## Deployment
-
-Deployment is manual by design.
-
-After a successful build, upload the contents of `dist/` to the Apache virtual host for:
-
-```text
-https://packages.wasta-wocket.fr/
-```
-
-The build copies or generates the static deployment assets needed by the host:
-
-- `.htaccess`
-- `robots.txt`
-- `sitemap.xml`
-- favicons and web manifest
-- `version.txt`
-
-`version.txt` contains the short Git commit for the deployed portfolio build. The parent workspace tracks deployment state in:
-
-```text
-../docs/portfolio-deployment.md
-```
-
-After deploying, verify that the online version matches the local portfolio commit from the parent workspace:
-
-```bash
-node scripts/check-portfolio-deployed-version.mjs
-```
-
-## SEO Notes
-
-The post-build step runs automatically during `npm run build`:
-
-```bash
-node scripts/postbuild-seo.mjs
-```
-
-It prepares clean folder-based routes with `index.html`, page metadata, canonical links, structured data, sitemap entries and static fallback behavior for Apache.
-
-Do not replace this with extensionless HTML files. Routes should stay directory-based:
-
-```text
-/json-html-kit/index.html
-/array-table-kit/index.html
-```
-
-## Repository Scope
-
-This repository only contains the portfolio and demo site. The packages themselves live in their own GitHub repositories and are installed here as dependencies once published on npm.
-
-The site is not the source of truth for package implementation. It is the public demo and navigation layer for the package collection.
+This refreshes the generated package activity files used by the homepage.
